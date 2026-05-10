@@ -23,6 +23,7 @@ os.environ.setdefault("FASTLLM_DSV4_DISABLE_PREFIX_CACHE", "1")
 os.environ.setdefault("FASTLLM_DSV4_DISABLE_CUDA_HCPRE", "1")
 os.environ.setdefault("FASTLLM_DSV4_DISABLE_CUDA_WOA_HCPOST", "1")
 os.environ.setdefault("FASTLLM_DISK_MOE_LOAD_THREADS", "16")
+os.environ.setdefault("FASTLLM_DISK_MOE_CACHE_MB", "8192")
 os.environ.setdefault("USE_OLD_ENGINE", "1")
 
 if os.name == "nt":
@@ -97,6 +98,7 @@ class ModelRuntime:
             "kv_cache_limit": self.kv_cache_limit,
             "default_max_tokens": self.default_max_tokens,
             "chunked_prefill_size": self.chunked_prefill_size,
+            "disk_moe_cache_mb": os.environ.get("FASTLLM_DISK_MOE_CACHE_MB"),
             "tools_dir": TOOLS_DIR,
             "loaded_at": self.loaded_at,
             "devices": {

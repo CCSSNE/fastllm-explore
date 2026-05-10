@@ -6,6 +6,8 @@
 #include <cstring>
 #include <cstdlib>
 #include <fcntl.h>
+#include <list>
+#include <memory>
 #include <mutex>
 #include <set>
 #ifdef _WIN32
@@ -296,20 +298,159 @@ namespace fastllm {
         return loaded;
     }
 
+    struct LoadedDiskWeight {
+        Data *data = nullptr;
+        std::shared_ptr<Data> keepAlive;
+        bool owned = false;
+    };
+
+    static uint64_t DiskMoeCacheBytesLimit() {
+        static uint64_t limit = []() {
+            const char *env = std::getenv("FASTLLM_DISK_MOE_CACHE_MB");
+            if (env == nullptr) {
+                return (uint64_t)0;
+            }
+            long long mb = atoll(env);
+            if (mb <= 0) {
+                return (uint64_t)0;
+            }
+            return (uint64_t)mb * 1024ULL * 1024ULL;
+        }();
+        return limit;
+    }
+
+    static std::string DiskWeightCacheKey(const Data *weight) {
+        std::string key = weight->name + "|" + std::to_string((int)weight->dataType) +
+                          "|" + std::to_string(weight->ggmlType);
+        for (auto &part : weight->diskWeightParts) {
+            key += "|" + part.fileName + ":" + std::to_string(part.fileOffset) +
+                   ":" + std::to_string(part.bytes) +
+                   ":" + std::to_string((int)part.sourceDataType);
+        }
+        return key;
+    }
+
+    class DiskWeightCache {
+    public:
+        ~DiskWeightCache() {
+            Clear();
+        }
+
+        LoadedDiskWeight Get(const Data *weight) {
+            uint64_t limit = DiskMoeCacheBytesLimit();
+            if (limit == 0 || weight == nullptr || !weight->isDiskWeight) {
+                return {LoadDiskWeight(weight), nullptr, weight != nullptr && weight->isDiskWeight};
+            }
+            std::string key = DiskWeightCacheKey(weight);
+
+            {
+                std::lock_guard<std::mutex> guard(locker);
+                auto it = entries.find(key);
+                if (it != entries.end()) {
+                    Touch(it);
+                    return {it->second.data.get(), it->second.data, false};
+                }
+            }
+
+            std::unique_ptr<Data> loaded(LoadDiskWeight(weight));
+            uint64_t bytes = loaded->expansionBytes != 0 ? loaded->expansionBytes : loaded->GetBytes();
+            if (bytes == 0 || bytes > limit) {
+                return {loaded.release(), nullptr, true};
+            }
+
+            std::lock_guard<std::mutex> guard(locker);
+            auto existing = entries.find(key);
+            if (existing != entries.end()) {
+                Touch(existing);
+                return {existing->second.data.get(), existing->second.data, false};
+            }
+
+            EvictToFit(bytes, limit);
+            if (currentBytes + bytes > limit) {
+                return {loaded.release(), nullptr, true};
+            }
+
+            std::shared_ptr<Data> shared(loaded.release());
+            lru.push_front(key);
+            entries[key] = {shared, bytes, lru.begin()};
+            currentBytes += bytes;
+            return {shared.get(), shared, false};
+        }
+
+    private:
+        struct Entry {
+            std::shared_ptr<Data> data;
+            uint64_t bytes;
+            std::list<std::string>::iterator lruIt;
+        };
+
+        void Touch(std::unordered_map<std::string, Entry>::iterator it) {
+            lru.erase(it->second.lruIt);
+            lru.push_front(it->first);
+            it->second.lruIt = lru.begin();
+        }
+
+        void EvictToFit(uint64_t bytes, uint64_t limit) {
+            while (!lru.empty() && currentBytes + bytes > limit) {
+                std::string key = lru.back();
+                lru.pop_back();
+                auto it = entries.find(key);
+                if (it != entries.end()) {
+                    currentBytes -= it->second.bytes;
+                    entries.erase(it);
+                }
+            }
+        }
+
+        void Clear() {
+            std::lock_guard<std::mutex> guard(locker);
+            entries.clear();
+            lru.clear();
+            currentBytes = 0;
+        }
+
+        std::mutex locker;
+        uint64_t currentBytes = 0;
+        std::list<std::string> lru;
+        std::unordered_map<std::string, Entry> entries;
+    };
+
+    static DiskWeightCache &GetDiskWeightCache() {
+        static DiskWeightCache cache;
+        return cache;
+    }
+
+    static void LoadDiskWeightInto(Data **weights, std::vector<Data*> *tempWeights,
+                                   std::vector<uint8_t> *ownedFlags,
+                                   std::vector<std::shared_ptr<Data>> *cachedRefs,
+                                   int index) {
+        LoadedDiskWeight loaded = GetDiskWeightCache().Get(weights[index]);
+        (*tempWeights)[index] = loaded.data;
+        (*ownedFlags)[index] = loaded.owned ? 1 : 0;
+        if (loaded.keepAlive != nullptr) {
+            (*cachedRefs)[index] = loaded.keepAlive;
+        }
+    }
+
     struct LoadDiskWeightsOp : MultiThreadBaseOp {
         Data **weights;
         std::vector<Data*> *tempWeights;
+        std::vector<uint8_t> *ownedFlags;
+        std::vector<std::shared_ptr<Data>> *cachedRefs;
         const std::vector<int> *indices;
         int tid, threadCnt;
 
         LoadDiskWeightsOp(Data **weights, std::vector<Data*> *tempWeights,
+                          std::vector<uint8_t> *ownedFlags,
+                          std::vector<std::shared_ptr<Data>> *cachedRefs,
                           const std::vector<int> *indices, int tid, int threadCnt) :
-            weights(weights), tempWeights(tempWeights), indices(indices), tid(tid), threadCnt(threadCnt) {}
+            weights(weights), tempWeights(tempWeights), ownedFlags(ownedFlags),
+            cachedRefs(cachedRefs), indices(indices), tid(tid), threadCnt(threadCnt) {}
 
         void Run() {
             for (int i = tid; i < (int)indices->size(); i += threadCnt) {
                 int index = (*indices)[i];
-                (*tempWeights)[index] = LoadDiskWeight(weights[index]);
+                LoadDiskWeightInto(weights, tempWeights, ownedFlags, cachedRefs, index);
             }
         }
     };
@@ -408,6 +549,7 @@ namespace fastllm {
 
         std::vector<Data*> tempWeights(weightsBatch, nullptr);
         std::vector<Data*> ownedWeights;
+        std::vector<std::shared_ptr<Data>> cachedWeightRefs;
         for (int i = 0; i < weightsBatch; i++) {
             tempWeights[i] = weights[i];
         }
@@ -426,17 +568,19 @@ namespace fastllm {
             }
         }
         if (loadIndices.size() > 0) {
+            std::vector<uint8_t> ownedFlags(weightsBatch, 0);
+            std::vector<std::shared_ptr<Data>> cachedRefs(weightsBatch);
             auto *pool = GetAlivePool();
             int threadCnt = std::min((int)loadIndices.size(), DiskMoeLoadThreads());
             threadCnt = std::min(threadCnt, (int)pool->threads.size());
             if (threadCnt <= 1) {
                 for (int index : loadIndices) {
-                    tempWeights[index] = LoadDiskWeight(weights[index]);
+                    LoadDiskWeightInto(weights, &tempWeights, &ownedFlags, &cachedRefs, index);
                 }
             } else {
                 std::vector<LoadDiskWeightsOp*> ops;
                 for (int i = 0; i < threadCnt; i++) {
-                    ops.push_back(new LoadDiskWeightsOp(weights, &tempWeights, &loadIndices, i, threadCnt));
+                    ops.push_back(new LoadDiskWeightsOp(weights, &tempWeights, &ownedFlags, &cachedRefs, &loadIndices, i, threadCnt));
                     pool->PushOp(i, ops.back());
                 }
                 for (int i = 0; i < threadCnt; i++) {
@@ -445,7 +589,12 @@ namespace fastllm {
                 }
             }
             for (int index : loadIndices) {
-                ownedWeights.push_back(tempWeights[index]);
+                if (ownedFlags[index]) {
+                    ownedWeights.push_back(tempWeights[index]);
+                }
+                if (cachedRefs[index] != nullptr) {
+                    cachedWeightRefs.push_back(cachedRefs[index]);
+                }
             }
         }
         if (std::getenv("FASTLLM_DEBUG_DISK_MOE") != nullptr) {
