@@ -10,6 +10,39 @@
 
 建议直接把本仓库交给 Codex，让它根据你的显卡、CUDA 版本和模型文件位置做本地适配。我只保证这套配置在我的电脑上可用；剩下的本机路径和硬件环境，需要在你的机器上重新对齐。
 
+## 硬件与效果
+
+测试模型：
+
+- DeepSeek V4 Flash abliterated
+- Q8 量化权重约 281G
+- Q2 量化权重约 92G
+
+测试硬件：
+
+- GPU: RTX 4070 Laptop 8G
+- 内存: 32G DDR5，实际占用约 8G
+- 硬盘: Lexar SSD ARES 4TB PCIe 4.0，标称读速 7000M，实测推理读速约 400M
+- CPU: Intel i9-13900HS
+
+实测结果：
+
+- 模型加载约 1 分钟
+- Q2: 约 0.12 token/s
+- Q8: 约 0.06 token/s
+
+这次主要是跑通流程，还没有做性能优化。硬件占用整体很低，验证了用硬盘跑 DeepSeek V4 这类超大模型的实际路径。
+
+<p>
+  <img src="效果/Q2.png" alt="Q2 推理效果" width="48%">
+  <img src="效果/Q2-硬盘.png" alt="Q2 硬盘占用" width="48%">
+</p>
+
+<p>
+  <img src="效果/Q8.png" alt="Q8 推理效果" width="48%">
+  <img src="效果/Q8-硬盘.png" alt="Q8 硬盘占用" width="48%">
+</p>
+
 ## 方式 A：一条命令启动并加载模型
 
 在 PowerShell 里进入项目目录：

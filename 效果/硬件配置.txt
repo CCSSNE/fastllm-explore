@@ -1,0 +1,24 @@
+模型: Deepseek v4 flash 
+abliterated（破限版-消融法）
+Q8量化 权重大小:281G
+Q2量化 权重大小:92G
+
+配置
+4070lab-8G
+32G ddr5 (实际占用8g)
+Lexar SSD ARES 4TB pcie4.0 读速7000M (实际读速400M)
+I9-13900HS
+
+结果
+加载速度很快，只要1分钟
+Q2速度0.12token/S
+Q8速度0.06token/S
+
+意义
+更改框架以适配deepseek为代表的mhc超大模型，验证了用硬盘跑模型的实际流程
+今天只是跑通，没有任何优化，硬件占用都很低
+笔记本已经具备了跑 满血 deepseek v4 Pro 的能力了，但是还在等待 gguf 的量化版本
+
+
+
+
