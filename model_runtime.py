@@ -69,7 +69,7 @@ class ModelRuntime:
     ):
         self.model_path = model_path or os.environ.get("DSV4_MODEL_PATH") or default_model_path()
         self.model_name = model_name or os.environ.get("OPENAI_MODEL_NAME", "deepseek-v4-flash-q8")
-        self.threads = int(threads or os.environ.get("DSV4_THREADS") or os.environ.get("Q2_THREADS", "16"))
+        self.threads = int(threads or os.environ.get("DSV4_THREADS") or os.environ.get("Q2_THREADS", "12"))
         self.kv_cache_limit = kv_cache_limit or os.environ.get("DSV4_KV_CACHE_LIMIT") or os.environ.get("Q2_KV_CACHE_LIMIT", "8g")
         self.default_max_tokens = int(
             default_max_tokens
