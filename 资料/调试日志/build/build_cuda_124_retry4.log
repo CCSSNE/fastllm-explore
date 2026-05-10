@@ -1,0 +1,2388 @@
+**********************************************************************
+** Visual Studio 2022 Developer Command Prompt v17.14.31
+** Copyright (c) 2025 Microsoft Corporation
+**********************************************************************
+CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+
+
+-- USE_NUMAS: OFF
+-- USE_CUDA: ON
+-- USE_ROCM: OFF
+-- CUDA_ARCH: 89
+-- USE_TFACC: OFF
+-- For legacy CUDA GPUs: OFF
+-- CUDA_MEM_DEBUG: OFF
+-- PYTHON_API: OFF
+-- BUILD_CLI: OFF
+-- USE_SENTENCEPIECE: OFF
+-- USE_IVCOREX: OFF
+-- MAKE_WHL_X86: 
+-- CMAKE_CXX_FLAGS: /DWIN32 /D_WINDOWS /W3 /GR /EHsc -DNOMINMAX /std:c++17 /arch:AVX2 /source-charset:utf-8
+-- Configuring done (0.0s)
+-- Generating done (0.1s)
+-- Build files have been written to: C:/Users/user/output/deepseek-v4閮ㄧ讲/fastllm-master/build-cuda-ninja
+[1/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\fastllm-cuda.cu.obj
+FAILED: [code=2] CMakeFiles/fastllm_tools.dir/src/devices/cuda/fastllm-cuda.cu.obj 
+C:\Users\user\output\deepseek-v4閮ㄧ讲\cuda-12.4-toolkit\bin\nvcc.exe -forward-unknown-to-host-compiler -DUSE_CUDA -Dfastllm_tools_EXPORTS -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\utils -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\models -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\blocks -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\cpu -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\disk -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\json11 -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\gguf -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\flashinfer -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\cuda --allow-unsupported-compiler -D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH -Xcompiler="-MD -O2 -Ob2" -DNDEBUG -std=c++20 "--generate-code=arch=compute_89,code=[compute_89,sm_89]" -MD -MT CMakeFiles\fastllm_tools.dir\src\devices\cuda\fastllm-cuda.cu.obj -MF CMakeFiles\fastllm_tools.dir\src\devices\cuda\fastllm-cuda.cu.obj.d -x cu -c C:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\src\devices\cuda\fastllm-cuda.cu -o CMakeFiles\fastllm_tools.dir\src\devices\cuda\fastllm-cuda.cu.obj -Xcompiler=-FdCMakeFiles\fastllm_tools.dir\,-FS
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(761): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\cuda-12.4-toolkit\bin/../include\cuda.h(22423): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/third_party/flashinfer\sampling.cuh(20): fatal error C1083: 无法打开包括文件: “curand.h”: No such file or directory
+fastllm-cuda.cu
+[2/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\attention\fastllm-attention.cu.obj
+FAILED: [code=4] CMakeFiles/fastllm_tools.dir/src/devices/cuda/attention/fastllm-attention.cu.obj 
+C:\Users\user\output\deepseek-v4閮ㄧ讲\cuda-12.4-toolkit\bin\nvcc.exe -forward-unknown-to-host-compiler -DUSE_CUDA -Dfastllm_tools_EXPORTS -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\utils -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\models -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\blocks -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\cpu -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\disk -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\json11 -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\gguf -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\flashinfer -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\cuda --allow-unsupported-compiler -D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH -Xcompiler="-MD -O2 -Ob2" -DNDEBUG -std=c++20 "--generate-code=arch=compute_89,code=[compute_89,sm_89]" -MD -MT CMakeFiles\fastllm_tools.dir\src\devices\cuda\attention\fastllm-attention.cu.obj -MF CMakeFiles\fastllm_tools.dir\src\devices\cuda\attention\fastllm-attention.cu.obj.d -x cu -c C:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu -o CMakeFiles\fastllm_tools.dir\src\devices\cuda\attention\fastllm-attention.cu.obj -Xcompiler=-FdCMakeFiles\fastllm_tools.dir\,-FS
+C:\Users\user\output\deepseek-v4部署\cuda-12.4-toolkit\bin/../include\cuda.h(22423): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\cuda-12.4-toolkit\bin/../include\cuda/pipeline(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\cuda-12.4-toolkit\include\cuda\barrier(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(761): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(840): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(2020): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(2595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\cuda-12.4-toolkit\bin/../include\cuda.h(22423): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\cuda-12.4-toolkit\bin/../include\cuda/pipeline(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\cuda-12.4-toolkit\include\cuda\barrier(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(761): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(840): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(2020): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(2595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../math.cuh(74): error: identifier "ushort" is undefined
+    ushort y_u16;
+    ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../math.cuh(75): error: an asm operand must have scalar type
+    asm volatile("ex2.approx.f16 %0, %1;" : "=h"(y_u16) : "h"(__half_as_ushort(x)));
+                                            ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../math.cuh(149): error: identifier "ushort" is undefined
+    ushort y_u16;
+    ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../math.cuh(150): error: an asm operand must have scalar type
+    asm volatile("tanh.approx.f16 %0, %1;" : "=h"(y_u16) : "h"(__half_as_ushort(x)));
+                                             ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(114): error: expected a type specifier
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(dst_t* dst, const src_t* src) {
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(114): error: explicit type is missing ("int" assumed)
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(dst_t* dst, const src_t* src) {
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(114): error: expected a ";"
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(dst_t* dst, const src_t* src) {
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(120): warning #12-D: parsing restarts here after previous syntax error
+  };
+  ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(125): error: expected a type specifier
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(__nv_fp8_e4m3* dst, const float* src) {
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(125): error: explicit type is missing ("int" assumed)
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(__nv_fp8_e4m3* dst, const float* src) {
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(125): error: expected a ";"
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(__nv_fp8_e4m3* dst, const float* src) {
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(129): warning #607-D: this pragma must immediately precede a statement
+  #pragma unroll
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(136): warning #12-D: parsing restarts here after previous syntax error
+  };
+  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(141): error: expected a type specifier
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(__nv_fp8_e5m2* dst, const float* src) {
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(141): error: explicit type is missing ("int" assumed)
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(__nv_fp8_e5m2* dst, const float* src) {
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(141): error: expected a ";"
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(__nv_fp8_e5m2* dst, const float* src) {
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(145): warning #607-D: this pragma must immediately precede a statement
+  #pragma unroll
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(152): warning #12-D: parsing restarts here after previous syntax error
+  };
+  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(157): error: expected a type specifier
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(float* dst, const half* src) {
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(157): error: explicit type is missing ("int" assumed)
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(float* dst, const half* src) {
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(157): error: expected a ";"
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(float* dst, const half* src) {
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(161): warning #607-D: this pragma must immediately precede a statement
+  #pragma unroll
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(167): warning #12-D: parsing restarts here after previous syntax error
+  };
+  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(172): error: expected a type specifier
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(half* dst, const float* src) {
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(172): error: explicit type is missing ("int" assumed)
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(half* dst, const float* src) {
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(172): error: expected a ";"
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(half* dst, const float* src) {
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(176): warning #607-D: this pragma must immediately precede a statement
+  #pragma unroll
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(182): warning #12-D: parsing restarts here after previous syntax error
+  };
+  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(185): error: explicit type is missing ("int" assumed)
+  constexpr inline __attribute__((always_inline)) __declspec(__device__) int get_exponent_bits() {
+  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(185): error: identifier "always_inline" is undefined
+  constexpr inline __attribute__((always_inline)) __declspec(__device__) int get_exponent_bits() {
+                                  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(185): error: expected a ";"
+  constexpr inline __attribute__((always_inline)) __declspec(__device__) int get_exponent_bits() {
+                                                  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(272): warning #607-D: this pragma must immediately precede a statement
+  #pragma unroll
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(284): error: expected a type specifier
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(nv_bfloat16* dst, const __nv_fp8_e5m2* src) {
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(284): error: explicit type is missing ("int" assumed)
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(nv_bfloat16* dst, const __nv_fp8_e5m2* src) {
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(284): error: expected a ";"
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(nv_bfloat16* dst, const __nv_fp8_e5m2* src) {
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(292): warning #607-D: this pragma must immediately precede a statement
+  #pragma unroll
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(299): warning #12-D: parsing restarts here after previous syntax error
+  };
+  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(304): error: expected a type specifier
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(__nv_fp8_e4m3* dst, const half* src) {
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(304): error: explicit type is missing ("int" assumed)
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(__nv_fp8_e4m3* dst, const half* src) {
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(304): error: expected a ";"
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(__nv_fp8_e4m3* dst, const half* src) {
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(309): warning #607-D: this pragma must immediately precede a statement
+  #pragma unroll
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(324): warning #12-D: parsing restarts here after previous syntax error
+  };
+  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(329): error: expected a type specifier
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(__nv_fp8_e5m2* dst, const half* src) {
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(329): error: explicit type is missing ("int" assumed)
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(__nv_fp8_e5m2* dst, const half* src) {
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(329): error: expected a ";"
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(__nv_fp8_e5m2* dst, const half* src) {
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(334): warning #607-D: this pragma must immediately precede a statement
+  #pragma unroll
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(349): warning #12-D: parsing restarts here after previous syntax error
+  };
+  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(354): error: expected a type specifier
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(half* dst, const __nv_fp8_e4m3* src) {
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(354): error: explicit type is missing ("int" assumed)
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(half* dst, const __nv_fp8_e4m3* src) {
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(354): error: expected a ";"
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(half* dst, const __nv_fp8_e4m3* src) {
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(359): warning #607-D: this pragma must immediately precede a statement
+  #pragma unroll
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(382): warning #12-D: parsing restarts here after previous syntax error
+  };
+  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(387): error: expected a type specifier
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(half* dst, const __nv_fp8_e5m2* src) {
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(387): error: explicit type is missing ("int" assumed)
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(half* dst, const __nv_fp8_e5m2* src) {
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(387): error: expected a ";"
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(half* dst, const __nv_fp8_e5m2* src) {
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(392): warning #607-D: this pragma must immediately precede a statement
+  #pragma unroll
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(415): warning #12-D: parsing restarts here after previous syntax error
+  };
+  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(420): error: expected a type specifier
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(float* dst, const nv_bfloat16* src) {
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(420): error: explicit type is missing ("int" assumed)
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(float* dst, const nv_bfloat16* src) {
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(420): error: expected a ";"
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(float* dst, const nv_bfloat16* src) {
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(424): warning #607-D: this pragma must immediately precede a statement
+  #pragma unroll
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(430): warning #12-D: parsing restarts here after previous syntax error
+  };
+  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(435): error: expected a type specifier
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(nv_bfloat16* dst, const float* src) {
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(435): error: explicit type is missing ("int" assumed)
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(nv_bfloat16* dst, const float* src) {
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(435): error: expected a ";"
+    inline __attribute__((always_inline)) __declspec(__device__) static void cast(nv_bfloat16* dst, const float* src) {
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(439): warning #607-D: this pragma must immediately precede a statement
+  #pragma unroll
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(445): warning #12-D: parsing restarts here after previous syntax error
+  };
+  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(449): error: expected a type specifier
+    inline __attribute__((always_inline)) __declspec(__device__) float_t& operator[](size_t i);
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(449): error: explicit type is missing ("int" assumed)
+    inline __attribute__((always_inline)) __declspec(__device__) float_t& operator[](size_t i);
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(449): error: expected a ";"
+    inline __attribute__((always_inline)) __declspec(__device__) float_t& operator[](size_t i);
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(450): error: expected a type specifier
+    inline __attribute__((always_inline)) __declspec(__device__) const float_t& operator[](size_t i) const;
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(450): error: explicit type is missing ("int" assumed)
+    inline __attribute__((always_inline)) __declspec(__device__) const float_t& operator[](size_t i) const;
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(450): error: invalid redeclaration of member function "flashinfer::vec_t<float_t, vec_size>::__attribute__(<error-type>)" (declared at line 449)
+    inline __attribute__((always_inline)) __declspec(__device__) const float_t& operator[](size_t i) const;
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(450): error: expected a ";"
+    inline __attribute__((always_inline)) __declspec(__device__) const float_t& operator[](size_t i) const;
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(451): error: expected a type specifier
+    inline __attribute__((always_inline)) __declspec(__device__) void fill(float_t val);
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(451): error: explicit type is missing ("int" assumed)
+    inline __attribute__((always_inline)) __declspec(__device__) void fill(float_t val);
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(451): error: invalid redeclaration of member function "flashinfer::vec_t<float_t, vec_size>::__attribute__(<error-type>)" (declared at line 449)
+    inline __attribute__((always_inline)) __declspec(__device__) void fill(float_t val);
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(451): error: expected a ";"
+    inline __attribute__((always_inline)) __declspec(__device__) void fill(float_t val);
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(452): error: expected a type specifier
+    inline __attribute__((always_inline)) __declspec(__device__) void load(const float_t* ptr);
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(452): error: explicit type is missing ("int" assumed)
+    inline __attribute__((always_inline)) __declspec(__device__) void load(const float_t* ptr);
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(452): error: invalid redeclaration of member function "flashinfer::vec_t<float_t, vec_size>::__attribute__(<error-type>)" (declared at line 449)
+    inline __attribute__((always_inline)) __declspec(__device__) void load(const float_t* ptr);
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(452): error: expected a ";"
+    inline __attribute__((always_inline)) __declspec(__device__) void load(const float_t* ptr);
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(453): error: expected a type specifier
+    inline __attribute__((always_inline)) __declspec(__device__) void store(float_t* ptr) const;
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(453): error: explicit type is missing ("int" assumed)
+    inline __attribute__((always_inline)) __declspec(__device__) void store(float_t* ptr) const;
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(453): error: invalid redeclaration of member function "flashinfer::vec_t<float_t, vec_size>::__attribute__(<error-type>)" (declared at line 449)
+    inline __attribute__((always_inline)) __declspec(__device__) void store(float_t* ptr) const;
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(453): error: expected a ";"
+    inline __attribute__((always_inline)) __declspec(__device__) void store(float_t* ptr) const;
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(454): error: expected a type specifier
+    inline __attribute__((always_inline)) __declspec(__device__) void load_global_acquire(float* addr);
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(454): error: explicit type is missing ("int" assumed)
+    inline __attribute__((always_inline)) __declspec(__device__) void load_global_acquire(float* addr);
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(454): error: invalid redeclaration of member function "flashinfer::vec_t<float_t, vec_size>::__attribute__(<error-type>)" (declared at line 449)
+    inline __attribute__((always_inline)) __declspec(__device__) void load_global_acquire(float* addr);
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(454): error: expected a ";"
+    inline __attribute__((always_inline)) __declspec(__device__) void load_global_acquire(float* addr);
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(455): error: expected a type specifier
+    inline __attribute__((always_inline)) __declspec(__device__) void store_global_release(float* addr) const;
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(455): error: explicit type is missing ("int" assumed)
+    inline __attribute__((always_inline)) __declspec(__device__) void store_global_release(float* addr) const;
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(455): error: invalid redeclaration of member function "flashinfer::vec_t<float_t, vec_size>::__attribute__(<error-type>)" (declared at line 449)
+    inline __attribute__((always_inline)) __declspec(__device__) void store_global_release(float* addr) const;
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(455): error: expected a ";"
+    inline __attribute__((always_inline)) __declspec(__device__) void store_global_release(float* addr) const;
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(456): error: expected a type specifier
+    inline __attribute__((always_inline)) __declspec(__device__) void load_global_volatile(float* addr);
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(456): error: explicit type is missing ("int" assumed)
+    inline __attribute__((always_inline)) __declspec(__device__) void load_global_volatile(float* addr);
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(456): error: invalid redeclaration of member function "flashinfer::vec_t<float_t, vec_size>::__attribute__(<error-type>)" (declared at line 449)
+    inline __attribute__((always_inline)) __declspec(__device__) void load_global_volatile(float* addr);
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(456): error: expected a ";"
+    inline __attribute__((always_inline)) __declspec(__device__) void load_global_volatile(float* addr);
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(457): error: expected a type specifier
+    inline __attribute__((always_inline)) __declspec(__device__) void store_global_volatile(float* addr) const;
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(457): error: explicit type is missing ("int" assumed)
+    inline __attribute__((always_inline)) __declspec(__device__) void store_global_volatile(float* addr) const;
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(457): error: invalid redeclaration of member function "flashinfer::vec_t<float_t, vec_size>::__attribute__(<error-type>)" (declared at line 449)
+    inline __attribute__((always_inline)) __declspec(__device__) void store_global_volatile(float* addr) const;
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(457): error: expected a ";"
+    inline __attribute__((always_inline)) __declspec(__device__) void store_global_volatile(float* addr) const;
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(459): error: expected a type specifier
+    inline __attribute__((always_inline)) __declspec(__device__) void cast_from(const vec_t<T, vec_size>& src);
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(459): error: explicit type is missing ("int" assumed)
+    inline __attribute__((always_inline)) __declspec(__device__) void cast_from(const vec_t<T, vec_size>& src);
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(459): error: expected a ";"
+    inline __attribute__((always_inline)) __declspec(__device__) void cast_from(const vec_t<T, vec_size>& src);
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(461): error: expected a type specifier
+    inline __attribute__((always_inline)) __declspec(__device__) void cast_load(const T* ptr);
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(461): error: explicit type is missing ("int" assumed)
+    inline __attribute__((always_inline)) __declspec(__device__) void cast_load(const T* ptr);
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(461): error: invalid redeclaration of member function template "int flashinfer::vec_t<float_t, vec_size>::__attribute__<T>(<error-type>)" (declared at line 459)
+    inline __attribute__((always_inline)) __declspec(__device__) void cast_load(const T* ptr);
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(461): error: expected a ";"
+    inline __attribute__((always_inline)) __declspec(__device__) void cast_load(const T* ptr);
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(463): error: expected a type specifier
+    inline __attribute__((always_inline)) __declspec(__device__) void cast_store(T* ptr) const;
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(463): error: explicit type is missing ("int" assumed)
+    inline __attribute__((always_inline)) __declspec(__device__) void cast_store(T* ptr) const;
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(463): error: invalid redeclaration of member function template "int flashinfer::vec_t<float_t, vec_size>::__attribute__<T>(<error-type>)" (declared at line 459)
+    inline __attribute__((always_inline)) __declspec(__device__) void cast_store(T* ptr) const;
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(463): error: expected a ";"
+    inline __attribute__((always_inline)) __declspec(__device__) void cast_store(T* ptr) const;
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(464): error: expected a type specifier
+    inline __attribute__((always_inline)) __declspec(__device__) static void memcpy(float_t* dst, const float_t* src);
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(464): error: explicit type is missing ("int" assumed)
+    inline __attribute__((always_inline)) __declspec(__device__) static void memcpy(float_t* dst, const float_t* src);
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(464): error: invalid redeclaration of member function "flashinfer::vec_t<float_t, vec_size>::__attribute__(<error-type>)" (declared at line 449)
+    inline __attribute__((always_inline)) __declspec(__device__) static void memcpy(float_t* dst, const float_t* src);
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(464): error: expected a ";"
+    inline __attribute__((always_inline)) __declspec(__device__) static void memcpy(float_t* dst, const float_t* src);
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(465): error: expected a type specifier
+    inline __attribute__((always_inline)) __declspec(__device__) float_t* ptr();
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(465): error: explicit type is missing ("int" assumed)
+    inline __attribute__((always_inline)) __declspec(__device__) float_t* ptr();
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(465): error: invalid redeclaration of member function "flashinfer::vec_t<float_t, vec_size>::__attribute__(<error-type>)" (declared at line 449)
+    inline __attribute__((always_inline)) __declspec(__device__) float_t* ptr();
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(465): error: expected a ";"
+    inline __attribute__((always_inline)) __declspec(__device__) float_t* ptr();
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(469): error: explicit type is missing ("int" assumed)
+  inline __attribute__((always_inline)) __declspec(__device__) void cast_from_impl(vec_t<tgt_float_t, vec_size>& dst,
+  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(469): error: declaration is incompatible with variable template "flashinfer::__attribute__" (declared at line 185)
+  inline __attribute__((always_inline)) __declspec(__device__) void cast_from_impl(vec_t<tgt_float_t, vec_size>& dst,
+         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../vec_dtypes.cuh(530): error: explicit type is missing ("int" assumed)
+  inline __attribute__((always_inline)) __declspec(__device__) void vec_t<__nv_fp8_e4m3, 1>::fill(__nv_fp8_e4m3 val) { data = val; }
+         ^
+
+Error limit reached.
+100 errors detected in the compilation of "C:/Users/user/output/deepseek-v42?êe/fastllm-master/src/devices/cuda/attention/fastllm-attention.cu".
+Compilation terminated.
+fastllm-attention.cu
+[3/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-fp32.cu.obj
+FAILED: [code=4] CMakeFiles/fastllm_tools.dir/src/devices/cuda/linear/fastllm-linear-fp32.cu.obj 
+C:\Users\user\output\deepseek-v4閮ㄧ讲\cuda-12.4-toolkit\bin\nvcc.exe -forward-unknown-to-host-compiler -DUSE_CUDA -Dfastllm_tools_EXPORTS -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\utils -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\models -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\blocks -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\cpu -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\disk -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\json11 -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\gguf -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\flashinfer -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\cuda --allow-unsupported-compiler -D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH -Xcompiler="-MD -O2 -Ob2" -DNDEBUG -std=c++20 "--generate-code=arch=compute_89,code=[compute_89,sm_89]" -MD -MT CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-fp32.cu.obj -MF CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-fp32.cu.obj.d -x cu -c C:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp32.cu -o CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-fp32.cu.obj -Xcompiler=-FdCMakeFiles\fastllm_tools.dir\,-FS
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(761): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\cuda-12.4-toolkit\bin/../include\cuda.h(22423): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(761): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\cuda-12.4-toolkit\bin/../include\cuda.h(22423): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(134): error: identifier "top_k" is undefined
+              if (top_k > 1) {
+                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(911): error: reference variable "fastllm::positionIds" requires an initializer
+                          const Data &positionIds, int q_heads, int k_heads, int head_dim,
+                                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(911): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          const Data &positionIds, int q_heads, int k_heads, int head_dim,
+                                                   ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(911): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          const Data &positionIds, int q_heads, int k_heads, int head_dim,
+                                                                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(911): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          const Data &positionIds, int q_heads, int k_heads, int head_dim,
+                                                                             ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(912): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          int rotaryDim, float eps, float ropeTheta, float ropeScale);
+                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(912): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          int rotaryDim, float eps, float ropeTheta, float ropeScale);
+                                         ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(912): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          int rotaryDim, float eps, float ropeTheta, float ropeScale);
+                                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(912): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          int rotaryDim, float eps, float ropeTheta, float ropeScale);
+                                                                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(912): error: expected a ";"
+                          int rotaryDim, float eps, float ropeTheta, float ropeScale);
+                                                                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(918): error: reference variable "fastllm::qkv" requires an initializer
+          Data &qkv, Data &qNormWeight, Data &kNormWeight,
+                   ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(918): error: expected a ";"
+          Data &qkv, Data &qNormWeight, Data &kNormWeight,
+                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(925): warning #12-D: parsing restarts here after previous syntax error
+          int pageLen, int batch, bool doQKNorm = true);
+                                                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: incomplete type is not allowed
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: identifier "input" is undefined
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                               ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: variable "fastllm::Data" is not a type name
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: type name is not allowed
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: identifier "penalty" is undefined
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: variable "fastllm::Data" is not a type name
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                                                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: type name is not allowed
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                                                           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: identifier "penaltyScale" is undefined
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                                                                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(929): error: incomplete type is not allowed
+      void ApplyLognAttn(Data &input, const Data &lognAttn, const Data &positionIds);
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(929): error: variable "fastllm::Data" is not a type name
+      void ApplyLognAttn(Data &input, const Data &lognAttn, const Data &positionIds);
+                                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(929): error: type name is not allowed
+      void ApplyLognAttn(Data &input, const Data &lognAttn, const Data &positionIds);
+                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(929): error: identifier "lognAttn" is undefined
+      void ApplyLognAttn(Data &input, const Data &lognAttn, const Data &positionIds);
+                                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(929): error: variable "fastllm::Data" is not a type name
+      void ApplyLognAttn(Data &input, const Data &lognAttn, const Data &positionIds);
+                                                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(929): error: type name is not allowed
+      void ApplyLognAttn(Data &input, const Data &lognAttn, const Data &positionIds);
+                                                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(931): error: incomplete type is not allowed
+      void CumSumLastDim(Data &input);
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(933): error: incomplete type is not allowed
+      void MakeDecayMask(Data &input, Data &output);
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(933): error: identifier "output" is undefined
+      void MakeDecayMask(Data &input, Data &output);
+                                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(935): error: incomplete type is not allowed
+      void ApplyChunkDecayByLastLogG(Data &input, const Data &g);
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(935): error: variable "fastllm::Data" is not a type name
+      void ApplyChunkDecayByLastLogG(Data &input, const Data &g);
+                                                        ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(935): error: type name is not allowed
+      void ApplyChunkDecayByLastLogG(Data &input, const Data &g);
+                                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(935): error: identifier "g" is undefined
+      void ApplyChunkDecayByLastLogG(Data &input, const Data &g);
+                                                              ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(937): error: variable "fastllm::Data" is not a type name
+      void MulBatch(std::vector <Data*> &input, float v, std::vector <Data*> &output);
+                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(937): error: variable "fastllm::Data" is not a type name
+      void MulBatch(std::vector <Data*> &input, float v, std::vector <Data*> &output);
+                                                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(939): error: variable "fastllm::Data" is not a type name
+      void SplitBatch(const Data &input, int axis, int part, std::vector <Data*> &outputs); 
+                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(939): error: variable "fastllm::Data" is not a type name
+      void SplitBatch(const Data &input, int axis, int part, std::vector <Data*> &outputs); 
+                                                                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(940): error: variable "fastllm::Data" is not a type name
+      void CatBatch(std::vector <Data*> &input, int axis, Data &outputs); 
+                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(940): error: variable "fastllm::Data" is not a type name
+      void CatBatch(std::vector <Data*> &input, int axis, Data &outputs); 
+                                                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(941): error: variable "fastllm::Data" is not a type name
+      void MatMulBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, std::vector <Data*> &output, float alpha = 1.0);
+                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(941): error: variable "fastllm::Data" is not a type name
+      void MatMulBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, std::vector <Data*> &output, float alpha = 1.0);
+                                                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(941): error: variable "fastllm::Data" is not a type name
+      void MatMulBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, std::vector <Data*> &output, float alpha = 1.0);
+                                                                                              ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(943): error: variable "fastllm::Data" is not a type name
+      void MatMulTransBBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, std::vector <Data*> &output, float alpha = 1.0);
+                                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(943): error: variable "fastllm::Data" is not a type name
+      void MatMulTransBBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, std::vector <Data*> &output, float alpha = 1.0);
+                                                                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(943): error: variable "fastllm::Data" is not a type name
+      void MatMulTransBBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, std::vector <Data*> &output, float alpha = 1.0);
+                                                                                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(945): error: variable "fastllm::Data" is not a type name
+      void SoftmaxBatch(std::vector <Data*> &input, std::vector <Data*> &output, int axis);
+                                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(945): error: variable "fastllm::Data" is not a type name
+      void SoftmaxBatch(std::vector <Data*> &input, std::vector <Data*> &output, int axis);
+                                                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(947): error: variable "fastllm::Data" is not a type name
+      void CatDirectBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, int axis);
+                                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(947): error: variable "fastllm::Data" is not a type name
+      void CatDirectBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, int axis);
+                                                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(949): error: variable "fastllm::Data" is not a type name
+      void AppendKVCacheBatch(std::vector <Data*> &cache, const Data &input);
+                                           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(949): error: variable "fastllm::Data" is not a type name
+      void AppendKVCacheBatch(std::vector <Data*> &cache, const Data &input);
+                                                                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: incomplete type is not allowed
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: identifier "weight" is undefined
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+                                        ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: identifier "loraA" is undefined
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+                                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: identifier "loraB" is undefined
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+                                                                   ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: variable "fastllm::Data" is not a type name
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+                                                                                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: type name is not allowed
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+                                                                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: identifier "bias" is undefined
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+                                                                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(952): error: type name is not allowed
+                     std::map <std::string, std::string> loraConfig);
+                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(952): error: expected a ")"
+                     std::map <std::string, std::string> loraConfig);
+                                                         ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(954): error: incomplete type is not allowed
+      void IA3Layer(Data &input, Data &weight, Data &ia3_l, Data &bias, Data &output,
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(954): error: identifier "ia3_l" is undefined
+      void IA3Layer(Data &input, Data &weight, Data &ia3_l, Data &bias, Data &output,
+                                                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(955): error: type name is not allowed
+                    std::map <std::string, std::string> ia3Config);
+                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(955): error: expected a ")"
+                    std::map <std::string, std::string> ia3Config);
+                                                        ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(959): error: variable "fastllm::Data" is not a type name
+          const Data &cacheData, 
+                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(967): error: variable "fastllm::Data" is not a type name
+      void AppendPagedCache(PagedCacheManager &pagedCacheManager, Data &cache, const Data &input);
+                                                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(967): error: variable "fastllm::Data" is not a type name
+      void AppendPagedCache(PagedCacheManager &pagedCacheManager, Data &cache, const Data &input);
+                                                                                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(975): error: variable "fastllm::Data" is not a type name
+          const std::vector<Data*> &pastKeys, int batch, 
+                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(976): error: variable "fastllm::Data" is not a type name
+          Data &insertIndexs, Data &insertPositions);
+          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(976): error: variable "fastllm::Data" is not a type name
+          Data &insertIndexs, Data &insertPositions);
+                              ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(984): error: variable "fastllm::Data" is not a type name
+      void AppendPagedCacheBatch(PagedCacheManager &pagedCacheManager, const std::vector<Data*> &currentCaches, const Data &input, 
+                                                                                         ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(984): error: variable "fastllm::Data" is not a type name
+      void AppendPagedCacheBatch(PagedCacheManager &pagedCacheManager, const std::vector<Data*> &currentCaches, const Data &input, 
+                                                                                                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(985): error: variable "fastllm::Data" is not a type name
+          Data &insertIndexs, Data &insertPositions);
+          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(985): error: variable "fastllm::Data" is not a type name
+          Data &insertIndexs, Data &insertPositions);
+                              ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(987): error: variable "fastllm::Data" is not a type name
+      void AttentionPaged(const Data &q, const Data &k, const Data &v, Data &output,
+                                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(987): error: variable "fastllm::Data" is not a type name
+      void AttentionPaged(const Data &q, const Data &k, const Data &v, Data &output,
+                                               ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(987): error: variable "fastllm::Data" is not a type name
+      void AttentionPaged(const Data &q, const Data &k, const Data &v, Data &output,
+                                                              ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(987): error: variable "fastllm::Data" is not a type name
+      void AttentionPaged(const Data &q, const Data &k, const Data &v, Data &output,
+                                                                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(995): error: variable "fastllm::Data" is not a type name
+      void AttentionPagedBatch(const Data &q, const Data &kCaches, const Data &vCaches, 
+                                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(995): error: variable "fastllm::Data" is not a type name
+      void AttentionPagedBatch(const Data &q, const Data &kCaches, const Data &vCaches, 
+                                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(995): error: variable "fastllm::Data" is not a type name
+      void AttentionPagedBatch(const Data &q, const Data &kCaches, const Data &vCaches, 
+                                                                         ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(996): error: variable "fastllm::Data" is not a type name
+          const Data &qSizes, const Data &pageSizes, const Data &pageIndexs, const Data &lastPageLens, 
+                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(996): error: variable "fastllm::Data" is not a type name
+          const Data &qSizes, const Data &pageSizes, const Data &pageIndexs, const Data &lastPageLens, 
+                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(996): error: variable "fastllm::Data" is not a type name
+          const Data &qSizes, const Data &pageSizes, const Data &pageIndexs, const Data &lastPageLens, 
+                                                           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(996): error: variable "fastllm::Data" is not a type name
+          const Data &qSizes, const Data &pageSizes, const Data &pageIndexs, const Data &lastPageLens, 
+                                                                                   ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(997): error: variable "fastllm::Data" is not a type name
+          Data &output, int group, float scale, int attentionType, bool inited = false);
+          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(1004): error: variable "fastllm::Data" has already been defined
+          int batch, Data &qSizes, Data &pageSizes, Data &pageIndexs, Data &lastPageLens,
+                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(1004): error: expected a ";"
+          int batch, Data &qSizes, Data &pageSizes, Data &pageIndexs, Data &lastPageLens,
+                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(85): error: variable "fastllm::Data" is not a type name
+  void *FastllmCudaPrepareInput(const fastllm::Data &input);
+                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(86): error: identifier "output" is undefined
+  void *FastllmCudaPrepareOutput(fastllm::Data &output);
+                                                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(87): error: variable "fastllm::Data" is not a type name
+  void FastllmCudaFinishInput(const fastllm::Data &input, void *data);
+                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(88): error: incomplete type is not allowed
+  void FastllmCudaFinishOutput(fastllm::Data &output, void *data);
+       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(88): error: type name is not allowed
+  void FastllmCudaFinishOutput(fastllm::Data &output, void *data);
+                                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(88): error: identifier "data" is undefined
+  void FastllmCudaFinishOutput(fastllm::Data &output, void *data);
+                                                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(164): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLA(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCache, const fastllm::Data &peCache, 
+                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(164): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLA(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCache, const fastllm::Data &peCache, 
+                                                        ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(164): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLA(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCache, const fastllm::Data &peCache, 
+                                                                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(164): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLA(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCache, const fastllm::Data &peCache, 
+                                                                                                                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(165): error: variable "fastllm::Data" is not a type name
+                      fastllm::Data &score, fastllm::Data &output, float softmaxScale);
+                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(165): error: variable "fastllm::Data" is not a type name
+                      fastllm::Data &score, fastllm::Data &output, float softmaxScale);
+                                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(167): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLAPaged(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCachePaged, const fastllm::Data &peCachePaged,
+                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(167): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLAPaged(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCachePaged, const fastllm::Data &peCachePaged,
+                                                             ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(167): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLAPaged(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCachePaged, const fastllm::Data &peCachePaged,
+                                                                                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(167): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLAPaged(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCachePaged, const fastllm::Data &peCachePaged,
+                                                                                                                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(168): error: variable "fastllm::Data" is not a type name
+                           fastllm::Data &output, float softmaxScale);
+                           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(170): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaEmbedding(const fastllm::Data &input, const fastllm::Data &weight, fastllm::Data &output);
+                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(170): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaEmbedding(const fastllm::Data &input, const fastllm::Data &weight, fastllm::Data &output);
+                                                              ^
+
+Error limit reached.
+100 errors detected in the compilation of "C:/Users/user/output/deepseek-v42?êe/fastllm-master/src/devices/cuda/linear/fastllm-linear-fp32.cu".
+Compilation terminated.
+fastllm-linear-fp32.cu
+[4/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-fp16.cu.obj
+FAILED: [code=4] CMakeFiles/fastllm_tools.dir/src/devices/cuda/linear/fastllm-linear-fp16.cu.obj 
+C:\Users\user\output\deepseek-v4閮ㄧ讲\cuda-12.4-toolkit\bin\nvcc.exe -forward-unknown-to-host-compiler -DUSE_CUDA -Dfastllm_tools_EXPORTS -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\utils -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\models -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\blocks -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\cpu -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\disk -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\json11 -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\gguf -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\flashinfer -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\cuda --allow-unsupported-compiler -D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH -Xcompiler="-MD -O2 -Ob2" -DNDEBUG -std=c++20 "--generate-code=arch=compute_89,code=[compute_89,sm_89]" -MD -MT CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-fp16.cu.obj -MF CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-fp16.cu.obj.d -x cu -c C:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp16.cu -o CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-fp16.cu.obj -Xcompiler=-FdCMakeFiles\fastllm_tools.dir\,-FS
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(761): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\cuda-12.4-toolkit\bin/../include\cuda.h(22423): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp16.cu(690): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(761): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\cuda-12.4-toolkit\bin/../include\cuda.h(22423): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp16.cu(690): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(134): error: identifier "top_k" is undefined
+              if (top_k > 1) {
+                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(911): error: reference variable "fastllm::positionIds" requires an initializer
+                          const Data &positionIds, int q_heads, int k_heads, int head_dim,
+                                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(911): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          const Data &positionIds, int q_heads, int k_heads, int head_dim,
+                                                   ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(911): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          const Data &positionIds, int q_heads, int k_heads, int head_dim,
+                                                                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(911): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          const Data &positionIds, int q_heads, int k_heads, int head_dim,
+                                                                             ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(912): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          int rotaryDim, float eps, float ropeTheta, float ropeScale);
+                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(912): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          int rotaryDim, float eps, float ropeTheta, float ropeScale);
+                                         ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(912): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          int rotaryDim, float eps, float ropeTheta, float ropeScale);
+                                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(912): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          int rotaryDim, float eps, float ropeTheta, float ropeScale);
+                                                                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(912): error: expected a ";"
+                          int rotaryDim, float eps, float ropeTheta, float ropeScale);
+                                                                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(918): error: reference variable "fastllm::qkv" requires an initializer
+          Data &qkv, Data &qNormWeight, Data &kNormWeight,
+                   ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(918): error: expected a ";"
+          Data &qkv, Data &qNormWeight, Data &kNormWeight,
+                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(925): warning #12-D: parsing restarts here after previous syntax error
+          int pageLen, int batch, bool doQKNorm = true);
+                                                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: incomplete type is not allowed
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: identifier "input" is undefined
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                               ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: variable "fastllm::Data" is not a type name
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: type name is not allowed
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: identifier "penalty" is undefined
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: variable "fastllm::Data" is not a type name
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                                                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: type name is not allowed
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                                                           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: identifier "penaltyScale" is undefined
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                                                                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(929): error: incomplete type is not allowed
+      void ApplyLognAttn(Data &input, const Data &lognAttn, const Data &positionIds);
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(929): error: variable "fastllm::Data" is not a type name
+      void ApplyLognAttn(Data &input, const Data &lognAttn, const Data &positionIds);
+                                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(929): error: type name is not allowed
+      void ApplyLognAttn(Data &input, const Data &lognAttn, const Data &positionIds);
+                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(929): error: identifier "lognAttn" is undefined
+      void ApplyLognAttn(Data &input, const Data &lognAttn, const Data &positionIds);
+                                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(929): error: variable "fastllm::Data" is not a type name
+      void ApplyLognAttn(Data &input, const Data &lognAttn, const Data &positionIds);
+                                                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(929): error: type name is not allowed
+      void ApplyLognAttn(Data &input, const Data &lognAttn, const Data &positionIds);
+                                                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(931): error: incomplete type is not allowed
+      void CumSumLastDim(Data &input);
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(933): error: incomplete type is not allowed
+      void MakeDecayMask(Data &input, Data &output);
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(933): error: identifier "output" is undefined
+      void MakeDecayMask(Data &input, Data &output);
+                                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(935): error: incomplete type is not allowed
+      void ApplyChunkDecayByLastLogG(Data &input, const Data &g);
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(935): error: variable "fastllm::Data" is not a type name
+      void ApplyChunkDecayByLastLogG(Data &input, const Data &g);
+                                                        ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(935): error: type name is not allowed
+      void ApplyChunkDecayByLastLogG(Data &input, const Data &g);
+                                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(935): error: identifier "g" is undefined
+      void ApplyChunkDecayByLastLogG(Data &input, const Data &g);
+                                                              ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(937): error: variable "fastllm::Data" is not a type name
+      void MulBatch(std::vector <Data*> &input, float v, std::vector <Data*> &output);
+                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(937): error: variable "fastllm::Data" is not a type name
+      void MulBatch(std::vector <Data*> &input, float v, std::vector <Data*> &output);
+                                                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(939): error: variable "fastllm::Data" is not a type name
+      void SplitBatch(const Data &input, int axis, int part, std::vector <Data*> &outputs); 
+                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(939): error: variable "fastllm::Data" is not a type name
+      void SplitBatch(const Data &input, int axis, int part, std::vector <Data*> &outputs); 
+                                                                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(940): error: variable "fastllm::Data" is not a type name
+      void CatBatch(std::vector <Data*> &input, int axis, Data &outputs); 
+                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(940): error: variable "fastllm::Data" is not a type name
+      void CatBatch(std::vector <Data*> &input, int axis, Data &outputs); 
+                                                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(941): error: variable "fastllm::Data" is not a type name
+      void MatMulBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, std::vector <Data*> &output, float alpha = 1.0);
+                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(941): error: variable "fastllm::Data" is not a type name
+      void MatMulBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, std::vector <Data*> &output, float alpha = 1.0);
+                                                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(941): error: variable "fastllm::Data" is not a type name
+      void MatMulBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, std::vector <Data*> &output, float alpha = 1.0);
+                                                                                              ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(943): error: variable "fastllm::Data" is not a type name
+      void MatMulTransBBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, std::vector <Data*> &output, float alpha = 1.0);
+                                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(943): error: variable "fastllm::Data" is not a type name
+      void MatMulTransBBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, std::vector <Data*> &output, float alpha = 1.0);
+                                                                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(943): error: variable "fastllm::Data" is not a type name
+      void MatMulTransBBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, std::vector <Data*> &output, float alpha = 1.0);
+                                                                                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(945): error: variable "fastllm::Data" is not a type name
+      void SoftmaxBatch(std::vector <Data*> &input, std::vector <Data*> &output, int axis);
+                                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(945): error: variable "fastllm::Data" is not a type name
+      void SoftmaxBatch(std::vector <Data*> &input, std::vector <Data*> &output, int axis);
+                                                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(947): error: variable "fastllm::Data" is not a type name
+      void CatDirectBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, int axis);
+                                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(947): error: variable "fastllm::Data" is not a type name
+      void CatDirectBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, int axis);
+                                                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(949): error: variable "fastllm::Data" is not a type name
+      void AppendKVCacheBatch(std::vector <Data*> &cache, const Data &input);
+                                           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(949): error: variable "fastllm::Data" is not a type name
+      void AppendKVCacheBatch(std::vector <Data*> &cache, const Data &input);
+                                                                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: incomplete type is not allowed
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: identifier "weight" is undefined
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+                                        ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: identifier "loraA" is undefined
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+                                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: identifier "loraB" is undefined
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+                                                                   ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: variable "fastllm::Data" is not a type name
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+                                                                                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: type name is not allowed
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+                                                                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: identifier "bias" is undefined
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+                                                                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(952): error: type name is not allowed
+                     std::map <std::string, std::string> loraConfig);
+                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(952): error: expected a ")"
+                     std::map <std::string, std::string> loraConfig);
+                                                         ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(954): error: incomplete type is not allowed
+      void IA3Layer(Data &input, Data &weight, Data &ia3_l, Data &bias, Data &output,
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(954): error: identifier "ia3_l" is undefined
+      void IA3Layer(Data &input, Data &weight, Data &ia3_l, Data &bias, Data &output,
+                                                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(955): error: type name is not allowed
+                    std::map <std::string, std::string> ia3Config);
+                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(955): error: expected a ")"
+                    std::map <std::string, std::string> ia3Config);
+                                                        ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(959): error: variable "fastllm::Data" is not a type name
+          const Data &cacheData, 
+                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(967): error: variable "fastllm::Data" is not a type name
+      void AppendPagedCache(PagedCacheManager &pagedCacheManager, Data &cache, const Data &input);
+                                                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(967): error: variable "fastllm::Data" is not a type name
+      void AppendPagedCache(PagedCacheManager &pagedCacheManager, Data &cache, const Data &input);
+                                                                                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(975): error: variable "fastllm::Data" is not a type name
+          const std::vector<Data*> &pastKeys, int batch, 
+                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(976): error: variable "fastllm::Data" is not a type name
+          Data &insertIndexs, Data &insertPositions);
+          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(976): error: variable "fastllm::Data" is not a type name
+          Data &insertIndexs, Data &insertPositions);
+                              ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(984): error: variable "fastllm::Data" is not a type name
+      void AppendPagedCacheBatch(PagedCacheManager &pagedCacheManager, const std::vector<Data*> &currentCaches, const Data &input, 
+                                                                                         ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(984): error: variable "fastllm::Data" is not a type name
+      void AppendPagedCacheBatch(PagedCacheManager &pagedCacheManager, const std::vector<Data*> &currentCaches, const Data &input, 
+                                                                                                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(985): error: variable "fastllm::Data" is not a type name
+          Data &insertIndexs, Data &insertPositions);
+          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(985): error: variable "fastllm::Data" is not a type name
+          Data &insertIndexs, Data &insertPositions);
+                              ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(987): error: variable "fastllm::Data" is not a type name
+      void AttentionPaged(const Data &q, const Data &k, const Data &v, Data &output,
+                                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(987): error: variable "fastllm::Data" is not a type name
+      void AttentionPaged(const Data &q, const Data &k, const Data &v, Data &output,
+                                               ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(987): error: variable "fastllm::Data" is not a type name
+      void AttentionPaged(const Data &q, const Data &k, const Data &v, Data &output,
+                                                              ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(987): error: variable "fastllm::Data" is not a type name
+      void AttentionPaged(const Data &q, const Data &k, const Data &v, Data &output,
+                                                                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(995): error: variable "fastllm::Data" is not a type name
+      void AttentionPagedBatch(const Data &q, const Data &kCaches, const Data &vCaches, 
+                                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(995): error: variable "fastllm::Data" is not a type name
+      void AttentionPagedBatch(const Data &q, const Data &kCaches, const Data &vCaches, 
+                                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(995): error: variable "fastllm::Data" is not a type name
+      void AttentionPagedBatch(const Data &q, const Data &kCaches, const Data &vCaches, 
+                                                                         ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(996): error: variable "fastllm::Data" is not a type name
+          const Data &qSizes, const Data &pageSizes, const Data &pageIndexs, const Data &lastPageLens, 
+                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(996): error: variable "fastllm::Data" is not a type name
+          const Data &qSizes, const Data &pageSizes, const Data &pageIndexs, const Data &lastPageLens, 
+                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(996): error: variable "fastllm::Data" is not a type name
+          const Data &qSizes, const Data &pageSizes, const Data &pageIndexs, const Data &lastPageLens, 
+                                                           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(996): error: variable "fastllm::Data" is not a type name
+          const Data &qSizes, const Data &pageSizes, const Data &pageIndexs, const Data &lastPageLens, 
+                                                                                   ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(997): error: variable "fastllm::Data" is not a type name
+          Data &output, int group, float scale, int attentionType, bool inited = false);
+          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(1004): error: variable "fastllm::Data" has already been defined
+          int batch, Data &qSizes, Data &pageSizes, Data &pageIndexs, Data &lastPageLens,
+                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(1004): error: expected a ";"
+          int batch, Data &qSizes, Data &pageSizes, Data &pageIndexs, Data &lastPageLens,
+                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(85): error: variable "fastllm::Data" is not a type name
+  void *FastllmCudaPrepareInput(const fastllm::Data &input);
+                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(86): error: identifier "output" is undefined
+  void *FastllmCudaPrepareOutput(fastllm::Data &output);
+                                                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(87): error: variable "fastllm::Data" is not a type name
+  void FastllmCudaFinishInput(const fastllm::Data &input, void *data);
+                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(88): error: incomplete type is not allowed
+  void FastllmCudaFinishOutput(fastllm::Data &output, void *data);
+       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(88): error: type name is not allowed
+  void FastllmCudaFinishOutput(fastllm::Data &output, void *data);
+                                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(88): error: identifier "data" is undefined
+  void FastllmCudaFinishOutput(fastllm::Data &output, void *data);
+                                                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(164): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLA(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCache, const fastllm::Data &peCache, 
+                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(164): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLA(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCache, const fastllm::Data &peCache, 
+                                                        ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(164): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLA(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCache, const fastllm::Data &peCache, 
+                                                                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(164): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLA(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCache, const fastllm::Data &peCache, 
+                                                                                                                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(165): error: variable "fastllm::Data" is not a type name
+                      fastllm::Data &score, fastllm::Data &output, float softmaxScale);
+                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(165): error: variable "fastllm::Data" is not a type name
+                      fastllm::Data &score, fastllm::Data &output, float softmaxScale);
+                                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(167): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLAPaged(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCachePaged, const fastllm::Data &peCachePaged,
+                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(167): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLAPaged(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCachePaged, const fastllm::Data &peCachePaged,
+                                                             ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(167): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLAPaged(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCachePaged, const fastllm::Data &peCachePaged,
+                                                                                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(167): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLAPaged(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCachePaged, const fastllm::Data &peCachePaged,
+                                                                                                                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(168): error: variable "fastllm::Data" is not a type name
+                           fastllm::Data &output, float softmaxScale);
+                           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(170): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaEmbedding(const fastllm::Data &input, const fastllm::Data &weight, fastllm::Data &output);
+                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(170): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaEmbedding(const fastllm::Data &input, const fastllm::Data &weight, fastllm::Data &output);
+                                                              ^
+
+Error limit reached.
+100 errors detected in the compilation of "C:/Users/user/output/deepseek-v42?êe/fastllm-master/src/devices/cuda/linear/fastllm-linear-fp16.cu".
+Compilation terminated.
+fastllm-linear-fp16.cu
+[5/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-bf16.cu.obj
+FAILED: [code=4] CMakeFiles/fastllm_tools.dir/src/devices/cuda/linear/fastllm-linear-bf16.cu.obj 
+C:\Users\user\output\deepseek-v4閮ㄧ讲\cuda-12.4-toolkit\bin\nvcc.exe -forward-unknown-to-host-compiler -DUSE_CUDA -Dfastllm_tools_EXPORTS -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\utils -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\models -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\blocks -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\cpu -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\disk -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\json11 -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\gguf -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\flashinfer -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\cuda --allow-unsupported-compiler -D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH -Xcompiler="-MD -O2 -Ob2" -DNDEBUG -std=c++20 "--generate-code=arch=compute_89,code=[compute_89,sm_89]" -MD -MT CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-bf16.cu.obj -MF CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-bf16.cu.obj.d -x cu -c C:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\src\devices\cuda\linear\fastllm-linear-bf16.cu -o CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-bf16.cu.obj -Xcompiler=-FdCMakeFiles\fastllm_tools.dir\,-FS
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-bf16.cu(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(761): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\cuda-12.4-toolkit\bin/../include\cuda.h(22423): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-bf16.cu(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(761): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\cuda-12.4-toolkit\bin/../include\cuda.h(22423): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(134): error: identifier "top_k" is undefined
+              if (top_k > 1) {
+                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(911): error: reference variable "fastllm::positionIds" requires an initializer
+                          const Data &positionIds, int q_heads, int k_heads, int head_dim,
+                                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(911): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          const Data &positionIds, int q_heads, int k_heads, int head_dim,
+                                                   ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(911): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          const Data &positionIds, int q_heads, int k_heads, int head_dim,
+                                                                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(911): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          const Data &positionIds, int q_heads, int k_heads, int head_dim,
+                                                                             ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(912): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          int rotaryDim, float eps, float ropeTheta, float ropeScale);
+                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(912): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          int rotaryDim, float eps, float ropeTheta, float ropeScale);
+                                         ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(912): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          int rotaryDim, float eps, float ropeTheta, float ropeScale);
+                                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(912): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          int rotaryDim, float eps, float ropeTheta, float ropeScale);
+                                                                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(912): error: expected a ";"
+                          int rotaryDim, float eps, float ropeTheta, float ropeScale);
+                                                                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(918): error: reference variable "fastllm::qkv" requires an initializer
+          Data &qkv, Data &qNormWeight, Data &kNormWeight,
+                   ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(918): error: expected a ";"
+          Data &qkv, Data &qNormWeight, Data &kNormWeight,
+                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(925): warning #12-D: parsing restarts here after previous syntax error
+          int pageLen, int batch, bool doQKNorm = true);
+                                                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: incomplete type is not allowed
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: identifier "input" is undefined
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                               ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: variable "fastllm::Data" is not a type name
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: type name is not allowed
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: identifier "penalty" is undefined
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: variable "fastllm::Data" is not a type name
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                                                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: type name is not allowed
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                                                           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: identifier "penaltyScale" is undefined
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                                                                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(929): error: incomplete type is not allowed
+      void ApplyLognAttn(Data &input, const Data &lognAttn, const Data &positionIds);
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(929): error: variable "fastllm::Data" is not a type name
+      void ApplyLognAttn(Data &input, const Data &lognAttn, const Data &positionIds);
+                                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(929): error: type name is not allowed
+      void ApplyLognAttn(Data &input, const Data &lognAttn, const Data &positionIds);
+                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(929): error: identifier "lognAttn" is undefined
+      void ApplyLognAttn(Data &input, const Data &lognAttn, const Data &positionIds);
+                                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(929): error: variable "fastllm::Data" is not a type name
+      void ApplyLognAttn(Data &input, const Data &lognAttn, const Data &positionIds);
+                                                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(929): error: type name is not allowed
+      void ApplyLognAttn(Data &input, const Data &lognAttn, const Data &positionIds);
+                                                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(931): error: incomplete type is not allowed
+      void CumSumLastDim(Data &input);
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(933): error: incomplete type is not allowed
+      void MakeDecayMask(Data &input, Data &output);
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(933): error: identifier "output" is undefined
+      void MakeDecayMask(Data &input, Data &output);
+                                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(935): error: incomplete type is not allowed
+      void ApplyChunkDecayByLastLogG(Data &input, const Data &g);
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(935): error: variable "fastllm::Data" is not a type name
+      void ApplyChunkDecayByLastLogG(Data &input, const Data &g);
+                                                        ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(935): error: type name is not allowed
+      void ApplyChunkDecayByLastLogG(Data &input, const Data &g);
+                                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(935): error: identifier "g" is undefined
+      void ApplyChunkDecayByLastLogG(Data &input, const Data &g);
+                                                              ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(937): error: variable "fastllm::Data" is not a type name
+      void MulBatch(std::vector <Data*> &input, float v, std::vector <Data*> &output);
+                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(937): error: variable "fastllm::Data" is not a type name
+      void MulBatch(std::vector <Data*> &input, float v, std::vector <Data*> &output);
+                                                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(939): error: variable "fastllm::Data" is not a type name
+      void SplitBatch(const Data &input, int axis, int part, std::vector <Data*> &outputs); 
+                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(939): error: variable "fastllm::Data" is not a type name
+      void SplitBatch(const Data &input, int axis, int part, std::vector <Data*> &outputs); 
+                                                                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(940): error: variable "fastllm::Data" is not a type name
+      void CatBatch(std::vector <Data*> &input, int axis, Data &outputs); 
+                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(940): error: variable "fastllm::Data" is not a type name
+      void CatBatch(std::vector <Data*> &input, int axis, Data &outputs); 
+                                                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(941): error: variable "fastllm::Data" is not a type name
+      void MatMulBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, std::vector <Data*> &output, float alpha = 1.0);
+                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(941): error: variable "fastllm::Data" is not a type name
+      void MatMulBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, std::vector <Data*> &output, float alpha = 1.0);
+                                                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(941): error: variable "fastllm::Data" is not a type name
+      void MatMulBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, std::vector <Data*> &output, float alpha = 1.0);
+                                                                                              ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(943): error: variable "fastllm::Data" is not a type name
+      void MatMulTransBBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, std::vector <Data*> &output, float alpha = 1.0);
+                                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(943): error: variable "fastllm::Data" is not a type name
+      void MatMulTransBBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, std::vector <Data*> &output, float alpha = 1.0);
+                                                                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(943): error: variable "fastllm::Data" is not a type name
+      void MatMulTransBBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, std::vector <Data*> &output, float alpha = 1.0);
+                                                                                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(945): error: variable "fastllm::Data" is not a type name
+      void SoftmaxBatch(std::vector <Data*> &input, std::vector <Data*> &output, int axis);
+                                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(945): error: variable "fastllm::Data" is not a type name
+      void SoftmaxBatch(std::vector <Data*> &input, std::vector <Data*> &output, int axis);
+                                                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(947): error: variable "fastllm::Data" is not a type name
+      void CatDirectBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, int axis);
+                                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(947): error: variable "fastllm::Data" is not a type name
+      void CatDirectBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, int axis);
+                                                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(949): error: variable "fastllm::Data" is not a type name
+      void AppendKVCacheBatch(std::vector <Data*> &cache, const Data &input);
+                                           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(949): error: variable "fastllm::Data" is not a type name
+      void AppendKVCacheBatch(std::vector <Data*> &cache, const Data &input);
+                                                                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: incomplete type is not allowed
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: identifier "weight" is undefined
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+                                        ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: identifier "loraA" is undefined
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+                                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: identifier "loraB" is undefined
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+                                                                   ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: variable "fastllm::Data" is not a type name
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+                                                                                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: type name is not allowed
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+                                                                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: identifier "bias" is undefined
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+                                                                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(952): error: type name is not allowed
+                     std::map <std::string, std::string> loraConfig);
+                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(952): error: expected a ")"
+                     std::map <std::string, std::string> loraConfig);
+                                                         ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(954): error: incomplete type is not allowed
+      void IA3Layer(Data &input, Data &weight, Data &ia3_l, Data &bias, Data &output,
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(954): error: identifier "ia3_l" is undefined
+      void IA3Layer(Data &input, Data &weight, Data &ia3_l, Data &bias, Data &output,
+                                                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(955): error: type name is not allowed
+                    std::map <std::string, std::string> ia3Config);
+                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(955): error: expected a ")"
+                    std::map <std::string, std::string> ia3Config);
+                                                        ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(959): error: variable "fastllm::Data" is not a type name
+          const Data &cacheData, 
+                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(967): error: variable "fastllm::Data" is not a type name
+      void AppendPagedCache(PagedCacheManager &pagedCacheManager, Data &cache, const Data &input);
+                                                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(967): error: variable "fastllm::Data" is not a type name
+      void AppendPagedCache(PagedCacheManager &pagedCacheManager, Data &cache, const Data &input);
+                                                                                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(975): error: variable "fastllm::Data" is not a type name
+          const std::vector<Data*> &pastKeys, int batch, 
+                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(976): error: variable "fastllm::Data" is not a type name
+          Data &insertIndexs, Data &insertPositions);
+          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(976): error: variable "fastllm::Data" is not a type name
+          Data &insertIndexs, Data &insertPositions);
+                              ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(984): error: variable "fastllm::Data" is not a type name
+      void AppendPagedCacheBatch(PagedCacheManager &pagedCacheManager, const std::vector<Data*> &currentCaches, const Data &input, 
+                                                                                         ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(984): error: variable "fastllm::Data" is not a type name
+      void AppendPagedCacheBatch(PagedCacheManager &pagedCacheManager, const std::vector<Data*> &currentCaches, const Data &input, 
+                                                                                                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(985): error: variable "fastllm::Data" is not a type name
+          Data &insertIndexs, Data &insertPositions);
+          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(985): error: variable "fastllm::Data" is not a type name
+          Data &insertIndexs, Data &insertPositions);
+                              ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(987): error: variable "fastllm::Data" is not a type name
+      void AttentionPaged(const Data &q, const Data &k, const Data &v, Data &output,
+                                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(987): error: variable "fastllm::Data" is not a type name
+      void AttentionPaged(const Data &q, const Data &k, const Data &v, Data &output,
+                                               ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(987): error: variable "fastllm::Data" is not a type name
+      void AttentionPaged(const Data &q, const Data &k, const Data &v, Data &output,
+                                                              ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(987): error: variable "fastllm::Data" is not a type name
+      void AttentionPaged(const Data &q, const Data &k, const Data &v, Data &output,
+                                                                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(995): error: variable "fastllm::Data" is not a type name
+      void AttentionPagedBatch(const Data &q, const Data &kCaches, const Data &vCaches, 
+                                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(995): error: variable "fastllm::Data" is not a type name
+      void AttentionPagedBatch(const Data &q, const Data &kCaches, const Data &vCaches, 
+                                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(995): error: variable "fastllm::Data" is not a type name
+      void AttentionPagedBatch(const Data &q, const Data &kCaches, const Data &vCaches, 
+                                                                         ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(996): error: variable "fastllm::Data" is not a type name
+          const Data &qSizes, const Data &pageSizes, const Data &pageIndexs, const Data &lastPageLens, 
+                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(996): error: variable "fastllm::Data" is not a type name
+          const Data &qSizes, const Data &pageSizes, const Data &pageIndexs, const Data &lastPageLens, 
+                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(996): error: variable "fastllm::Data" is not a type name
+          const Data &qSizes, const Data &pageSizes, const Data &pageIndexs, const Data &lastPageLens, 
+                                                           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(996): error: variable "fastllm::Data" is not a type name
+          const Data &qSizes, const Data &pageSizes, const Data &pageIndexs, const Data &lastPageLens, 
+                                                                                   ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(997): error: variable "fastllm::Data" is not a type name
+          Data &output, int group, float scale, int attentionType, bool inited = false);
+          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(1004): error: variable "fastllm::Data" has already been defined
+          int batch, Data &qSizes, Data &pageSizes, Data &pageIndexs, Data &lastPageLens,
+                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(1004): error: expected a ";"
+          int batch, Data &qSizes, Data &pageSizes, Data &pageIndexs, Data &lastPageLens,
+                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(85): error: variable "fastllm::Data" is not a type name
+  void *FastllmCudaPrepareInput(const fastllm::Data &input);
+                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(86): error: identifier "output" is undefined
+  void *FastllmCudaPrepareOutput(fastllm::Data &output);
+                                                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(87): error: variable "fastllm::Data" is not a type name
+  void FastllmCudaFinishInput(const fastllm::Data &input, void *data);
+                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(88): error: incomplete type is not allowed
+  void FastllmCudaFinishOutput(fastllm::Data &output, void *data);
+       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(88): error: type name is not allowed
+  void FastllmCudaFinishOutput(fastllm::Data &output, void *data);
+                                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(88): error: identifier "data" is undefined
+  void FastllmCudaFinishOutput(fastllm::Data &output, void *data);
+                                                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(164): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLA(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCache, const fastllm::Data &peCache, 
+                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(164): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLA(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCache, const fastllm::Data &peCache, 
+                                                        ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(164): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLA(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCache, const fastllm::Data &peCache, 
+                                                                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(164): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLA(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCache, const fastllm::Data &peCache, 
+                                                                                                                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(165): error: variable "fastllm::Data" is not a type name
+                      fastllm::Data &score, fastllm::Data &output, float softmaxScale);
+                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(165): error: variable "fastllm::Data" is not a type name
+                      fastllm::Data &score, fastllm::Data &output, float softmaxScale);
+                                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(167): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLAPaged(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCachePaged, const fastllm::Data &peCachePaged,
+                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(167): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLAPaged(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCachePaged, const fastllm::Data &peCachePaged,
+                                                             ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(167): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLAPaged(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCachePaged, const fastllm::Data &peCachePaged,
+                                                                                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(167): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLAPaged(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCachePaged, const fastllm::Data &peCachePaged,
+                                                                                                                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(168): error: variable "fastllm::Data" is not a type name
+                           fastllm::Data &output, float softmaxScale);
+                           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(170): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaEmbedding(const fastllm::Data &input, const fastllm::Data &weight, fastllm::Data &output);
+                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(170): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaEmbedding(const fastllm::Data &input, const fastllm::Data &weight, fastllm::Data &output);
+                                                              ^
+
+Error limit reached.
+100 errors detected in the compilation of "C:/Users/user/output/deepseek-v42?êe/fastllm-master/src/devices/cuda/linear/fastllm-linear-bf16.cu".
+Compilation terminated.
+fastllm-linear-bf16.cu
+[6/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\fastllm-ggml-cuda.cu.obj
+FAILED: [code=4] CMakeFiles/fastllm_tools.dir/src/devices/cuda/fastllm-ggml-cuda.cu.obj 
+C:\Users\user\output\deepseek-v4閮ㄧ讲\cuda-12.4-toolkit\bin\nvcc.exe -forward-unknown-to-host-compiler -DUSE_CUDA -Dfastllm_tools_EXPORTS -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\utils -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\models -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\blocks -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\cpu -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\disk -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\json11 -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\gguf -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\flashinfer -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\cuda --allow-unsupported-compiler -D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH -Xcompiler="-MD -O2 -Ob2" -DNDEBUG -std=c++20 "--generate-code=arch=compute_89,code=[compute_89,sm_89]" -MD -MT CMakeFiles\fastllm_tools.dir\src\devices\cuda\fastllm-ggml-cuda.cu.obj -MF CMakeFiles\fastllm_tools.dir\src\devices\cuda\fastllm-ggml-cuda.cu.obj.d -x cu -c C:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\src\devices\cuda\fastllm-ggml-cuda.cu -o CMakeFiles\fastllm_tools.dir\src\devices\cuda\fastllm-ggml-cuda.cu.obj -Xcompiler=-FdCMakeFiles\fastllm_tools.dir\,-FS
+C:\Users\user\output\deepseek-v4部署\cuda-12.4-toolkit\bin/../include\cuda.h(22423): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\cuda-12.4-toolkit\bin/../include\cub/warp/specializations/warp_exchange_shfl.cuh(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(761): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/models\basellm.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/blocks\baseblock.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\template.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/third_party/gguf\gguf.h(1762): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-ggml-cuda.cu(808): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-ggml-cuda.cu(1531): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\cuda-12.4-toolkit\bin/../include\cuda.h(22423): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\cuda-12.4-toolkit\bin/../include\cub/warp/specializations/warp_exchange_shfl.cuh(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(761): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/models\basellm.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/blocks\baseblock.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\template.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/third_party/gguf\gguf.h(1762): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-ggml-cuda.cu(808): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-ggml-cuda.cu(1531): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(134): error: identifier "top_k" is undefined
+              if (top_k > 1) {
+                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(911): error: reference variable "fastllm::positionIds" requires an initializer
+                          const Data &positionIds, int q_heads, int k_heads, int head_dim,
+                                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(911): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          const Data &positionIds, int q_heads, int k_heads, int head_dim,
+                                                   ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(911): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          const Data &positionIds, int q_heads, int k_heads, int head_dim,
+                                                                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(911): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          const Data &positionIds, int q_heads, int k_heads, int head_dim,
+                                                                             ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(912): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          int rotaryDim, float eps, float ropeTheta, float ropeScale);
+                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(912): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          int rotaryDim, float eps, float ropeTheta, float ropeScale);
+                                         ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(912): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          int rotaryDim, float eps, float ropeTheta, float ropeScale);
+                                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(912): warning #1569-D: specifiers after comma between declarations are nonstandard
+                          int rotaryDim, float eps, float ropeTheta, float ropeScale);
+                                                                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(912): error: expected a ";"
+                          int rotaryDim, float eps, float ropeTheta, float ropeScale);
+                                                                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(918): error: reference variable "fastllm::qkv" requires an initializer
+          Data &qkv, Data &qNormWeight, Data &kNormWeight,
+                   ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(918): error: expected a ";"
+          Data &qkv, Data &qNormWeight, Data &kNormWeight,
+                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(925): warning #12-D: parsing restarts here after previous syntax error
+          int pageLen, int batch, bool doQKNorm = true);
+                                                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: incomplete type is not allowed
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: identifier "input" is undefined
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                               ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: variable "fastllm::Data" is not a type name
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: type name is not allowed
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: identifier "penalty" is undefined
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: variable "fastllm::Data" is not a type name
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                                                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: type name is not allowed
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                                                           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(927): error: identifier "penaltyScale" is undefined
+      void RepeatPenalty(Data &input, const Data &penalty, const Data &penaltyScale); 
+                                                                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(929): error: incomplete type is not allowed
+      void ApplyLognAttn(Data &input, const Data &lognAttn, const Data &positionIds);
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(929): error: variable "fastllm::Data" is not a type name
+      void ApplyLognAttn(Data &input, const Data &lognAttn, const Data &positionIds);
+                                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(929): error: type name is not allowed
+      void ApplyLognAttn(Data &input, const Data &lognAttn, const Data &positionIds);
+                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(929): error: identifier "lognAttn" is undefined
+      void ApplyLognAttn(Data &input, const Data &lognAttn, const Data &positionIds);
+                                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(929): error: variable "fastllm::Data" is not a type name
+      void ApplyLognAttn(Data &input, const Data &lognAttn, const Data &positionIds);
+                                                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(929): error: type name is not allowed
+      void ApplyLognAttn(Data &input, const Data &lognAttn, const Data &positionIds);
+                                                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(931): error: incomplete type is not allowed
+      void CumSumLastDim(Data &input);
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(933): error: incomplete type is not allowed
+      void MakeDecayMask(Data &input, Data &output);
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(933): error: identifier "output" is undefined
+      void MakeDecayMask(Data &input, Data &output);
+                                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(935): error: incomplete type is not allowed
+      void ApplyChunkDecayByLastLogG(Data &input, const Data &g);
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(935): error: variable "fastllm::Data" is not a type name
+      void ApplyChunkDecayByLastLogG(Data &input, const Data &g);
+                                                        ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(935): error: type name is not allowed
+      void ApplyChunkDecayByLastLogG(Data &input, const Data &g);
+                                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(935): error: identifier "g" is undefined
+      void ApplyChunkDecayByLastLogG(Data &input, const Data &g);
+                                                              ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(937): error: variable "fastllm::Data" is not a type name
+      void MulBatch(std::vector <Data*> &input, float v, std::vector <Data*> &output);
+                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(937): error: variable "fastllm::Data" is not a type name
+      void MulBatch(std::vector <Data*> &input, float v, std::vector <Data*> &output);
+                                                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(939): error: variable "fastllm::Data" is not a type name
+      void SplitBatch(const Data &input, int axis, int part, std::vector <Data*> &outputs); 
+                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(939): error: variable "fastllm::Data" is not a type name
+      void SplitBatch(const Data &input, int axis, int part, std::vector <Data*> &outputs); 
+                                                                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(940): error: variable "fastllm::Data" is not a type name
+      void CatBatch(std::vector <Data*> &input, int axis, Data &outputs); 
+                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(940): error: variable "fastllm::Data" is not a type name
+      void CatBatch(std::vector <Data*> &input, int axis, Data &outputs); 
+                                                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(941): error: variable "fastllm::Data" is not a type name
+      void MatMulBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, std::vector <Data*> &output, float alpha = 1.0);
+                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(941): error: variable "fastllm::Data" is not a type name
+      void MatMulBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, std::vector <Data*> &output, float alpha = 1.0);
+                                                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(941): error: variable "fastllm::Data" is not a type name
+      void MatMulBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, std::vector <Data*> &output, float alpha = 1.0);
+                                                                                              ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(943): error: variable "fastllm::Data" is not a type name
+      void MatMulTransBBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, std::vector <Data*> &output, float alpha = 1.0);
+                                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(943): error: variable "fastllm::Data" is not a type name
+      void MatMulTransBBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, std::vector <Data*> &output, float alpha = 1.0);
+                                                                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(943): error: variable "fastllm::Data" is not a type name
+      void MatMulTransBBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, std::vector <Data*> &output, float alpha = 1.0);
+                                                                                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(945): error: variable "fastllm::Data" is not a type name
+      void SoftmaxBatch(std::vector <Data*> &input, std::vector <Data*> &output, int axis);
+                                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(945): error: variable "fastllm::Data" is not a type name
+      void SoftmaxBatch(std::vector <Data*> &input, std::vector <Data*> &output, int axis);
+                                                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(947): error: variable "fastllm::Data" is not a type name
+      void CatDirectBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, int axis);
+                                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(947): error: variable "fastllm::Data" is not a type name
+      void CatDirectBatch(std::vector <Data*> &input0, std::vector <Data*> &input1, int axis);
+                                                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(949): error: variable "fastllm::Data" is not a type name
+      void AppendKVCacheBatch(std::vector <Data*> &cache, const Data &input);
+                                           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(949): error: variable "fastllm::Data" is not a type name
+      void AppendKVCacheBatch(std::vector <Data*> &cache, const Data &input);
+                                                                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: incomplete type is not allowed
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: identifier "weight" is undefined
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+                                        ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: identifier "loraA" is undefined
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+                                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: identifier "loraB" is undefined
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+                                                                   ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: variable "fastllm::Data" is not a type name
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+                                                                                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: type name is not allowed
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+                                                                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(951): error: identifier "bias" is undefined
+      void LoraLayer(Data &input, Data &weight, Data &loraA, Data &loraB, const Data &bias, Data &output, 
+                                                                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(952): error: type name is not allowed
+                     std::map <std::string, std::string> loraConfig);
+                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(952): error: expected a ")"
+                     std::map <std::string, std::string> loraConfig);
+                                                         ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(954): error: incomplete type is not allowed
+      void IA3Layer(Data &input, Data &weight, Data &ia3_l, Data &bias, Data &output,
+           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(954): error: identifier "ia3_l" is undefined
+      void IA3Layer(Data &input, Data &weight, Data &ia3_l, Data &bias, Data &output,
+                                                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(955): error: type name is not allowed
+                    std::map <std::string, std::string> ia3Config);
+                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(955): error: expected a ")"
+                    std::map <std::string, std::string> ia3Config);
+                                                        ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(959): error: variable "fastllm::Data" is not a type name
+          const Data &cacheData, 
+                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(967): error: variable "fastllm::Data" is not a type name
+      void AppendPagedCache(PagedCacheManager &pagedCacheManager, Data &cache, const Data &input);
+                                                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(967): error: variable "fastllm::Data" is not a type name
+      void AppendPagedCache(PagedCacheManager &pagedCacheManager, Data &cache, const Data &input);
+                                                                                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(975): error: variable "fastllm::Data" is not a type name
+          const std::vector<Data*> &pastKeys, int batch, 
+                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(976): error: variable "fastllm::Data" is not a type name
+          Data &insertIndexs, Data &insertPositions);
+          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(976): error: variable "fastllm::Data" is not a type name
+          Data &insertIndexs, Data &insertPositions);
+                              ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(984): error: variable "fastllm::Data" is not a type name
+      void AppendPagedCacheBatch(PagedCacheManager &pagedCacheManager, const std::vector<Data*> &currentCaches, const Data &input, 
+                                                                                         ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(984): error: variable "fastllm::Data" is not a type name
+      void AppendPagedCacheBatch(PagedCacheManager &pagedCacheManager, const std::vector<Data*> &currentCaches, const Data &input, 
+                                                                                                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(985): error: variable "fastllm::Data" is not a type name
+          Data &insertIndexs, Data &insertPositions);
+          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(985): error: variable "fastllm::Data" is not a type name
+          Data &insertIndexs, Data &insertPositions);
+                              ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(987): error: variable "fastllm::Data" is not a type name
+      void AttentionPaged(const Data &q, const Data &k, const Data &v, Data &output,
+                                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(987): error: variable "fastllm::Data" is not a type name
+      void AttentionPaged(const Data &q, const Data &k, const Data &v, Data &output,
+                                               ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(987): error: variable "fastllm::Data" is not a type name
+      void AttentionPaged(const Data &q, const Data &k, const Data &v, Data &output,
+                                                              ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(987): error: variable "fastllm::Data" is not a type name
+      void AttentionPaged(const Data &q, const Data &k, const Data &v, Data &output,
+                                                                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(995): error: variable "fastllm::Data" is not a type name
+      void AttentionPagedBatch(const Data &q, const Data &kCaches, const Data &vCaches, 
+                                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(995): error: variable "fastllm::Data" is not a type name
+      void AttentionPagedBatch(const Data &q, const Data &kCaches, const Data &vCaches, 
+                                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(995): error: variable "fastllm::Data" is not a type name
+      void AttentionPagedBatch(const Data &q, const Data &kCaches, const Data &vCaches, 
+                                                                         ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(996): error: variable "fastllm::Data" is not a type name
+          const Data &qSizes, const Data &pageSizes, const Data &pageIndexs, const Data &lastPageLens, 
+                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(996): error: variable "fastllm::Data" is not a type name
+          const Data &qSizes, const Data &pageSizes, const Data &pageIndexs, const Data &lastPageLens, 
+                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(996): error: variable "fastllm::Data" is not a type name
+          const Data &qSizes, const Data &pageSizes, const Data &pageIndexs, const Data &lastPageLens, 
+                                                           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(996): error: variable "fastllm::Data" is not a type name
+          const Data &qSizes, const Data &pageSizes, const Data &pageIndexs, const Data &lastPageLens, 
+                                                                                   ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(997): error: variable "fastllm::Data" is not a type name
+          Data &output, int group, float scale, int attentionType, bool inited = false);
+          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(1004): error: variable "fastllm::Data" has already been defined
+          int batch, Data &qSizes, Data &pageSizes, Data &pageIndexs, Data &lastPageLens,
+                     ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(1004): error: expected a ";"
+          int batch, Data &qSizes, Data &pageSizes, Data &pageIndexs, Data &lastPageLens,
+                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(85): error: variable "fastllm::Data" is not a type name
+  void *FastllmCudaPrepareInput(const fastllm::Data &input);
+                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(86): error: identifier "output" is undefined
+  void *FastllmCudaPrepareOutput(fastllm::Data &output);
+                                                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(87): error: variable "fastllm::Data" is not a type name
+  void FastllmCudaFinishInput(const fastllm::Data &input, void *data);
+                                    ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(88): error: incomplete type is not allowed
+  void FastllmCudaFinishOutput(fastllm::Data &output, void *data);
+       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(88): error: type name is not allowed
+  void FastllmCudaFinishOutput(fastllm::Data &output, void *data);
+                                                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(88): error: identifier "data" is undefined
+  void FastllmCudaFinishOutput(fastllm::Data &output, void *data);
+                                                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(164): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLA(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCache, const fastllm::Data &peCache, 
+                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(164): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLA(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCache, const fastllm::Data &peCache, 
+                                                        ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(164): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLA(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCache, const fastllm::Data &peCache, 
+                                                                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(164): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLA(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCache, const fastllm::Data &peCache, 
+                                                                                                                ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(165): error: variable "fastllm::Data" is not a type name
+                      fastllm::Data &score, fastllm::Data &output, float softmaxScale);
+                      ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(165): error: variable "fastllm::Data" is not a type name
+                      fastllm::Data &score, fastllm::Data &output, float softmaxScale);
+                                            ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(167): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLAPaged(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCachePaged, const fastllm::Data &peCachePaged,
+                                 ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(167): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLAPaged(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCachePaged, const fastllm::Data &peCachePaged,
+                                                             ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(167): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLAPaged(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCachePaged, const fastllm::Data &peCachePaged,
+                                                                                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(167): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaMLAPaged(const fastllm::Data &qNope, const fastllm::Data &qPe, const fastllm::Data &kvCachePaged, const fastllm::Data &peCachePaged,
+                                                                                                                          ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(168): error: variable "fastllm::Data" is not a type name
+                           fastllm::Data &output, float softmaxScale);
+                           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(170): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaEmbedding(const fastllm::Data &input, const fastllm::Data &weight, fastllm::Data &output);
+                                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(170): error: variable "fastllm::Data" is not a type name
+  bool FastllmCudaEmbedding(const fastllm::Data &input, const fastllm::Data &weight, fastllm::Data &output);
+                                                              ^
+
+Error limit reached.
+100 errors detected in the compilation of "C:/Users/user/output/deepseek-v42?êe/fastllm-master/src/devices/cuda/fastllm-ggml-cuda.cu".
+Compilation terminated.
+fastllm-ggml-cuda.cu
+ninja: build stopped: subcommand failed.

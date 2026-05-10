@@ -1,0 +1,297 @@
+**********************************************************************
+** Visual Studio 2022 Developer Command Prompt v17.14.31
+** Copyright (c) 2025 Microsoft Corporation
+**********************************************************************
+CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+
+
+-- USE_NUMAS: OFF
+-- USE_CUDA: ON
+-- USE_ROCM: OFF
+-- CUDA_ARCH: 89
+-- USE_TFACC: OFF
+-- For legacy CUDA GPUs: OFF
+-- CUDA_MEM_DEBUG: OFF
+-- PYTHON_API: OFF
+-- BUILD_CLI: OFF
+-- USE_SENTENCEPIECE: OFF
+-- USE_IVCOREX: OFF
+-- MAKE_WHL_X86: 
+-- CMAKE_CXX_FLAGS: /DWIN32 /D_WINDOWS /W3 /GR /EHsc -DNOMINMAX /std:c++17 /arch:AVX2 /source-charset:utf-8
+-- Configuring done (0.0s)
+-- Generating done (0.1s)
+-- Build files have been written to: C:/Users/user/output/deepseek-v4部署/fastllm-master/build-cuda-ninja
+[1/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\attention\fastllm-attention.cu.obj
+FAILED: [code=2] CMakeFiles/fastllm_tools.dir/src/devices/cuda/attention/fastllm-attention.cu.obj 
+C:\Users\user\output\deepseek-v4部署\cuda-12.4-toolkit\bin\nvcc.exe -forward-unknown-to-host-compiler -DUSE_CUDA -Dfastllm_tools_EXPORTS -IC:\Users\user\output\deepseek-v4部署\fastllm-master\include -IC:\Users\user\output\deepseek-v4部署\fastllm-master\include\utils -IC:\Users\user\output\deepseek-v4部署\fastllm-master\include\models -IC:\Users\user\output\deepseek-v4部署\fastllm-master\include\blocks -IC:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices\cpu -IC:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices\disk -IC:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\json11 -IC:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\gguf -IC:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer -IC:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices\cuda --allow-unsupported-compiler -D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH -Xcompiler=/utf-8 -Xcompiler="-MD -O2 -Ob2" -DNDEBUG -std=c++20 "--generate-code=arch=compute_89,code=[compute_89,sm_89]" -MD -MT CMakeFiles\fastllm_tools.dir\src\devices\cuda\attention\fastllm-attention.cu.obj -MF CMakeFiles\fastllm_tools.dir\src\devices\cuda\attention\fastllm-attention.cu.obj.d -x cu -c C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu -o CMakeFiles\fastllm_tools.dir\src\devices\cuda\attention\fastllm-attention.cu.obj -Xcompiler=-FdCMakeFiles\fastllm_tools.dir\,-FS
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention/decode.cuh(943): error: explicit type is missing ("int" assumed)
+    extern __attribute__((shared)) uint8_t smem[];
+           ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention/decode.cuh(943): error: an initializer is not allowed on a local declaration of an extern variable
+    extern __attribute__((shared)) uint8_t smem[];
+                         ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention/decode.cuh(943): error: identifier "shared" is undefined
+    extern __attribute__((shared)) uint8_t smem[];
+                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention/decode.cuh(943): error: expected a ";"
+    extern __attribute__((shared)) uint8_t smem[];
+                                   ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention/decode.cuh(944): error: identifier "smem" is undefined
+    DTypeKV* ckv_smem = (DTypeKV*)smem;
+                                  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(648): warning #221-D: floating-point value does not fit in required floating-point type
+      float maxValue = -1e100;
+                       ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+5 errors detected in the compilation of "C:/Users/user/output/deepseek-v42?��e/fastllm-master/src/devices/cuda/attention/fastllm-attention.cu".
+fastllm-attention.cu
+[2/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-fp32.cu.obj
+fastllm-linear-fp32.cu
+tmpxft_000046ec_00000000-10_fastllm-linear-fp32.cudafe1.cpp
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp32.cu(77): warning C4297: “FastllmCudaMatMulFloat32”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp32.cu(77): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp32.cu(121): warning C4297: “FastllmCudaHalfMatMulFloat32”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp32.cu(121): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+[3/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-bf16.cu.obj
+fastllm-linear-bf16.cu
+tmpxft_000047a4_00000000-10_fastllm-linear-bf16.cudafe1.cpp
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-bf16.cu(446): warning C4297: “FastllmCudaMatMulBFloat16”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-bf16.cu(446): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-bf16.cu(521): warning C4297: “FastllmCudaHalfMatMulBFloat16”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-bf16.cu(521): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-bf16.cu(561): warning C4297: “FastllmCudaHalfMatMulBFloat16”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-bf16.cu(561): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-bf16.cu(612): warning C4297: “FastllmCudaBFloat16MatMulBFloat16”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-bf16.cu(612): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-bf16.cu(652): warning C4297: “FastllmCudaBFloat16MatMulFloat32”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-bf16.cu(652): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+[4/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-fp16.cu.obj
+fastllm-linear-fp16.cu
+tmpxft_00004cdc_00000000-10_fastllm-linear-fp16.cudafe1.cpp
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp16.cu(431): warning C4297: “FastllmCudaMatMulFloat16”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp16.cu(431): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp16.cu(541): warning C4297: “FastllmCudaHalfMatMulFloat16”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp16.cu(541): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp16.cu(831): warning C4297: “FastllmCudaBFloat16MatMulFloat16”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp16.cu(831): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+[5/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\fastllm-ggml-cuda.cu.obj
+fastllm-ggml-cuda.cu
+tmpxft_00002c78_00000000-10_fastllm-ggml-cuda.cudafe1.cpp
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-ggml-cuda.cu(2051): warning C4297: “FastllmCudaMatMulFloatGGUF”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-ggml-cuda.cu(2051): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-ggml-cuda.cu(2172): warning C4297: “FastllmCudaHalfMatMulGGUF”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-ggml-cuda.cu(2172): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-ggml-cuda.cu(2282): warning C4297: “FastllmCudaBFloat16MatMulGGUF”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-ggml-cuda.cu(2282): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+[6/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\fastllm-cuda.cu.obj
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4339): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 32];
+          ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4340): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 16];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4341): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 8];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4342): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 4];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4343): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 2];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4344): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 1];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4435): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 32];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4436): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 16];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4437): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 8];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4438): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 4];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4439): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 2];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4440): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 1];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4636): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+                  now[tid] += now[tid + 32];
+                  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4637): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+                  now[tid] += now[tid + 16];
+                  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4638): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+                  now[tid] += now[tid + 8];
+                  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4639): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+                  now[tid] += now[tid + 4];
+                  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4640): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+                  now[tid] += now[tid + 2];
+                  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4641): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+                  now[tid] += now[tid + 1];
+                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/third_party/flashinfer\sampling.cuh(794): warning #177-D: variable "batch_size" was declared but never referenced
+    const uint32_t batch_size = gridDim.x;
+                   ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/third_party/flashinfer\sampling.cuh(911): warning #177-D: variable "batch_size" was declared but never referenced
+    const uint32_t batch_size = gridDim.x;
+                   ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/third_party/flashinfer\sampling.cuh(1103): warning #177-D: variable "batch_size" was declared but never referenced
+    const uint32_t batch_size = gridDim.x;
+                   ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(2748): warning #177-D: variable "o" was declared but never referenced
+          int o = idx / (n * m);
+              ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4339): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 32];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4340): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 16];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4341): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 8];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4342): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 4];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4343): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 2];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4344): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 1];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4435): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 32];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4436): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 16];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4437): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 8];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4438): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 4];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4439): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 2];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4440): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 1];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4636): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+                  now[tid] += now[tid + 32];
+                  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4637): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+                  now[tid] += now[tid + 16];
+                  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4638): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+                  now[tid] += now[tid + 8];
+                  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4639): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+                  now[tid] += now[tid + 4];
+                  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4640): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+                  now[tid] += now[tid + 2];
+                  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4641): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+                  now[tid] += now[tid + 1];
+                  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(5853): warning #177-D: variable "headBaseV" was declared but never referenced
+      const size_t headBaseV = ((size_t)b * heads + h) * chunks * chunkStrideV;
+                   ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(1358): warning #221-D: floating-point value does not fit in required floating-point type
+      maxData[tid] = -1e100;
+                     ^
+          detected during instantiation of "void FastllmLayerNormKernelTop1<THREAD_PER_BLOCK>(float *, float *, int) [with THREAD_PER_BLOCK=256]" at line 3605
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(1392): warning #221-D: floating-point value does not fit in required floating-point type
+          maxData[tid][i] = -1e100;
+                            ^
+          detected during instantiation of "void FastllmLayerNormKernelTopK<THREAD_PER_BLOCK,MAXK>(float *, float *, int, int) [with THREAD_PER_BLOCK=64, MAXK=50]" at line 3607
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(3645): warning #221-D: floating-point value does not fit in required floating-point type
+          maxData[tid][i] = -1e100;
+                            ^
+          detected during instantiation of "void FastllmSelectExpertKernel<THREAD_PER_BLOCK,MAXK>(float *, float *, int32_t *, float *, int, int, int, int, __nv_bool, float) [with THREAD_PER_BLOCK=64, MAXK=50]" at line 3747
+
+fastllm-cuda.cu
+tmpxft_00002098_00000000-10_fastllm-cuda.cudafe1.cpp
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(1732): warning C4477: “printf”: 格式字符串“%lu”需要类型“unsigned long”的参数，但可变参数 1 拥有了类型“size_t”
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(1732): note: 请考虑在格式字符串中使用“%zu”
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(1807): warning C4477: “printf”: 格式字符串“%lu”需要类型“unsigned long”的参数，但可变参数 1 拥有了类型“size_t”
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(1807): note: 请考虑在格式字符串中使用“%zu”
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(1834): warning C4477: “printf”: 格式字符串“%lu”需要类型“unsigned long”的参数，但可变参数 1 拥有了类型“size_t”
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(1834): note: 请考虑在格式字符串中使用“%zu”
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(1914): warning C4477: “printf”: 格式字符串“%lu”需要类型“unsigned long”的参数，但可变参数 1 拥有了类型“size_t”
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(1914): note: 请考虑在格式字符串中使用“%zu”
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(3987): warning C4297: “FastllmCudaBatchMatMul”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(3987): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4047): warning C4297: “FastllmCudaBatchMatMulTransB”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4047): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+ninja: build stopped: subcommand failed.

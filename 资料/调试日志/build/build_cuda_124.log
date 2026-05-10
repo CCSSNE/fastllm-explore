@@ -1,0 +1,74 @@
+**********************************************************************
+** Visual Studio 2022 Developer Command Prompt v17.14.31
+** Copyright (c) 2025 Microsoft Corporation
+**********************************************************************
+CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+
+
+-- The CXX compiler identification is MSVC 19.44.35226.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- USE_NUMAS: OFF
+-- USE_CUDA: ON
+-- USE_ROCM: OFF
+-- CUDA_ARCH: 89
+-- USE_TFACC: OFF
+-- For legacy CUDA GPUs: OFF
+-- CUDA_MEM_DEBUG: OFF
+-- PYTHON_API: OFF
+-- BUILD_CLI: OFF
+-- USE_SENTENCEPIECE: OFF
+-- USE_IVCOREX: OFF
+-- MAKE_WHL_X86: 
+-- CMAKE_CXX_FLAGS: /DWIN32 /D_WINDOWS /W3 /GR /EHsc -DNOMINMAX /std:c++17 /arch:AVX2 /source-charset:utf-8
+-- The CUDA compiler identification is NVIDIA 12.4.131 with host compiler MSVC 19.44.35226.0
+-- Detecting CUDA compiler ABI info
+-- Detecting CUDA compiler ABI info - failed
+-- Check for working CUDA compiler: C:/Users/user/output/deepseek-v4部署/cuda-12.4-toolkit/bin/nvcc.exe
+-- Check for working CUDA compiler: C:/Users/user/output/deepseek-v4部署/cuda-12.4-toolkit/bin/nvcc.exe - broken
+CMake Error at C:/Users/user/AppData/Local/Programs/Python/Python310/Lib/site-packages/cmake/data/share/cmake-4.3/Modules/CMakeTestCUDACompiler.cmake:59 (message):
+  The CUDA compiler
+
+    "C:/Users/user/output/deepseek-v4部署/cuda-12.4-toolkit/bin/nvcc.exe"
+
+  is not able to compile a simple test program.
+
+  It fails with the following output:
+
+    Change Dir: 'C:/Users/user/output/deepseek-v4部署/fastllm-master/build-cuda-ninja/CMakeFiles/CMakeScratch/TryCompile-zv2p3b'
+    
+    Run Build Command(s): C:/Users/user/AppData/Local/Programs/Python/Python310/Scripts/ninja.exe -v cmTC_a52bd
+    [1/2] C:\Users\user\output\deepseek-v4閮ㄧ讲\cuda-12.4-toolkit\bin\nvcc.exe -forward-unknown-to-host-compiler -D_MBCS  --allow-unsupported-compiler -D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH  -Xcompiler="-MDd  -Zi -Ob0 -Od /RTC1" -MD -MT CMakeFiles\cmTC_a52bd.dir\main.cu.obj -MF CMakeFiles\cmTC_a52bd.dir\main.cu.obj.d -x cu -c C:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\build-cuda-ninja\CMakeFiles\CMakeScratch\TryCompile-zv2p3b\main.cu -o CMakeFiles\cmTC_a52bd.dir\main.cu.obj -Xcompiler=-FdCMakeFiles\cmTC_a52bd.dir\,-FS
+    main.cu
+    tmpxft_00009e88_00000000-10_main.cudafe1.cpp
+    [2/2] C:\Windows\system32\cmd.exe /C "cd . && C:\Users\user\AppData\Local\Programs\Python\Python310\Lib\site-packages\cmake\data\bin\cmake.exe -E vs_link_exe --intdir=CMakeFiles\cmTC_a52bd.dir --rc="C:\PROGRA~2\Windows Kits\10\bin\10.0.26100.0\x64\rc.exe" --mt="C:\PROGRA~2\Windows Kits\10\bin\10.0.26100.0\x64\mt.exe" --manifests  -- "C:\PROGRA~2\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64\link.exe" /nologo CMakeFiles\cmTC_a52bd.dir\main.cu.obj  /out:cmTC_a52bd.exe /implib:cmTC_a52bd.lib /pdb:cmTC_a52bd.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+    FAILED: [code=4294967295] cmTC_a52bd.exe 
+    C:\Windows\system32\cmd.exe /C "cd . && C:\Users\user\AppData\Local\Programs\Python\Python310\Lib\site-packages\cmake\data\bin\cmake.exe -E vs_link_exe --intdir=CMakeFiles\cmTC_a52bd.dir --rc="C:\PROGRA~2\Windows Kits\10\bin\10.0.26100.0\x64\rc.exe" --mt="C:\PROGRA~2\Windows Kits\10\bin\10.0.26100.0\x64\mt.exe" --manifests  -- "C:\PROGRA~2\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64\link.exe" /nologo CMakeFiles\cmTC_a52bd.dir\main.cu.obj  /out:cmTC_a52bd.exe /implib:cmTC_a52bd.lib /pdb:cmTC_a52bd.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+    LINK Pass 1: command "C:\PROGRA~2\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64\link.exe /nologo CMakeFiles\cmTC_a52bd.dir\main.cu.obj /out:cmTC_a52bd.exe /implib:cmTC_a52bd.lib /pdb:cmTC_a52bd.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\cmTC_a52bd.dir/intermediate.manifest CMakeFiles\cmTC_a52bd.dir/manifest.res" failed (exit code 1120) with the following output:
+    main.cu.obj : error LNK2019: 鏃犳硶瑙ｆ瀽鐨勫閮ㄧ鍙?__cudaRegisterFatBinary锛屽嚱鏁?"void __cdecl __nv_cudaEntityRegisterCallback(void * *)" (?__nv_cudaEntityRegisterCallback@@YAXPEAPEAX@Z) 涓紩鐢ㄤ簡璇ョ鍙?
+    main.cu.obj : error LNK2019: 鏃犳硶瑙ｆ瀽鐨勫閮ㄧ鍙?__cudaRegisterFatBinaryEnd锛屽嚱鏁?"void __cdecl __nv_cudaEntityRegisterCallback(void * *)" (?__nv_cudaEntityRegisterCallback@@YAXPEAPEAX@Z) 涓紩鐢ㄤ簡璇ョ鍙?
+    main.cu.obj : error LNK2019: 鏃犳硶瑙ｆ瀽鐨勫閮ㄧ鍙?__cudaUnregisterFatBinary锛屽嚱鏁?"void __cdecl __cudaUnregisterBinaryUtil(void)" (?__cudaUnregisterBinaryUtil@@YAXXZ) 涓紩鐢ㄤ簡璇ョ鍙?
+    cmTC_a52bd.exe : fatal error LNK1120: 3 涓棤娉曡В鏋愮殑澶栭儴鍛戒护
+    ninja: build stopped: subcommand failed.
+    
+    
+
+
+
+  CMake will not be able to correctly generate this project.
+Call Stack (most recent call first):
+  CMakeLists.txt:248 (enable_language)
+
+
+-- Configuring incomplete, errors occurred!
+ninja: error: loading 'build.ninja': The system cannot find the file specified.
+

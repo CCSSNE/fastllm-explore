@@ -1,0 +1,827 @@
+//
+// Created by huangyuyang on 6/27/23.
+//
+
+#include "model.h"
+
+#include <cstring>
+#include <csignal>
+#include <cstdint>
+
+#if defined(_MSC_VER)
+#define DLL_EXPORT __declspec(dllexport)
+#elif defined(_WIN32)
+#define DLL_EXPORT __attribute__((visibility("default")))
+#else
+#define DLL_EXPORT
+#endif
+
+#include "pytools_t2s.cpp"
+
+void signal_handler(int signal) {
+    if (signal == SIGINT) {
+        printf("into exit\n");
+        exit(0);
+    }
+}
+
+struct FASTLLM_PYTOOLS_INIT {
+    FASTLLM_PYTOOLS_INIT () {
+        std::signal(SIGINT, signal_handler);
+    }
+} fastllm_pytools_init;
+
+extern "C" {
+    DLL_EXPORT void print_cpu_ins() {
+        fastllm::PrintInstructionInfo();
+    }
+
+    DLL_EXPORT bool has_device(char *deviceType) {
+        return fastllm::HasDeviceType(std::string(deviceType));
+    }
+
+    DLL_EXPORT void set_cpu_threads(int threads) {
+        fastllm::SetThreads(threads);
+    }
+
+    DLL_EXPORT int get_cpu_threads() {
+        return fastllm::GetThreads();
+    }
+
+    DLL_EXPORT void set_cpu_low_mem(bool low) {
+        fastllm::SetLowMemMode(low);
+    }
+
+    DLL_EXPORT void set_cuda_embedding(bool cuda_embedding) {
+        fastllm::SetCudaEmbedding(cuda_embedding);
+    }
+
+    DLL_EXPORT void set_cuda_shared_expert(bool cuda_shared_expert) {
+        fastllm::SetCudaSharedExpert(cuda_shared_expert);
+    }
+
+    DLL_EXPORT void set_enable_amx(bool enable_amx) {
+        fastllm::EnableAMX(enable_amx);
+    }
+
+    DLL_EXPORT void set_max_tokens(int max_tokens) {
+        fastllm::SetMaxTokens(max_tokens);
+    }
+
+    DLL_EXPORT void set_page_size(int page_size) {
+        fastllm::SetPageLen(page_size);
+    }
+
+    DLL_EXPORT void set_gpu_mem_ratio(float ratio) {
+        fastllm::SetGpuMemRatio(ratio);
+    }
+
+    DLL_EXPORT bool get_cpu_low_mem(bool low) {
+        return fastllm::GetLowMemMode();
+    }
+
+    DLL_EXPORT void set_kvcache_in_cpu(bool in) {
+        fastllm::SetKVCacheInCPU(in);
+    }
+
+    DLL_EXPORT bool get_kvcache_in_cpu() {
+        return fastllm::GetKVCacheInCPU();
+    }
+
+    DLL_EXPORT void set_historycache_in_cpu(bool in) {
+        fastllm::SetHistoryCacheInCPU(in);
+    }
+
+    DLL_EXPORT bool get_historycache_in_cpu() {
+        return fastllm::GetHistoryCacheInCPU();
+    }
+
+    DLL_EXPORT void set_device_map(int device_cnt, int *lens, char *devices, int *values) {
+        std::map <std::string, int> deviceMap;
+        int cur = 0;
+        for (int i = 0; i < device_cnt; i++) {
+            std::string key = "";
+            for (int j = 0; j < lens[i]; j++) {
+                key += devices[cur++];
+            }
+            deviceMap[key] = values[i];
+        }
+        fastllm::SetDeviceMap(deviceMap);
+    }
+
+    DLL_EXPORT void set_moe_device_map(int device_cnt, int *lens, char *devices, int *values) {
+        std::map <std::string, int> deviceMap;
+        int cur = 0;
+        for (int i = 0; i < device_cnt; i++) {
+            std::string key = "";
+            for (int j = 0; j < lens[i]; j++) {
+                key += devices[cur++];
+            }
+            deviceMap[key] = values[i];
+        }
+        fastllm::SetMoeDeviceMap(deviceMap);
+    }
+
+    DLL_EXPORT struct ModelManager {
+        std::mutex locker;
+        std::map <int, std::unique_ptr<fastllm::basellm> > models;
+
+        fastllm::basellm *GetModel(int handle) {
+            locker.lock();
+            auto ret = models[handle].get();
+            locker.unlock();
+            return ret;
+        }
+    };
+
+    static ModelManager models;
+
+    DLL_EXPORT char *string_to_chars(const std::string &s) {
+        char *svalue = new char[s.size() + 1];
+        memcpy(svalue, s.data(), s.size());
+        svalue[s.size()] = 0;
+        return svalue;
+    }
+
+    DLL_EXPORT fastllm::GenerationConfig make_config(int max_length, int min_length, bool do_sample, float top_p, int top_k,
+                                          float temperature, float repeat_penalty, bool output_logits, bool add_special_tokens) {
+        fastllm::GenerationConfig config;
+        config.output_token_limit = max_length;
+        config.output_token_least = min_length;
+        config.temperature = temperature;
+        config.repeat_penalty = repeat_penalty;
+        if (do_sample) {
+            config.top_p = top_p;
+            config.top_k = top_k;
+        }
+        config.output_logits = output_logits;
+        config.add_special_tokens = add_special_tokens;
+        return config;
+    }
+
+    DLL_EXPORT int create_llm_model(char *path) {
+        models.locker.lock();
+        int id = models.models.size();
+        models.models[id] = fastllm::CreateLLMModelFromFile(path);
+        models.locker.unlock();
+        return id;
+    }
+
+    DLL_EXPORT void export_llm_model_fromhf(char *path, int dataType, int groupCnt, char *lora, char *outputPath, 
+                                            bool useMoe, int moeDataType, int moeGroupCnt, char *dtypeConfigString) {
+        models.locker.lock();
+        fastllm::ExportLLMModelFromHF(path, (fastllm::DataType)dataType, groupCnt, outputPath, "", lora, 
+                        useMoe, (fastllm::DataType)moeDataType, moeGroupCnt, dtypeConfigString);
+        models.locker.unlock();
+        return;
+    }
+
+    DLL_EXPORT int create_llm_model_fromhf(char *path, int dataType, int groupCnt, bool skipTokenizer, char *lora, 
+                                        bool useMoe, int moeDataType, int moeGroupCnt, char *dtypeConfigString) {
+        models.locker.lock();
+        int id = models.models.size();
+        models.models[id] = fastllm::CreateLLMModelFromHF(path, (fastllm::DataType)dataType, groupCnt, skipTokenizer, "", lora, 
+                            false, useMoe, (fastllm::DataType)moeDataType, moeGroupCnt, dtypeConfigString);
+        models.locker.unlock();
+        return id;
+    }
+
+    DLL_EXPORT int create_llm_model_fromhf_with_config(char *path, int dataType, int groupCnt, bool skipTokenizer, char *config) {
+        models.locker.lock();
+        int id = models.models.size();
+        models.models[id] = fastllm::CreateLLMModelFromHF(path, (fastllm::DataType)dataType, groupCnt, skipTokenizer, (std::string)config);
+        models.locker.unlock();
+        return id;
+    }
+
+    DLL_EXPORT int create_llm_model_from_gguf(char *path, char *oriPath) {
+        models.locker.lock();
+        fastllm::SetCudaSharedExpert(true);
+        int id = models.models.size();
+        models.models[id] = fastllm::CreateLLMModelFromGGUFFile(path, oriPath);
+        models.locker.unlock();
+        return id;
+    }
+
+    DLL_EXPORT int create_llm_tokenizer_fromhf(char *path) {
+        models.locker.lock();
+        int id = models.models.size();
+        models.models[id] = fastllm::CreateLLMTokenizerFromHF(path);
+        models.locker.unlock();
+        return id;
+    }
+
+    DLL_EXPORT int create_empty_llm_model(char *type) {
+        models.locker.lock();
+        int id = models.models.size();
+        models.models[id] = fastllm::CreateEmptyLLMModel(type);
+        models.locker.unlock();
+        return id;
+    }
+
+    DLL_EXPORT int get_tokenizer_vocab_size(int modelId) {
+        auto model = models.GetModel(modelId);
+        int ret = model->weight.tokenizer.tokenToStringDict.size();
+        return ret;
+    }
+
+    DLL_EXPORT void add_tokenizer_word_llm_model(int modelId, char *key, int tokenId, float score) {
+        auto model = models.GetModel(modelId);
+        model->weight.AddTokenizerWord(key, tokenId, score);
+        return;
+    }
+
+    DLL_EXPORT void set_special_tokens_llm_model(int modelId, int token_cnt, int *lens, char *tokens, int *ids) {
+        std::map <std::string, int> tokenMap;
+        int cur = 0;
+        for (int i = 0; i < token_cnt; i++) {
+            std::string key = "";
+            for (int j = 0; j < lens[i]; j++) {
+                key += tokens[cur++];
+            }
+            tokenMap[key] = ids[i];
+        }
+        auto model = models.GetModel(modelId);
+        model->weight.tokenizer.SetSpecialTokens(tokenMap);
+        return;
+    }
+
+    DLL_EXPORT int token_decode(int modelId, int tokenId, int output_buffer_len, char *output_buffer) {
+        // 正常时候返回0，输出buffer长度不足时返回输出的bytes数量，包含末尾的\0
+        if(tokenId == -1) {
+            output_buffer[0] = '\0';
+            return 0;
+        }
+        auto model = models.GetModel(modelId);
+        std::string s = model->weight.tokenizer.DecodeTokens(std::vector <int> {tokenId});
+        if(s.length() + 1 > output_buffer_len) {
+            return (int)s.length() + 1;
+        }
+        memcpy(output_buffer, s.c_str(), s.length() + 1);
+        return 0;
+    }
+
+    DLL_EXPORT int token_encode_string(int modelId, char *content, int output_buffer_len, int *output_buffer) {
+        // 返回写入到output_buffer中的数量。当output不足时候，只输出对应的部分
+        auto model = models.GetModel(modelId);
+        auto v = model->weight.tokenizer.Encode(content);
+        for (int i = 0; i < v.Count(0); i++) {
+            if(i >= output_buffer_len) {
+                break;
+            }
+            output_buffer[i] = (int)((float*)v.cpuData)[i];
+        }
+        return (int)v.Count(0);
+    }
+
+    DLL_EXPORT void add_dict_llm_model(int modelId, char *key, char *value) {
+        auto model = models.GetModel(modelId);
+        model->weight.AddDict(key, value);
+        return;
+    }
+
+    DLL_EXPORT void add_adapter_dict_llm_model(int modelId, char *adapterName, char *key, char *value) {
+        auto model = models.GetModel(modelId);
+        model->weight.AddAdapterDict(adapterName, key, value);
+        return;
+    }
+
+    DLL_EXPORT void set_adapter(int modelId, char *name) {
+        auto model = models.GetModel(modelId);
+        model->SetAdapter(name);
+        return;
+    }
+
+    DLL_EXPORT void disable_adapter(int modelId, char *name) {
+        auto model = models.GetModel(modelId);
+        model->DisableAdapter();
+        return;
+    }
+
+    DLL_EXPORT void release_memory(int modelId) {
+        auto model = models.GetModel(modelId);
+        model->weight.ReleaseWeight();
+        return;
+    }
+
+    DLL_EXPORT void set_save_history(int modelId, bool save) {
+        auto model = models.GetModel(modelId);
+        model->SetSaveHistoryChat(save);
+        return;
+    }
+
+    DLL_EXPORT void set_moe_experts(int modelId, int moe_experts) {
+        auto model = models.GetModel(modelId);
+        model->SetMoeExperts(moe_experts);
+        return;
+    }
+
+    DLL_EXPORT void set_model_moe_atype(int modelId, char *moe_atype) {
+        auto model = models.GetModel(modelId);
+        std::string atypeStr = moe_atype;
+        if (atypeStr == "float16" || atypeStr == "half") {
+            model->SetMoeAtype(fastllm::DataType::FLOAT16);
+        } else if (atypeStr == "bfloat16" || atypeStr == "bf16") {
+            model->SetMoeAtype(fastllm::DataType::BFLOAT16);
+        } else if (atypeStr == "float" || atypeStr == "float32" || atypeStr == "" || atypeStr == "auto") {
+            model->SetMoeAtype(fastllm::DataType::FLOAT32);
+        } else {
+            fastllm::ErrorInFastLLM("set_model_moe_atype error: moe_atype should be float32, float16 or bfloat16.");
+        }
+        return;
+    }
+
+    DLL_EXPORT void set_model_atype(int modelId, char *atype) {
+        auto model = models.GetModel(modelId);
+        std::string atypeStr = atype;
+        if (atypeStr == "auto") {
+#ifdef USE_ROCM
+            model->SetDataType(fastllm::DataType::FLOAT32);
+#else
+            if (model->use_new_engine
+                || model->model_struct == "chatglm" 
+                || model->model_struct == "llama"
+                || model->model_struct == "qwen3_moe"
+                || model->model_struct == "minimax_m2"
+                // || this->model_struct == "graph" ||
+                // || this->model_struct == "cogvlm" ||
+                 || model->model_struct == "deepseek_v2"
+                 || model->model_struct == "deepseek_v4"
+                 || model->model_struct == "hunyuan"
+                 || model->model_struct == "ernie4_5"
+                 || model->model_struct == "pangu_moe"
+                 || model->model_struct == "glm4_moe"
+                ) {
+                model->SetDataType(fastllm::DataType::FLOAT16);
+            } else {
+                model->SetDataType(fastllm::DataType::FLOAT32);
+            }
+#endif
+        } else if (atypeStr == "float16" || atypeStr == "half") {
+            model->SetDataType(fastllm::DataType::FLOAT16);
+        } else if (atypeStr == "bfloat16" || atypeStr == "bf16") {
+            model->SetDataType(fastllm::DataType::BFLOAT16);
+        } else if (atypeStr == "float" || atypeStr == "float32") {
+            model->SetDataType(fastllm::DataType::FLOAT32);
+        } else {
+            fastllm::ErrorInFastLLM("set_model_atype error: atype should be float32, float16 or bfloat16.");
+        }
+        return;
+    }
+
+    DLL_EXPORT void set_model_kv_cache_dtype(int modelId, char *kv_cache_dtype) {
+        auto model = models.GetModel(modelId);
+        std::string dtypeStr = kv_cache_dtype;
+        if (dtypeStr == "" || dtypeStr == "auto") {
+            model->kvCacheDataType = model->dataType;
+            model->useCustomKVCacheDataType = false;
+        } else if (dtypeStr == "float16" || dtypeStr == "half") {
+            model->SetKVCacheDataType(fastllm::DataType::FLOAT16);
+        } else if (dtypeStr == "bfloat16" || dtypeStr == "bf16") {
+            model->SetKVCacheDataType(fastllm::DataType::BFLOAT16);
+        } else if (dtypeStr == "float" || dtypeStr == "float32") {
+            model->SetKVCacheDataType(fastllm::DataType::FLOAT32);
+        } else if (dtypeStr == "fp8" || dtypeStr == "float8" || dtypeStr == "fp8_e4m3") {
+            model->SetKVCacheDataType(fastllm::DataType::FP8_E4M3);
+        } else {
+            fastllm::ErrorInFastLLM("set_model_kv_cache_dtype error: kv_cache_dtype should be auto, float32, float16, bfloat16 or fp8_e4m3.");
+        }
+        return;
+    }
+
+    DLL_EXPORT void init_params_llm_model(int modelId) {
+        auto model = models.GetModel(modelId);
+        model->InitParams();
+        return;
+    }
+
+    DLL_EXPORT void warmup_llm_model(int modelId) {
+        auto model = models.GetModel(modelId);
+        model->AutoWarmup();
+        return;
+    }
+
+    DLL_EXPORT void save_llm_model(int modelId, char *path) {
+        auto model = models.GetModel(modelId);
+        model->SaveModel(path);
+        return;
+    }
+
+    DLL_EXPORT void add_weight_llm_model(int modelId, char *key, int dimsLen, void *dimsData,
+                              int dataType, int weightType, int oriDataType, void *oriData, int groupCnt) {
+        auto model = models.GetModel(modelId);
+        std::vector <int> dims = std::vector <int> (dimsLen);
+        for (int i = 0; i < dims.size(); i++) {
+            dims[i] = ((int*)dimsData)[i];
+        }
+        model->weight.AddWeight(key, dims,
+                                (fastllm::DataType)dataType,
+                                (fastllm::WeightType)weightType,
+                                (fastllm::DataType)oriDataType,
+                                (uint8_t*)oriData, groupCnt);
+        return;
+    }
+
+    DLL_EXPORT void add_qlinear_weight_llm_model(int modelId, char *key, int dimsLen, void *dimsData,
+                                                 int bit, void *scales, void *oriData) {
+        auto model = models.GetModel(modelId);
+        std::vector <int> dims = std::vector <int> (dimsLen);
+        for (int i = 0; i < dims.size(); i++) {
+            dims[i] = ((int*)dimsData)[i];
+        }
+        model->weight.AddQLinearWeight(key, dims, bit, (float*)scales, (uint8_t*)oriData);
+        return;
+    }
+
+    DLL_EXPORT char *make_input_llm_model(int modelId, char *history, int round, char *input) {
+        auto model = models.GetModel(modelId);
+        char *ret = string_to_chars(model->MakeInput(history, round, input));
+        return ret;
+    }
+
+    DLL_EXPORT char *make_history_llm_model(int modelId, char *history, int round, char *input, char *output) {
+        auto model = models.GetModel(modelId);
+        return string_to_chars(model->MakeHistory(history, round, input, output));
+    }
+
+    DLL_EXPORT char *apply_chat_template(int modelId, char *str, int cnt, int *pos, int *len) {
+        auto model = models.GetModel(modelId);
+        fastllm::ChatMessages messages;
+        for (int i = 0; i < cnt / 2; i++) {
+            std::string role, content;
+            for (int j = 0; j < len[i * 2]; j++) {
+                role += str[pos[i * 2] + j];
+            }
+            for (int j = 0; j < len[i * 2 + 1]; j++) {
+                content += str[pos[i * 2 + 1] + j];
+            }
+            messages.push_back(std::make_pair(role, content));
+        }
+        return string_to_chars(model->ApplyChatTemplate(messages));
+    }
+
+    DLL_EXPORT void add_eos_token(int modelId, char *str, int len) {
+        std::string eos_token = "";
+        for (int i = 0; i < len; i++) {
+            eos_token += str[i];
+        }
+        auto model = models.GetModel(modelId);
+        model->eos_token_id = model->weight.tokenizer.GetTokenId(eos_token);
+        model->eos_token_ids.insert(model->weight.tokenizer.GetTokenId(eos_token));
+    }
+
+    DLL_EXPORT char *response_str_llm_model(int modelId, char *content,
+                                 int max_length, bool do_sample, float top_p, int top_k,
+                                 float temperature, float repeat_penalty, bool output_logits) {
+        auto model = models.GetModel(modelId);
+        auto config = make_config(max_length, 0, do_sample, top_p, top_k, temperature, repeat_penalty, output_logits, true);
+        std::string s = model->Response(content, nullptr, config);
+        return string_to_chars(s);
+    }
+
+    DLL_EXPORT int launch_response_str_llm_model(int modelId, char *content,
+                                      int max_length, int min_length, bool do_sample, float top_p, int top_k,
+                                      float temperature, float repeat_penalty, bool output_logits,
+                                      int stop_token_len, int * stop_token_ids) {
+        auto model = models.GetModel(modelId);
+        std::vector <int> tokens;
+        auto v = model->weight.tokenizer.Encode(content);
+        for (int i = 0; i < v.Count(0); i++) {
+            tokens.push_back((int)((float*)v.cpuData)[i]);
+        }
+        auto config = make_config(max_length, min_length, do_sample, top_p, top_k, temperature, repeat_penalty, output_logits, true);
+        config.input_token_length = tokens.size();
+        for(int i = 0; i < stop_token_len; i++ )
+        {
+            config.stop_token_ids.insert(stop_token_ids[i]);
+        }
+        return model->LaunchResponseTokens(tokens, config);
+    }
+
+    // 尝试fetch，如果能fetch成功则返回true（后续需要fetch一下)，用于异步操作
+    DLL_EXPORT bool can_fetch_response_llm_model(int modelId, int handleId) {
+        auto model = models.GetModel(modelId);
+        return model->CanFetchResponse(handleId);
+    }
+
+    // 终止handleId的请求
+    DLL_EXPORT void abort_response_llm_model(int modelId, int handleId) {
+        auto model = models.GetModel(modelId);
+        model->AbortResponse(handleId);
+    }
+
+    DLL_EXPORT char *fetch_response_str_llm_model(int modelId, int handleId) {
+        auto model = models.GetModel(modelId);
+        int ret = model->FetchResponseTokens(handleId);
+        std::string s = (ret == -1 ? "<flmeos>" : model->weight.tokenizer.DecodeTokens(std::vector <int> {ret}));
+        return string_to_chars(s);
+    }
+
+    DLL_EXPORT int launch_response_llm_model(int modelId, int len, int *values,
+                                  int max_length, int min_length, bool do_sample, float top_p, int top_k,
+                                  float temperature, float repeat_penalty, bool output_logits,
+                                  int stop_token_len, int * stop_token_ids) {
+        std::vector <int> input;
+        for (int i = 0; i < len; i++) {
+            input.push_back(values[i]);
+        }
+        auto config = make_config(max_length, min_length, do_sample, top_p, top_k, temperature, repeat_penalty, output_logits, false);
+        for(int i = 0; i < stop_token_len; i++ )
+        {
+            config.stop_token_ids.insert(stop_token_ids[i]);
+        }
+        config.input_token_length = input.size();
+        auto model = models.GetModel(modelId);
+        return model->LaunchResponseTokens(input, config);
+    }
+
+    DLL_EXPORT int launch_response_llm_model_multimodal(int modelId, int len, int *values, 
+                                  char *multimodal_json, uint8_t *multimodal_data,
+                                  int max_length, int min_length, bool do_sample, float top_p, int top_k,
+                                  float temperature, float repeat_penalty, bool output_logits,
+                                  int stop_token_len, int * stop_token_ids) {
+        std::vector <int> input;
+        for (int i = 0; i < len; i++) {
+            input.push_back(values[i]);
+        }
+        auto config = make_config(max_length, min_length, do_sample, top_p, top_k, temperature, repeat_penalty, output_logits, false);
+        for(int i = 0; i < stop_token_len; i++ ) {
+            config.stop_token_ids.insert(stop_token_ids[i]);
+        }
+        auto model = models.GetModel(modelId);
+
+        std::string error;
+        auto multimodal_config = json11::Json::parse(multimodal_json, error);
+        std::vector <float> imageInput;
+        std::map <std::string, std::vector <fastllm::Data*> > *multimodalInput = new std::map <std::string, std::vector <fastllm::Data*> > ();
+        std::string mode = multimodal_config["mode"].string_value();
+        const float *multimodalFloat = (const float*) multimodal_data;
+
+        auto readShape = [](const json11::Json &node) {
+            std::vector<int> shape;
+            for (auto &item : node.array_items()) {
+                shape.push_back(item.int_value());
+            }
+            return shape;
+        };
+        auto shapeCount = [](const std::vector<int> &shape) {
+            if (shape.empty()) {
+                return 0;
+            }
+            int total = 1;
+            for (int dim : shape) {
+                total *= dim;
+            }
+            return total;
+        };
+        auto addPayloadTensor = [&](const std::string &name, const std::vector<int> &shape, int offset, int length) {
+            fastllm::AssertInFastLLM(shapeCount(shape) == length,
+                                     (std::string("Payload shape mismatch for ") + name + ".").c_str());
+            if (length == 0) {
+                return;
+            }
+            std::vector<float> values(length);
+            memcpy(values.data(), multimodalFloat + offset, (size_t) length * sizeof(float));
+            fastllm::Data *tensorData = new fastllm::Data();
+            tensorData->CopyFrom(fastllm::Data(fastllm::DataType::FLOAT32, shape, values));
+            (*multimodalInput)[name].push_back(tensorData);
+        };
+        auto parseDataType = [](const std::string &dtype) {
+            if (dtype == "float32") {
+                return fastllm::DataType::FLOAT32;
+            }
+            if (dtype == "float16") {
+                return fastllm::DataType::FLOAT16;
+            }
+            if (dtype == "bfloat16") {
+                return fastllm::DataType::BFLOAT16;
+            }
+            if (dtype == "int32") {
+                return fastllm::DataType::INT32;
+            }
+            fastllm::ErrorInFastLLM(("Unsupported multimodal payload dtype: " + dtype).c_str());
+            return fastllm::DataType::FLOAT32;
+        };
+        auto dataTypeBytes = [](fastllm::DataType dataType) -> int {
+            switch (dataType) {
+                case fastllm::DataType::FLOAT32:
+                case fastllm::DataType::INT32:
+                    return 4;
+                case fastllm::DataType::FLOAT16:
+                case fastllm::DataType::BFLOAT16:
+                    return 2;
+                default:
+                    return 0;
+            }
+        };
+        auto addTypedPayloadTensor = [&](const std::string &name, fastllm::DataType dataType,
+                                         const std::vector<int> &shape, int offsetBytes, int nbytes) {
+            int expectedBytes = shapeCount(shape) * dataTypeBytes(dataType);
+            fastllm::AssertInFastLLM(expectedBytes == nbytes,
+                                     (std::string("Payload byte size mismatch for ") + name + ".").c_str());
+            if (nbytes == 0) {
+                return;
+            }
+            fastllm::Data *tensorData = new fastllm::Data(dataType, shape);
+            tensorData->Allocate(false);
+            memcpy(tensorData->cpuData, multimodal_data + offsetBytes, (size_t) nbytes);
+            (*multimodalInput)[name].push_back(tensorData);
+        };
+
+        if (mode == "gemma4") {
+            std::vector<int> pixelShape = readShape(multimodal_config["pixel_values_shape"]);
+            std::vector<int> imagePosShape = readShape(multimodal_config["image_position_ids_shape"]);
+            std::vector<int> mmTypeShape = readShape(multimodal_config["mm_token_type_ids_shape"]);
+
+            int pixelOffset = multimodal_config["pixel_values_offset"].int_value();
+            int pixelLength = multimodal_config["pixel_values_length"].int_value();
+            int imagePosOffset = multimodal_config["image_position_ids_offset"].int_value();
+            int imagePosLength = multimodal_config["image_position_ids_length"].int_value();
+            int mmTypeOffset = multimodal_config["mm_token_type_ids_offset"].int_value();
+            int mmTypeLength = multimodal_config["mm_token_type_ids_length"].int_value();
+
+            fastllm::AssertInFastLLM(shapeCount(pixelShape) == pixelLength, "Gemma4 pixel_values payload shape mismatch.");
+            fastllm::AssertInFastLLM(shapeCount(imagePosShape) == imagePosLength, "Gemma4 image_position_ids payload shape mismatch.");
+            fastllm::AssertInFastLLM(shapeCount(mmTypeShape) == mmTypeLength, "Gemma4 mm_token_type_ids payload shape mismatch.");
+
+            std::vector<float> pixelValues(pixelLength);
+            memcpy(pixelValues.data(), multimodalFloat + pixelOffset, (size_t) pixelLength * sizeof(float));
+            fastllm::Data *pixelValuesData = new fastllm::Data();
+            pixelValuesData->CopyFrom(fastllm::Data(fastllm::DataType::FLOAT32, pixelShape, pixelValues));
+            (*multimodalInput)["pixel_values"].push_back(pixelValuesData);
+
+            std::vector<float> imagePositionIds(imagePosLength);
+            memcpy(imagePositionIds.data(), multimodalFloat + imagePosOffset, (size_t) imagePosLength * sizeof(float));
+            fastllm::Data *imagePositionIdsData = new fastllm::Data();
+            imagePositionIdsData->CopyFrom(fastllm::Data(fastllm::DataType::FLOAT32, imagePosShape, imagePositionIds));
+            (*multimodalInput)["image_position_ids"].push_back(imagePositionIdsData);
+
+            std::vector<float> mmTokenTypeIds(mmTypeLength);
+            memcpy(mmTokenTypeIds.data(), multimodalFloat + mmTypeOffset, (size_t) mmTypeLength * sizeof(float));
+            fastllm::Data *mmTokenTypeIdsData = new fastllm::Data();
+            mmTokenTypeIdsData->CopyFrom(fastllm::Data(fastllm::DataType::FLOAT32, mmTypeShape, mmTokenTypeIds));
+            (*multimodalInput)["mm_token_type_ids"].push_back(mmTokenTypeIdsData);
+        } else if (mode == "qwen35") {
+            if (multimodal_config["tensors"].is_array()) {
+                for (auto &tensorNode : multimodal_config["tensors"].array_items()) {
+                    addTypedPayloadTensor(
+                        tensorNode["name"].string_value(),
+                        parseDataType(tensorNode["dtype"].string_value()),
+                        readShape(tensorNode["shape"]),
+                        tensorNode["offset_bytes"].int_value(),
+                        tensorNode["nbytes"].int_value()
+                    );
+                }
+            } else {
+                addPayloadTensor(
+                    "image_embeds",
+                    readShape(multimodal_config["image_embeds_shape"]),
+                    multimodal_config["image_embeds_offset"].int_value(),
+                    multimodal_config["image_embeds_length"].int_value()
+                );
+                addPayloadTensor(
+                    "video_embeds",
+                    readShape(multimodal_config["video_embeds_shape"]),
+                    multimodal_config["video_embeds_offset"].int_value(),
+                    multimodal_config["video_embeds_length"].int_value()
+                );
+                addPayloadTensor(
+                    "mrope_position_ids",
+                    readShape(multimodal_config["mrope_position_ids_shape"]),
+                    multimodal_config["mrope_position_ids_offset"].int_value(),
+                    multimodal_config["mrope_position_ids_length"].int_value()
+                );
+                addPayloadTensor(
+                    "mrope_position_delta",
+                    readShape(multimodal_config["mrope_position_delta_shape"]),
+                    multimodal_config["mrope_position_delta_offset"].int_value(),
+                    multimodal_config["mrope_position_delta_length"].int_value()
+                );
+                addPayloadTensor(
+                    "mm_token_type_ids",
+                    readShape(multimodal_config["mm_token_type_ids_shape"]),
+                    multimodal_config["mm_token_type_ids_offset"].int_value(),
+                    multimodal_config["mm_token_type_ids_length"].int_value()
+                );
+            }
+        } else {
+            int image_channels = multimodal_config["image_channels"].int_value();
+            int image_height = multimodal_config["image_height"].int_value();
+            int image_width = multimodal_config["image_width"].int_value();
+            imageInput.resize(1 * image_channels * image_height * image_width);
+            memcpy(&imageInput[0], multimodalFloat, imageInput.size() * sizeof(float));
+
+            fastllm::Data *imageInputData = new fastllm::Data();
+            imageInputData->CopyFrom(fastllm::Data(fastllm::DataType::FLOAT32, {1, image_channels, image_height, image_width}, imageInput));
+            (*multimodalInput)["images"].push_back(imageInputData);
+        }
+
+        int ret = model->LaunchResponseTokens(input, config, *multimodalInput);
+        return ret;
+    }
+
+    DLL_EXPORT int fetch_response_llm_model(int modelId, int handleId) {
+        auto model = models.GetModel(modelId);
+        return model->FetchResponseTokens(handleId);
+    }
+
+    DLL_EXPORT int fetch_response_logits_llm_model(int modelId, int handleId, float *logits) {
+        auto model = models.GetModel(modelId);
+        std::vector <float> retLogits;
+        int ret = model->FetchResponseLogits(handleId, retLogits);
+        if (ret != -1) {
+            memcpy(logits, retLogits.data(), retLogits.size() * sizeof(float));
+        }
+        return ret;
+    }
+
+    DLL_EXPORT void add_cache_llm_model(int modelId, int len, int *values) {
+        std::vector <int> input;
+        for (int i = 0; i < len; i++) {
+            input.push_back(values[i]);
+        }
+        auto model = models.GetModel(modelId);
+        model->AddPromptCache(input);
+    }
+
+    DLL_EXPORT void set_kv_cache_limit_llm_model(int modelId, long long bytes) {
+        auto model = models.GetModel(modelId);
+        model->kvCacheLimit = bytes;
+    }
+
+    DLL_EXPORT void set_max_batch_llm_model(int modelId, int batch) {
+        auto model = models.GetModel(modelId);
+        if (!model->canDoBatchForward) {
+            batch = 1;
+        }
+        model->maxBatch = batch;
+    }
+
+    DLL_EXPORT void set_chunked_prefill_size_llm_model(int modelId, int size) {
+        auto model = models.GetModel(modelId);
+        model->SetChunkedPrefillSize(size);
+    }
+
+    DLL_EXPORT void set_verbose_llm_model(int modelId, bool verbose) {
+        auto model = models.GetModel(modelId);
+        model->verbose = verbose;
+    }
+
+    DLL_EXPORT int get_max_input_len_llm_model(int modelId) {
+        auto model = models.GetModel(modelId);
+        return model->max_positions;
+    }
+
+    DLL_EXPORT char *get_struct_llm_model(int modelId) {
+        auto model = models.GetModel(modelId);
+        char *ret = string_to_chars(model->model_struct);
+        return ret;
+    }
+
+    DLL_EXPORT char *get_type_llm_model(int modelId) {
+        auto model = models.GetModel(modelId);
+        char *ret = string_to_chars(model->model_type);
+        return ret;
+    }
+
+    DLL_EXPORT float* embedding_sentence(int modelId, char *input, bool normalize, int *embeddingLen) {
+        fastllm::BertModel *model = (fastllm::BertModel*)models.GetModel(modelId);
+        std::string str(input);
+        std::vector <float> result = model->EmbeddingSentence(str, normalize);
+        float *fvalue = new float[result.size()];
+        memcpy(fvalue, result.data(), result.size() * sizeof(float));
+        *embeddingLen = result.size();
+        return fvalue;
+    }
+
+    DLL_EXPORT float* embedding_tokens(int modelId, int inputLen, int *input, bool normalize, int *embeddingLen) {
+        fastllm::BertModel *model = (fastllm::BertModel*)models.GetModel(modelId);
+        std::vector <int> tokens;
+        for (int i = 0; i < inputLen; i++) {
+            tokens.push_back(input[i]);
+        }
+        std::vector <float> result = model->EmbeddingSentence(tokens, normalize);
+        float *fvalue = new float[result.size()];
+        memcpy(fvalue, result.data(), result.size() * sizeof(float));
+        *embeddingLen = result.size();
+        return fvalue;
+    }
+
+    DLL_EXPORT float* reranker_compute_score(int modelId, int batch, int *seqLens, int *tokens) {
+        fastllm::BertModel *model = (fastllm::BertModel*)models.GetModel(modelId);
+        std::vector <std::vector <int> > inputIds;
+        inputIds.resize(batch);
+        int pos = 0;
+        for (int i = 0; i < batch; i++) {
+            for (int j = 0; j < seqLens[i]; j++) {
+                inputIds[i].push_back(tokens[pos++]);
+            }
+        }
+        auto ret = model->ComputeScore(inputIds);
+        float *fvalue = new float[batch];
+        for (int i = 0; i < batch; i++) {
+            fvalue[i] = ret[i];
+        }
+        return fvalue;
+    }
+};

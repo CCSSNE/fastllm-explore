@@ -1,0 +1,599 @@
+**********************************************************************
+** Visual Studio 2022 Developer Command Prompt v17.14.31
+** Copyright (c) 2025 Microsoft Corporation
+**********************************************************************
+CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+
+
+-- USE_NUMAS: OFF
+-- USE_CUDA: ON
+-- USE_ROCM: OFF
+-- CUDA_ARCH: 89
+-- USE_TFACC: OFF
+-- For legacy CUDA GPUs: OFF
+-- CUDA_MEM_DEBUG: OFF
+-- PYTHON_API: OFF
+-- BUILD_CLI: OFF
+-- USE_SENTENCEPIECE: OFF
+-- USE_IVCOREX: OFF
+-- MAKE_WHL_X86: 
+-- CMAKE_CXX_FLAGS: /DWIN32 /D_WINDOWS /W3 /GR /EHsc -DNOMINMAX /std:c++17 /arch:AVX2 /source-charset:utf-8
+-- Configuring done (0.0s)
+-- Generating done (0.1s)
+-- Build files have been written to: C:/Users/user/output/deepseek-v4部署/fastllm-master/build-cuda-ninja
+[1/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-fp32.cu.obj
+fastllm-linear-fp32.cu
+tmpxft_0000a2cc_00000000-10_fastllm-linear-fp32.cudafe1.cpp
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp32.cu(77): warning C4297: “FastllmCudaMatMulFloat32”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp32.cu(77): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp32.cu(121): warning C4297: “FastllmCudaHalfMatMulFloat32”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp32.cu(121): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+[2/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-bf16.cu.obj
+fastllm-linear-bf16.cu
+tmpxft_00009eec_00000000-10_fastllm-linear-bf16.cudafe1.cpp
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-bf16.cu(446): warning C4297: “FastllmCudaMatMulBFloat16”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-bf16.cu(446): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-bf16.cu(521): warning C4297: “FastllmCudaHalfMatMulBFloat16”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-bf16.cu(521): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-bf16.cu(561): warning C4297: “FastllmCudaHalfMatMulBFloat16”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-bf16.cu(561): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-bf16.cu(612): warning C4297: “FastllmCudaBFloat16MatMulBFloat16”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-bf16.cu(612): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-bf16.cu(652): warning C4297: “FastllmCudaBFloat16MatMulFloat32”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-bf16.cu(652): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+[3/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-fp16.cu.obj
+fastllm-linear-fp16.cu
+tmpxft_000062b4_00000000-10_fastllm-linear-fp16.cudafe1.cpp
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp16.cu(431): warning C4297: “FastllmCudaMatMulFloat16”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp16.cu(431): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp16.cu(541): warning C4297: “FastllmCudaHalfMatMulFloat16”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp16.cu(541): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp16.cu(831): warning C4297: “FastllmCudaBFloat16MatMulFloat16”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp16.cu(831): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+[4/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-int8.cu.obj
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-int8.cu(67): warning #177-D: variable "baseB" was declared but never referenced
+          const uint8_t *baseB = B + p * m;
+                         ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-int8.cu(58): warning #177-D: variable "regA" was declared but never referenced
+      float4 regA;
+             ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-int8.cu(59): warning #177-D: variable "regB" was declared but never referenced
+      union_char4 regB;
+                  ^
+
+fastllm-linear-int8.cu
+tmpxft_00008b0c_00000000-10_fastllm-linear-int8.cudafe1.cpp
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-int8.cu(283): warning C4297: “FastllmCudaMatMulFloatInt8”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-int8.cu(283): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-int8.cu(404): warning C4297: “FastllmCudaHalfMatMulFloatInt8”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-int8.cu(404): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+[5/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-int4.cu.obj
+fastllm-linear-int4.cu
+tmpxft_000040a4_00000000-10_fastllm-linear-int4.cudafe1.cpp
+[6/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-fp8.cu.obj
+fastllm-linear-fp8.cu
+tmpxft_000079d8_00000000-10_fastllm-linear-fp8.cudafe1.cpp
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp8.cu(506): warning C4297: “FastllmCudaMatMulFloatFP8E4M3Block128”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp8.cu(506): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp8.cu(629): warning C4297: “FastllmCudaMatMulFloatFP8E4M3”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp8.cu(629): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp8.cu(705): warning C4297: “FastllmCudaHalfMatMulFloatFP8E4M3”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp8.cu(705): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp8.cu(933): warning C4297: “FastllmCudaBFloat16MatMulFP8E4M3”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp8.cu(933): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp8.cu(995): warning C4297: “FastllmCudaHalfMatMulFloatFP8E4M3Block128”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp8.cu(995): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp8.cu(1208): warning C4297: “FastllmCudaBFloat16MatMulFP8E4M3Block128”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp8.cu(1208): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp8.cu(1326): warning C4297: “FastllmCudaMatMulFloatNVFP4Block16”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp8.cu(1326): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp8.cu(1383): warning C4297: “FastllmCudaHalfMatMulFloatNVFP4Block16”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp8.cu(1383): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp8.cu(1434): warning C4297: “FastllmCudaBFloat16MatMulNVFP4Block16”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp8.cu(1434): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+[7/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\fastllm-ggml-cuda.cu.obj
+fastllm-ggml-cuda.cu
+tmpxft_00007cb8_00000000-10_fastllm-ggml-cuda.cudafe1.cpp
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-ggml-cuda.cu(2051): warning C4297: “FastllmCudaMatMulFloatGGUF”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-ggml-cuda.cu(2051): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-ggml-cuda.cu(2172): warning C4297: “FastllmCudaHalfMatMulGGUF”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-ggml-cuda.cu(2172): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-ggml-cuda.cu(2282): warning C4297: “FastllmCudaBFloat16MatMulGGUF”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-ggml-cuda.cu(2282): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+[8/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\fastllm-cuda.cu.obj
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4339): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 32];
+          ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4340): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 16];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4341): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 8];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4342): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 4];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4343): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 2];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4344): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 1];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4435): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 32];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4436): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 16];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4437): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 8];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4438): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 4];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4439): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 2];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4440): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 1];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4636): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+                  now[tid] += now[tid + 32];
+                  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4637): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+                  now[tid] += now[tid + 16];
+                  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4638): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+                  now[tid] += now[tid + 8];
+                  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4639): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+                  now[tid] += now[tid + 4];
+                  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4640): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+                  now[tid] += now[tid + 2];
+                  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4641): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+                  now[tid] += now[tid + 1];
+                  ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/third_party/flashinfer\sampling.cuh(794): warning #177-D: variable "batch_size" was declared but never referenced
+    const uint32_t batch_size = gridDim.x;
+                   ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/third_party/flashinfer\sampling.cuh(911): warning #177-D: variable "batch_size" was declared but never referenced
+    const uint32_t batch_size = gridDim.x;
+                   ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/third_party/flashinfer\sampling.cuh(1103): warning #177-D: variable "batch_size" was declared but never referenced
+    const uint32_t batch_size = gridDim.x;
+                   ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(2748): warning #177-D: variable "o" was declared but never referenced
+          int o = idx / (n * m);
+              ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4339): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 32];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4340): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 16];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4341): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 8];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4342): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 4];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4343): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 2];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4344): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 1];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4435): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 32];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4436): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 16];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4437): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 8];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4438): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 4];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4439): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 2];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4440): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+          now[tid] += now[tid + 1];
+          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4636): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+                  now[tid] += now[tid + 32];
+                  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4637): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+                  now[tid] += now[tid + 16];
+                  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4638): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+                  now[tid] += now[tid + 8];
+                  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4639): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+                  now[tid] += now[tid + 4];
+                  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4640): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+                  now[tid] += now[tid + 2];
+                  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4641): warning #3012-D: a volatile destination type for a compound assignment expression is deprecated
+                  now[tid] += now[tid + 1];
+                  ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(5853): warning #177-D: variable "headBaseV" was declared but never referenced
+      const size_t headBaseV = ((size_t)b * heads + h) * chunks * chunkStrideV;
+                   ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(1358): warning #221-D: floating-point value does not fit in required floating-point type
+      maxData[tid] = -1e100;
+                     ^
+          detected during instantiation of "void FastllmLayerNormKernelTop1<THREAD_PER_BLOCK>(float *, float *, int) [with THREAD_PER_BLOCK=256]" at line 3605
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(1392): warning #221-D: floating-point value does not fit in required floating-point type
+          maxData[tid][i] = -1e100;
+                            ^
+          detected during instantiation of "void FastllmLayerNormKernelTopK<THREAD_PER_BLOCK,MAXK>(float *, float *, int, int) [with THREAD_PER_BLOCK=64, MAXK=50]" at line 3607
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(3645): warning #221-D: floating-point value does not fit in required floating-point type
+          maxData[tid][i] = -1e100;
+                            ^
+          detected during instantiation of "void FastllmSelectExpertKernel<THREAD_PER_BLOCK,MAXK>(float *, float *, int32_t *, float *, int, int, int, int, __nv_bool, float) [with THREAD_PER_BLOCK=64, MAXK=50]" at line 3747
+
+fastllm-cuda.cu
+tmpxft_00009c1c_00000000-10_fastllm-cuda.cudafe1.cpp
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(1732): warning C4477: “printf”: 格式字符串“%lu”需要类型“unsigned long”的参数，但可变参数 1 拥有了类型“size_t”
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(1732): note: 请考虑在格式字符串中使用“%zu”
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(1807): warning C4477: “printf”: 格式字符串“%lu”需要类型“unsigned long”的参数，但可变参数 1 拥有了类型“size_t”
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(1807): note: 请考虑在格式字符串中使用“%zu”
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(1834): warning C4477: “printf”: 格式字符串“%lu”需要类型“unsigned long”的参数，但可变参数 1 拥有了类型“size_t”
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(1834): note: 请考虑在格式字符串中使用“%zu”
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(1914): warning C4477: “printf”: 格式字符串“%lu”需要类型“unsigned long”的参数，但可变参数 1 拥有了类型“size_t”
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(1914): note: 请考虑在格式字符串中使用“%zu”
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(3987): warning C4297: “FastllmCudaBatchMatMul”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(3987): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4047): warning C4297: “FastllmCudaBatchMatMulTransB”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(4047): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+[9/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-int4nozero.cu.obj
+fastllm-linear-int4nozero.cu
+tmpxft_000079a8_00000000-10_fastllm-linear-int4nozero.cudafe1.cpp
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-int4nozero.cu(382): warning C4297: “FastllmCudaMatMulFloatInt4NoZero”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-int4nozero.cu(382): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-int4nozero.cu(497): warning C4297: “FastllmCudaHalfMatMulFloatInt4NoZero”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-int4nozero.cu(497): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+[10/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-int4group.cu.obj
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-int4group.cu(162): warning #177-D: variable "end" was declared but never referenced
+      int end = st;
+          ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+fastllm-linear-int4group.cu
+tmpxft_000090dc_00000000-10_fastllm-linear-int4group.cudafe1.cpp
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-int4group.cu(330): warning C4297: “FastllmCudaMatMulFloatInt4Group”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-int4group.cu(330): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-int4group.cu(489): warning C4297: “FastllmCudaHalfMatMulFloatInt4Group”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-int4group.cu(489): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-int4group.cu(869): warning C4297: “FastllmCudaHalfMatMulFloatInt4Group128”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-int4group.cu(869): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+[11/14] Building CXX object CMakeFiles\fastllm_tools.dir\tools\src\pytools.cpp.obj
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(136): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(176): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(236): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(237): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(238): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(281): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(327): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(330): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(370): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(372): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\fastllm.h(222): warning C4244: “初始化”: 从“int”转换到“float”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\fastllm.h(222): warning C4244: “初始化”: 从“int”转换到“const float”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\fastllm.h(227): warning C4244: “=”: 从“float”转换到“uint8_t”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\fastllm.h(229): warning C4244: “=”: 从“const float”转换到“uint8_t”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\fastllm.h(687): warning C4996: 'std::codecvt_utf8<wchar_t,1114111,(std::codecvt_mode)0>': warning STL4017: std::wbuffer_convert, std::wstring_convert, and the <codecvt> header (containing std::codecvt_mode, std::codecvt_utf8, std::codecvt_utf16, and std::codecvt_utf8_utf16) are deprecated in C++17. (The std::codecvt class template is NOT deprecated.) The C++ Standard doesn't provide equivalent non-deprecated functionality; consider using MultiByteToWideChar() and WideCharToMultiByte() from <Windows.h> instead. You can define _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to suppress this warning.
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\codecvt(34): note: 参见“std::codecvt_utf8”的声明
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\fastllm.h(687): warning C4996: 'std::wstring_convert<std::codecvt_utf8<wchar_t,1114111,(std::codecvt_mode)0>,wchar_t,std::allocator<wchar_t>,std::allocator<char>>': warning STL4017: std::wbuffer_convert, std::wstring_convert, and the <codecvt> header (containing std::codecvt_mode, std::codecvt_utf8, std::codecvt_utf16, and std::codecvt_utf8_utf16) are deprecated in C++17. (The std::codecvt class template is NOT deprecated.) The C++ Standard doesn't provide equivalent non-deprecated functionality; consider using MultiByteToWideChar() and WideCharToMultiByte() from <Windows.h> instead. You can define _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to suppress this warning.
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xlocbuf(303): note: 参见“std::wstring_convert”的声明
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\utils/utils.h(30): warning C4067: 预处理器指令后有意外标记 - 应输入换行符
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\utils/utils.h(109): warning C4996: '_wfopen': This function or variable may be unsafe. Consider using _wfopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\utils/utils.h(118): warning C4996: '_wopen': This function or variable may be unsafe. Consider using _wsopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\utils/utils.h(150): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\utils/utils.h(355): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\utils/utils.h(417): warning C4244: “+=”: 从“double”转换到“float”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\models\basellm.h(344): warning C4305: “初始化”: 从“double”到“float”截断
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\models\basellm.h(348): warning C4244: “初始化”: 从“double”转换到“const float”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\models\bert.h(68): warning C4305: “初始化”: 从“double”到“float”截断
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\models\xlmroberta.h(33): warning C4305: “初始化”: 从“double”到“float”截断
+C:\Users\user\output\deepseek-v4部署\fastllm-master\tools\src\pytools_t2s.cpp(29): warning C4305: “初始化”: 从“double”到“float”截断
+C:\Users\user\output\deepseek-v4部署\fastllm-master\tools\src\pytools_t2s.cpp(64): warning C4305: “初始化”: 从“double”到“float”截断
+C:\Users\user\output\deepseek-v4部署\fastllm-master\tools\src\pytools_t2s.cpp(105): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\tools\src\pytools_t2s.cpp(151): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\tools\src\pytools.cpp(125): warning C4091: “__declspec(dllexport)”: 没有声明变量时忽略“ModelManager”的左侧
+C:\Users\user\output\deepseek-v4部署\fastllm-master\tools\src\pytools.cpp(146): warning C4190: 'make_config' 已指定 C 链接，但返回了与 C 不兼容的 'fastllm::GenerationConfig'
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\fastllm.h(122): note: 参见“fastllm::GenerationConfig”的声明
+C:\Users\user\output\deepseek-v4部署\fastllm-master\tools\src\pytools.cpp(164): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\tools\src\pytools.cpp(182): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\tools\src\pytools.cpp(191): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\tools\src\pytools.cpp(200): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\tools\src\pytools.cpp(208): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\tools\src\pytools.cpp(216): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\tools\src\pytools.cpp(224): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\tools\src\pytools.cpp(493): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\tools\src\pytools.cpp(533): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\tools\src\pytools.cpp(793): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\user\output\deepseek-v4部署\fastllm-master\tools\src\pytools.cpp(806): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+[12/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\models\deepseekv4-kernels.cu.obj
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\models\deepseekv4-kernels.cu(616): warning #221-D: floating-point value does not fit in required floating-point type
+          float mx = -((float)(1e+300));
+                       ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\models\deepseekv4-kernels.cu(670): warning #221-D: floating-point value does not fit in required floating-point type
+          float mx = -((float)(1e+300));
+                       ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\models\deepseekv4-kernels.cu(853): warning #221-D: floating-point value does not fit in required floating-point type
+              float rowMax = -((float)(1e+300));
+                               ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\models\deepseekv4-kernels.cu(999): warning #221-D: floating-point value does not fit in required floating-point type
+              float rowMax = -((float)(1e+300));
+                               ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\models\deepseekv4-kernels.cu(1095): warning #221-D: floating-point value does not fit in required floating-point type
+      float mx = -((float)(1e+300));
+                   ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\models\deepseekv4-kernels.cu(1164): warning #221-D: floating-point value does not fit in required floating-point type
+          mxShared = -((float)(1e+300));
+                       ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\models\deepseekv4-kernels.cu(1282): warning #221-D: floating-point value does not fit in required floating-point type
+          mxShared = -((float)(1e+300));
+                       ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\models\deepseekv4-kernels.cu(1379): warning #221-D: floating-point value does not fit in required floating-point type
+      float mx = -((float)(1e+300));
+                   ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\models\deepseekv4-kernels.cu(1480): warning #221-D: floating-point value does not fit in required floating-point type
+          float mx = -((float)(1e+300));
+                       ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\models\deepseekv4-kernels.cu(1575): warning #221-D: floating-point value does not fit in required floating-point type
+          float mx = -((float)(1e+300));
+                       ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\models\deepseekv4-kernels.cu(1650): warning #221-D: floating-point value does not fit in required floating-point type
+      float mx = -((float)(1e+300));
+                   ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\models\deepseekv4-kernels.cu(1654): warning #221-D: floating-point value does not fit in required floating-point type
+          float v = visible ? lrow[k] : -((float)(1e+300));
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\models\deepseekv4-kernels.cu(1661): warning #221-D: floating-point value does not fit in required floating-point type
+              float v = visible ? crow[k] : -((float)(1e+300));
+                                              ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\models\deepseekv4-kernels.cu(616): warning #221-D: floating-point value does not fit in required floating-point type
+          float mx = -((float)(1e+300));
+                       ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\models\deepseekv4-kernels.cu(670): warning #221-D: floating-point value does not fit in required floating-point type
+          float mx = -((float)(1e+300));
+                       ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\models\deepseekv4-kernels.cu(853): warning #221-D: floating-point value does not fit in required floating-point type
+              float rowMax = -((float)(1e+300));
+                               ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\models\deepseekv4-kernels.cu(999): warning #221-D: floating-point value does not fit in required floating-point type
+              float rowMax = -((float)(1e+300));
+                               ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\models\deepseekv4-kernels.cu(1095): warning #221-D: floating-point value does not fit in required floating-point type
+      float mx = -((float)(1e+300));
+                   ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\models\deepseekv4-kernels.cu(1164): warning #221-D: floating-point value does not fit in required floating-point type
+          mxShared = -((float)(1e+300));
+                       ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\models\deepseekv4-kernels.cu(1282): warning #221-D: floating-point value does not fit in required floating-point type
+          mxShared = -((float)(1e+300));
+                       ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\models\deepseekv4-kernels.cu(1379): warning #221-D: floating-point value does not fit in required floating-point type
+      float mx = -((float)(1e+300));
+                   ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\models\deepseekv4-kernels.cu(1480): warning #221-D: floating-point value does not fit in required floating-point type
+          float mx = -((float)(1e+300));
+                       ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\models\deepseekv4-kernels.cu(1575): warning #221-D: floating-point value does not fit in required floating-point type
+          float mx = -((float)(1e+300));
+                       ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\models\deepseekv4-kernels.cu(1650): warning #221-D: floating-point value does not fit in required floating-point type
+      float mx = -((float)(1e+300));
+                   ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\models\deepseekv4-kernels.cu(1654): warning #221-D: floating-point value does not fit in required floating-point type
+          float v = visible ? lrow[k] : -((float)(1e+300));
+                                          ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\models\deepseekv4-kernels.cu(1661): warning #221-D: floating-point value does not fit in required floating-point type
+              float v = visible ? crow[k] : -((float)(1e+300));
+                                              ^
+
+deepseekv4-kernels.cu
+tmpxft_00004628_00000000-10_deepseekv4-kernels.cudafe1.cpp
+[13/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\attention\fastllm-attention.cu.obj
+FAILED: [code=2] CMakeFiles/fastllm_tools.dir/src/devices/cuda/attention/fastllm-attention.cu.obj 
+C:\Users\user\output\deepseek-v4部署\cuda-12.4-toolkit\bin\nvcc.exe -forward-unknown-to-host-compiler -DUSE_CUDA -Dfastllm_tools_EXPORTS -IC:\Users\user\output\deepseek-v4部署\fastllm-master\include -IC:\Users\user\output\deepseek-v4部署\fastllm-master\include\utils -IC:\Users\user\output\deepseek-v4部署\fastllm-master\include\models -IC:\Users\user\output\deepseek-v4部署\fastllm-master\include\blocks -IC:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices\cpu -IC:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices\disk -IC:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\json11 -IC:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\gguf -IC:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer -IC:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices\cuda --allow-unsupported-compiler -D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH -Xcompiler=/utf-8 -Xcompiler="-MD -O2 -Ob2" -DNDEBUG -std=c++20 "--generate-code=arch=compute_89,code=[compute_89,sm_89]" -MD -MT CMakeFiles\fastllm_tools.dir\src\devices\cuda\attention\fastllm-attention.cu.obj -MF CMakeFiles\fastllm_tools.dir\src\devices\cuda\attention\fastllm-attention.cu.obj.d -x cu -c C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu -o CMakeFiles\fastllm_tools.dir\src\devices\cuda\attention\fastllm-attention.cu.obj -Xcompiler=-FdCMakeFiles\fastllm_tools.dir\,-FS
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(648): warning #221-D: floating-point value does not fit in required floating-point type
+      float maxValue = -1e100;
+                       ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../pos_enc.cuh(1214): warning #177-D: variable "num_kv_heads_1" was declared but never referenced
+    if (interleave) { constexpr bool INTERLEAVE = true; { constexpr uint32_t vec_size = 32 / sizeof(DType); uint32_t bdx = (rope_dim + vec_size - 1) / vec_size; bdx = std::max(1u, bdx); uint32_t num_threads = std::max(128U, bdx); uint32_t bdy = std::max(1u, num_threads / bdx); uint32_t nblks_x = (nnz + bdy - 1) / bdy; uint32_t rope_chunks = 1; uint32_t no_rope_chunks = (no_rope_dim + rope_dim - 1) / rope_dim; constexpr uint32_t num_kv_heads = 1; uint32_t total_blocks_y = num_qo_heads * rope_chunks + num_kv_heads * rope_chunks + num_kv_heads * no_rope_chunks + num_qo_heads * no_rope_chunks; dim3 nblks(nblks_x, total_blocks_y); dim3 nthrs(bdx, bdy); cudaLaunchAttribute attribute[1]; attribute[0].id = cudaLaunchAttributeProgrammaticStreamSerialization; attribute[0].val.programmaticStreamSerializationAllowed = enable_pdl ? 1 : 0; cudaLaunchConfig_t config; config.gridDim = nblks; config.blockDim = nthrs; config.stream = stream; config.dynamicSmemBytes = 0; config.attrs = attribute; config.numAttrs = 1; auto kernel = RopeQuantizeAppendPagedKVCacheKernel<INTERLEAVE, vec_size, 1, DType, RoPEIdType, PagedKVIdType, QuantType, paged_kv_mla_t<QuantType, PagedKVIdType>>; DType* v_in_nullptr = nullptr; uint32_t num_kv_heads_1 = 1; size_t k_rope_in_stride_h_dup = k_rope_in_stride; size_t k_nope_in_stride_h_dup = k_nope_in_stride; RopeQuantizeAppendPagedKVCacheParams params; params.nnz = nnz; params.num_qo_heads = num_qo_heads; params.num_kv_heads = 1u; params.rope_dim = rope_dim; params.no_rope_dim = no_rope_dim; params.q_rope_in_stride_n = q_rope_in_stride_n; params.q_rope_in_stride_h = q_rope_in_stride_h; params.q_nope_in_stride_n = q_nope_in_stride_n; params.q_nope_in_stride_h = q_nope_in_stride_h; params.q_rope_out_stride_n = q_rope_out_stride_n; params.q_rope_out_stride_h = q_rope_out_stride_h; params.q_nope_out_stride_n = q_nope_out_stride_n; params.q_nope_out_stride_h = q_nope_out_stride_h; params.k_rope_in_stride = k_rope_in_stride; params.k_rope_in_stride_h = k_rope_in_stride_h_dup; params.k_nope_in_stride = k_nope_in_stride; params.k_nope_in_stride_h = k_nope_in_stride_h_dup; params.v_in_stride = 0; params.v_in_stride_h = 0; params.quant_scale_q = quant_scale_q; params.quant_scale_kv = quant_scale_kv; { cudaError_t e = (cudaLaunchKernelEx(&config, kernel, q_rope_in, k_rope_in, q_nope_in, k_nope_in, v_in_nullptr, q_rope_out, q_nope_out, paged_kv_mla, batch_indices, positions, cos_sin_cache, pos_ids, params)); if (e != cudaSuccess) { return e; } }; } } else { constexpr bool INTERLEAVE = false; { constexpr uint32_t vec_size = 32 / sizeof(DType); uint32_t bdx = (rope_dim + vec_size - 1) / vec_size; bdx = std::max(1u, bdx); uint32_t num_threads = std::max(128U, bdx); uint32_t bdy = std::max(1u, num_threads / bdx); uint32_t nblks_x = (nnz + bdy - 1) / bdy; uint32_t rope_chunks = 1; uint32_t no_rope_chunks = (no_rope_dim + rope_dim - 1) / rope_dim; constexpr uint32_t num_kv_heads = 1; uint32_t total_blocks_y = num_qo_heads * rope_chunks + num_kv_heads * rope_chunks + num_kv_heads * no_rope_chunks + num_qo_heads * no_rope_chunks; dim3 nblks(nblks_x, total_blocks_y); dim3 nthrs(bdx, bdy); cudaLaunchAttribute attribute[1]; attribute[0].id = cudaLaunchAttributeProgrammaticStreamSerialization; attribute[0].val.programmaticStreamSerializationAllowed = enable_pdl ? 1 : 0; cudaLaunchConfig_t config; config.gridDim = nblks; config.blockDim = nthrs; config.stream = stream; config.dynamicSmemBytes = 0; config.attrs = attribute; config.numAttrs = 1; auto kernel = RopeQuantizeAppendPagedKVCacheKernel<INTERLEAVE, vec_size, 1, DType, RoPEIdType, PagedKVIdType, QuantType, paged_kv_mla_t<QuantType, PagedKVIdType>>; DType* v_in_nullptr = nullptr; uint32_t num_kv_heads_1 = 1; size_t k_rope_in_stride_h_dup = k_rope_in_stride; size_t k_nope_in_stride_h_dup = k_nope_in_stride; RopeQuantizeAppendPagedKVCacheParams params; params.nnz = nnz; params.num_qo_heads = num_qo_heads; params.num_kv_heads = 1u; params.rope_dim = rope_dim; params.no_rope_dim = no_rope_dim; params.q_rope_in_stride_n = q_rope_in_stride_n; params.q_rope_in_stride_h = q_rope_in_stride_h; params.q_nope_in_stride_n = q_nope_in_stride_n; params.q_nope_in_stride_h = q_nope_in_stride_h; params.q_rope_out_stride_n = q_rope_out_stride_n; params.q_rope_out_stride_h = q_rope_out_stride_h; params.q_nope_out_stride_n = q_nope_out_stride_n; params.q_nope_out_stride_h = q_nope_out_stride_h; params.k_rope_in_stride = k_rope_in_stride; params.k_rope_in_stride_h = k_rope_in_stride_h_dup; params.k_nope_in_stride = k_nope_in_stride; params.k_nope_in_stride_h = k_nope_in_stride_h_dup; params.v_in_stride = 0; params.v_in_stride_h = 0; params.quant_scale_q = quant_scale_q; params.quant_scale_kv = quant_scale_kv; { cudaError_t e = (cudaLaunchKernelEx(&config, kernel, q_rope_in, k_rope_in, q_nope_in, k_nope_in, v_in_nullptr, q_rope_out, q_nope_out, paged_kv_mla, batch_indices, positions, cos_sin_cache, pos_ids, params)); if (e != cudaSuccess) { return e; } }; } };
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../pos_enc.cuh(1214): warning #177-D: variable "num_kv_heads_1" was declared but never referenced
+    if (interleave) { constexpr bool INTERLEAVE = true; { constexpr uint32_t vec_size = 32 / sizeof(DType); uint32_t bdx = (rope_dim + vec_size - 1) / vec_size; bdx = std::max(1u, bdx); uint32_t num_threads = std::max(128U, bdx); uint32_t bdy = std::max(1u, num_threads / bdx); uint32_t nblks_x = (nnz + bdy - 1) / bdy; uint32_t rope_chunks = 1; uint32_t no_rope_chunks = (no_rope_dim + rope_dim - 1) / rope_dim; constexpr uint32_t num_kv_heads = 1; uint32_t total_blocks_y = num_qo_heads * rope_chunks + num_kv_heads * rope_chunks + num_kv_heads * no_rope_chunks + num_qo_heads * no_rope_chunks; dim3 nblks(nblks_x, total_blocks_y); dim3 nthrs(bdx, bdy); cudaLaunchAttribute attribute[1]; attribute[0].id = cudaLaunchAttributeProgrammaticStreamSerialization; attribute[0].val.programmaticStreamSerializationAllowed = enable_pdl ? 1 : 0; cudaLaunchConfig_t config; config.gridDim = nblks; config.blockDim = nthrs; config.stream = stream; config.dynamicSmemBytes = 0; config.attrs = attribute; config.numAttrs = 1; auto kernel = RopeQuantizeAppendPagedKVCacheKernel<INTERLEAVE, vec_size, 1, DType, RoPEIdType, PagedKVIdType, QuantType, paged_kv_mla_t<QuantType, PagedKVIdType>>; DType* v_in_nullptr = nullptr; uint32_t num_kv_heads_1 = 1; size_t k_rope_in_stride_h_dup = k_rope_in_stride; size_t k_nope_in_stride_h_dup = k_nope_in_stride; RopeQuantizeAppendPagedKVCacheParams params; params.nnz = nnz; params.num_qo_heads = num_qo_heads; params.num_kv_heads = 1u; params.rope_dim = rope_dim; params.no_rope_dim = no_rope_dim; params.q_rope_in_stride_n = q_rope_in_stride_n; params.q_rope_in_stride_h = q_rope_in_stride_h; params.q_nope_in_stride_n = q_nope_in_stride_n; params.q_nope_in_stride_h = q_nope_in_stride_h; params.q_rope_out_stride_n = q_rope_out_stride_n; params.q_rope_out_stride_h = q_rope_out_stride_h; params.q_nope_out_stride_n = q_nope_out_stride_n; params.q_nope_out_stride_h = q_nope_out_stride_h; params.k_rope_in_stride = k_rope_in_stride; params.k_rope_in_stride_h = k_rope_in_stride_h_dup; params.k_nope_in_stride = k_nope_in_stride; params.k_nope_in_stride_h = k_nope_in_stride_h_dup; params.v_in_stride = 0; params.v_in_stride_h = 0; params.quant_scale_q = quant_scale_q; params.quant_scale_kv = quant_scale_kv; { cudaError_t e = (cudaLaunchKernelEx(&config, kernel, q_rope_in, k_rope_in, q_nope_in, k_nope_in, v_in_nullptr, q_rope_out, q_nope_out, paged_kv_mla, batch_indices, positions, cos_sin_cache, pos_ids, params)); if (e != cudaSuccess) { return e; } }; } } else { constexpr bool INTERLEAVE = false; { constexpr uint32_t vec_size = 32 / sizeof(DType); uint32_t bdx = (rope_dim + vec_size - 1) / vec_size; bdx = std::max(1u, bdx); uint32_t num_threads = std::max(128U, bdx); uint32_t bdy = std::max(1u, num_threads / bdx); uint32_t nblks_x = (nnz + bdy - 1) / bdy; uint32_t rope_chunks = 1; uint32_t no_rope_chunks = (no_rope_dim + rope_dim - 1) / rope_dim; constexpr uint32_t num_kv_heads = 1; uint32_t total_blocks_y = num_qo_heads * rope_chunks + num_kv_heads * rope_chunks + num_kv_heads * no_rope_chunks + num_qo_heads * no_rope_chunks; dim3 nblks(nblks_x, total_blocks_y); dim3 nthrs(bdx, bdy); cudaLaunchAttribute attribute[1]; attribute[0].id = cudaLaunchAttributeProgrammaticStreamSerialization; attribute[0].val.programmaticStreamSerializationAllowed = enable_pdl ? 1 : 0; cudaLaunchConfig_t config; config.gridDim = nblks; config.blockDim = nthrs; config.stream = stream; config.dynamicSmemBytes = 0; config.attrs = attribute; config.numAttrs = 1; auto kernel = RopeQuantizeAppendPagedKVCacheKernel<INTERLEAVE, vec_size, 1, DType, RoPEIdType, PagedKVIdType, QuantType, paged_kv_mla_t<QuantType, PagedKVIdType>>; DType* v_in_nullptr = nullptr; uint32_t num_kv_heads_1 = 1; size_t k_rope_in_stride_h_dup = k_rope_in_stride; size_t k_nope_in_stride_h_dup = k_nope_in_stride; RopeQuantizeAppendPagedKVCacheParams params; params.nnz = nnz; params.num_qo_heads = num_qo_heads; params.num_kv_heads = 1u; params.rope_dim = rope_dim; params.no_rope_dim = no_rope_dim; params.q_rope_in_stride_n = q_rope_in_stride_n; params.q_rope_in_stride_h = q_rope_in_stride_h; params.q_nope_in_stride_n = q_nope_in_stride_n; params.q_nope_in_stride_h = q_nope_in_stride_h; params.q_rope_out_stride_n = q_rope_out_stride_n; params.q_rope_out_stride_h = q_rope_out_stride_h; params.q_nope_out_stride_n = q_nope_out_stride_n; params.q_nope_out_stride_h = q_nope_out_stride_h; params.k_rope_in_stride = k_rope_in_stride; params.k_rope_in_stride_h = k_rope_in_stride_h_dup; params.k_nope_in_stride = k_nope_in_stride; params.k_nope_in_stride_h = k_nope_in_stride_h_dup; params.v_in_stride = 0; params.v_in_stride_h = 0; params.quant_scale_q = quant_scale_q; params.quant_scale_kv = quant_scale_kv; { cudaError_t e = (cudaLaunchKernelEx(&config, kernel, q_rope_in, k_rope_in, q_nope_in, k_nope_in, v_in_nullptr, q_rope_out, q_nope_out, paged_kv_mla, batch_indices, positions, cos_sin_cache, pos_ids, params)); if (e != cudaSuccess) { return e; } }; } };
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/third_party/flashinfer\attention/mla.cuh(138): warning #177-D: variable "NUM_MMA_D_CKV" was declared but never referenced
+    constexpr uint32_t NUM_MMA_D_CKV = KTraits::NUM_MMA_D_CKV;
+                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/third_party/flashinfer\attention/mla.cuh(139): warning #177-D: variable "NUM_MMA_D_KPE" was declared but never referenced
+    constexpr uint32_t NUM_MMA_D_KPE = KTraits::NUM_MMA_D_KPE;
+                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/third_party/flashinfer\attention/mla.cuh(189): warning #177-D: variable "NUM_MMA_D_CKV" was declared but never referenced
+    constexpr uint32_t NUM_MMA_D_CKV = KTraits::NUM_MMA_D_CKV;
+                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/third_party/flashinfer\attention/mla.cuh(190): warning #177-D: variable "NUM_MMA_D_KPE" was declared but never referenced
+    constexpr uint32_t NUM_MMA_D_KPE = KTraits::NUM_MMA_D_KPE;
+                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/third_party/flashinfer\attention/mla.cuh(465): warning #177-D: variable "UPCAST_STRIDE_Q_NOPE" was declared but never referenced
+    constexpr uint32_t UPCAST_STRIDE_Q_NOPE = KTraits::UPCAST_STRIDE_Q_NOPE;
+                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/third_party/flashinfer\attention/mla.cuh(466): warning #177-D: variable "UPCAST_STRIDE_Q_PE" was declared but never referenced
+    constexpr uint32_t UPCAST_STRIDE_Q_PE = KTraits::UPCAST_STRIDE_Q_PE;
+                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/third_party/flashinfer\attention/mla.cuh(467): warning #177-D: variable "UPCAST_STRIDE_CKV" was declared but never referenced
+    constexpr uint32_t UPCAST_STRIDE_CKV = KTraits::UPCAST_STRIDE_CKV;
+                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/third_party/flashinfer\attention/mla.cuh(468): warning #177-D: variable "UPCAST_STRIDE_KPE" was declared but never referenced
+    constexpr uint32_t UPCAST_STRIDE_KPE = KTraits::UPCAST_STRIDE_KPE;
+                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/third_party/flashinfer\attention/mla.cuh(469): warning #177-D: variable "NUM_MMA_KV" was declared but never referenced
+    constexpr uint32_t NUM_MMA_KV = KTraits::NUM_MMA_KV;
+                       ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/third_party/flashinfer\attention/mla.cuh(474): warning #177-D: variable "lane_idx" was declared but never referenced
+    const uint32_t lane_idx = threadIdx.x, warpgroup_idx = threadIdx.z, warp_idx_in_wg = threadIdx.y;
+                   ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/third_party/flashinfer\attention/mla.cuh(474): warning #177-D: variable "warpgroup_idx" was declared but never referenced
+    const uint32_t lane_idx = threadIdx.x, warpgroup_idx = threadIdx.z, warp_idx_in_wg = threadIdx.y;
+                                           ^
+
+C:/Users/user/output/deepseek-v4部署/fastllm-master/third_party/flashinfer\attention/mla.cuh(474): warning #177-D: variable "warp_idx_in_wg" was declared but never referenced
+    const uint32_t lane_idx = threadIdx.x, warpgroup_idx = threadIdx.z, warp_idx_in_wg = threadIdx.y;
+                                                                        ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(648): warning #221-D: floating-point value does not fit in required floating-point type
+      float maxValue = -1e100;
+                       ^
+
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(2075): warning #177-D: function "GetSpan" was declared but never referenced
+  static double GetSpan(std::chrono::system_clock::time_point time1, std::chrono::system_clock::time_point time2) {
+                ^
+
+fastllm-attention.cu
+tmpxft_00001078_00000000-10_fastllm-attention.cudafe1.cpp
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../pos_enc.cuh(1523): error C2146: 语法错误: 缺少“)”(在标识符“indptr”的前面)
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../pos_enc.cuh(1523): error C3646: “indptr”: 未知重写说明符
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../pos_enc.cuh(1523): error C2988: 不可识别的模板声明/定义
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../pos_enc.cuh(1523): error C2059: 语法错误:“,”
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../pos_enc.cuh(1529): error C2059: 语法错误:“)”
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../pos_enc.cuh(1529): error C2143: 语法错误: 缺少“;”(在“{”的前面)
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../pos_enc.cuh(1529): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../pos_enc.cuh(1583): error C2065: “M_PI”: 未声明的标识符
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../pos_enc.cuh(1583): error C3861: “M_PI”: 找不到标识符
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../pos_enc.cuh(1583): error C2065: “M_PI”: 未声明的标识符
+C:\Users\user\output\deepseek-v4部署\fastllm-master\third_party\flashinfer\attention\../pos_enc.cuh(1583): error C3861: “M_PI”: 找不到标识符
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(1177): warning C4297: “FastllmCudaHalfAttention”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(1177): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(1219): warning C4297: “FastllmCudaHalfAttention”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(1219): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(1245): warning C4297: “FastllmCudaHalfAttention”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(1245): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(1275): warning C4297: “FastllmCudaHalfAttention”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(1275): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(1315): warning C4297: “FastllmCudaAttention”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(1315): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(1348): warning C4297: “FastllmCudaAttention”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(1348): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(1375): warning C4297: “FastllmCudaAttention”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(1375): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(1405): warning C4297: “FastllmCudaAttention”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(1405): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(1615): warning C4297: “FastllmCudaAttentionBatch”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(1615): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(1701): warning C4297: “FastllmCudaMLA”: 假定函数不引发异常，但确实发生了
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu(1701): note: 在函数上指定了 __declspec(nothrow)、throw()、noexcept(true)或 noexcept
+ninja: build stopped: subcommand failed.

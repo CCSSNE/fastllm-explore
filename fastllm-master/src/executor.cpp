@@ -1,0 +1,321 @@
+//
+// Created by huangyuyang on 6/13/23.
+//
+
+#include "utils.h"
+
+#include "executor.h"
+
+#include "devices/cpu/cpudevice.h"
+#include "devices/disk/diskdevice.h"
+
+#ifdef __ANDROID__
+#include <android/log.h>
+#endif
+
+#ifdef USE_CUDA
+#include "devices/cuda/cudadevice.h"
+#include "devices/cuda/fastllm-cuda.cuh"
+#ifndef _WIN32
+#include "devices/multicuda/multicudadevice.h"
+#include "devices/multicuda/fastllm-multicuda.cuh"
+#endif
+#endif
+
+#ifdef USE_TFACC
+#include "devices/tfacc/tfaccdevice.h"
+#endif
+
+#ifdef USE_TOPS
+#include "devices/tops/topsdevice.h"
+#endif
+
+#ifdef USE_NUMA
+#include "devices/numa/numadevice.h"
+#endif
+
+#ifdef USE_NUMAS
+#include "devices/numas/numasdevice.h"
+#endif
+
+namespace fastllm {
+    Executor::Executor() {
+        this->devices.clear();
+#ifdef USE_CUDA
+        if (FastllmCudaGetDeviceCount() > 0) {
+            this->devices.push_back((BaseDevice*) new CudaDevice());
+#ifndef _WIN32
+            this->devices.push_back((BaseDevice*) new MultiCudaDevice((CudaDevice*)this->devices.back()));
+#endif
+        }
+#endif
+#ifdef USE_TOPS
+        this->devices.push_back((BaseDevice*) new TopsDevice());
+#endif
+#ifdef USE_TFACC
+        this->devices.push_back((BaseDevice*) new TfaccDevice());
+#endif
+#ifdef USE_NUMA
+        try {
+            if (GetFastllmEnv().activateNuma) {
+                printf("ACTIVATE NUMA = ON\n");
+                this->devices.push_back((BaseDevice*) new NumaDevice());
+            }
+        } catch (...) {
+        }
+#endif
+
+#ifdef USE_NUMAS
+        this->devices.push_back((BaseDevice*) new NumasDevice());
+#endif
+        this->devices.push_back((BaseDevice*) new DiskDevice());
+        this->devices.push_back((BaseDevice*) new CpuDevice());
+    }
+
+    Executor::~Executor() {
+        for (int i = 0; i < devices.size(); i++) {
+            delete devices[i];
+        }
+    }
+
+    void Executor::ClearDevices() {
+        this->devices.clear();
+    }
+
+    void Executor::AddDevice(fastllm::BaseDevice *device) {
+        this->devices.push_back(device);
+    }
+
+    std::string Executor::GetFirstDeviceType() {
+        return this->devices[0]->deviceType;
+    }
+
+    void Executor::SetFirstDevice(const std::string &device) {
+        auto temp = this->devices;
+        this->devices.clear();
+        for (int i = 0; i < temp.size(); i++) {
+            if (StartWith(device, temp[i]->deviceType)) {
+                this->devices.push_back(temp[i]);
+                this->devices.back()->deviceIds = ParseDeviceIds(device, temp[i]->deviceType, this->devices.back()->deviceIdsRatio);
+            }
+        }
+        for (int i = 0; i < temp.size(); i++) {
+            if (!StartWith(device, temp[i]->deviceType)) {
+                this->devices.push_back(temp[i]);
+            }
+        }
+
+        this->firstDevice = device;
+    }
+
+    bool Executor::HasDevice(const std::string &deviceType) {
+        for (int i = 0; i < devices.size(); i++) {
+            if (devices[i]->deviceType == deviceType) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    std::vector <int> Executor::GetDeviceIds(const std::string &device) {
+        for (int i = 0; i < devices.size(); i++) {
+            if (StartWith(devices[i]->deviceType, device)) {
+                return devices[i]->deviceIds;
+            }
+        }
+        return {0};
+    }
+
+    bool Executor::CanRunOnFirstDevice(const std::string &opType, const fastllm::DataDict &datas, const fastllm::FloatDict &floatParams,
+                       const fastllm::IntDict &intParams) {     
+        return this->devices[0]->CanRun(opType, datas, floatParams, intParams);
+    }
+
+    void Executor::Run(const std::string &opType, const fastllm::DataDict &datas, const fastllm::FloatDict &floatParams,
+                       const fastllm::IntDict &intParams) {
+        auto st = std::chrono::system_clock::now();
+        bool lockInCPU = false;
+        if (GetKVCacheInCPU() || GetHistoryCacheInCPU()) {
+            // 暂时只有kvcache可能lock在CPU上
+            for (auto &it: datas) {
+                if (intParams.find(it.first + "___batch") != intParams.end()) {
+                    int batch = intParams.find(it.first + "___batch")->second;
+                    for (int i = 0; i < batch; i++) {
+                        lockInCPU |= (((Data**)it.second)[i] && ((Data**)it.second)[i]->lockInCPU);
+                    }
+                } else {
+                    lockInCPU |= (it.second && it.second->lockInCPU);
+                }
+            }
+        }
+
+        bool run = false;
+        for (auto device: devices) {
+            if (lockInCPU && device->deviceType != "cpu") {
+                continue;
+            }
+            if (device->CanRun(opType, datas, floatParams, intParams)) {
+#ifdef USE_CUDA
+                if (device->deviceType == "cuda" && device->deviceIds.size() > 0) {
+                    FastllmCudaSetDevice(device->deviceIds[0]);
+                }
+#ifndef _WIN32
+                if (device->deviceType == "multicuda" && device->deviceIds.size() > 0) {
+                    FastllmMultiCudaSetDevice(device->deviceIds);
+                    if (device->deviceIdsRatio.size() > 0) {
+                        FastllmMultiCudaSetDeviceRatio(device->deviceIdsRatio);
+                    }
+                }
+#endif
+#endif
+                bool intParamsSize = intParams.size();
+                for (auto &it: datas) {
+                    if (intParamsSize > 0 && intParams.find(it.first + "___batch") != intParams.end()) {
+                        int batch = intParams.find(it.first + "___batch")->second;
+                        if ((it.first == "weights" || it.first == "biass") && ((Data**)it.second)[2]) {
+                            if ((device->deviceType == "cpu" || device->deviceType == "numa" || device->deviceType == "tfacc" || device->deviceType == "disk") && 
+                                ((Data**)it.second)[2]->dataDevice == DataDevice::CPU) {
+                                continue;
+                            }
+                            if ((device->deviceType == "cuda" || device->deviceType == "multicuda") && ((Data**)it.second)[2]->dataDevice == DataDevice::CUDA) {
+                                continue;
+                            }
+                        }
+                        if ((it.first == "biass") && !((Data**)it.second)[2]) {
+                            continue;
+                        }
+                        for (int i = 0; i < batch; i++) {
+                            if (((Data**)it.second)[i]) {
+                                ((Data**)it.second)[i]->ToDevice((void *) device);
+                            }
+                        }
+                    } else {
+                        if (it.second) {
+                            bool copyData = true;
+                            if (it.first == "output") {
+                                copyData = false;
+                            } else if (opType == "SelectExpert" && (it.first == "index" || it.first == "score")) {
+                                copyData = false;
+                            }
+                            it.second->ToDevice((void *) device, copyData);
+                        }
+                    }
+                }
+                device->Reshape(opType, datas, floatParams, intParams);
+                device->Run(opType, datas, floatParams, intParams);
+                run = true;
+                break;
+            }
+        }
+        if (!run) {
+            ErrorInFastLLM("Can't run " + opType + " in any device.");
+        }
+        float spend = GetSpan(st, std::chrono::system_clock::now());
+        profiler[opType] += spend;
+    }
+
+    void Executor::RunOnDevice(const std::string &deviceType,
+                               const std::string &opType,
+                               const fastllm::DataDict &datas,
+                               const fastllm::FloatDict &floatParams,
+                               const fastllm::IntDict &intParams) {
+        auto st = std::chrono::system_clock::now();
+        bool run = false;
+        for (auto device: devices) {
+            if (device->deviceType != deviceType) {
+                continue;
+            }
+            if (!device->CanRun(opType, datas, floatParams, intParams)) {
+                continue;
+            }
+#ifdef USE_CUDA
+            if (device->deviceType == "cuda" && device->deviceIds.size() > 0) {
+                FastllmCudaSetDevice(device->deviceIds[0]);
+            }
+#ifndef _WIN32
+            if (device->deviceType == "multicuda" && device->deviceIds.size() > 0) {
+                FastllmMultiCudaSetDevice(device->deviceIds);
+                if (device->deviceIdsRatio.size() > 0) {
+                    FastllmMultiCudaSetDeviceRatio(device->deviceIdsRatio);
+                }
+            }
+#endif
+#endif
+            bool intParamsSize = intParams.size();
+            for (auto &it: datas) {
+                if (intParamsSize > 0 && intParams.find(it.first + "___batch") != intParams.end()) {
+                    int batch = intParams.find(it.first + "___batch")->second;
+                    if ((it.first == "weights" || it.first == "biass") && ((Data**)it.second)[2]) {
+                        if ((device->deviceType == "cpu" || device->deviceType == "numa" || device->deviceType == "tfacc" || device->deviceType == "disk") &&
+                            ((Data**)it.second)[2]->dataDevice == DataDevice::CPU) {
+                            continue;
+                        }
+                        if ((device->deviceType == "cuda" || device->deviceType == "multicuda") && ((Data**)it.second)[2]->dataDevice == DataDevice::CUDA) {
+                            continue;
+                        }
+                    }
+                    if ((it.first == "biass") && !((Data**)it.second)[2]) {
+                        continue;
+                    }
+                    for (int i = 0; i < batch; i++) {
+                        if (((Data**)it.second)[i]) {
+                            ((Data**)it.second)[i]->ToDevice((void *) device);
+                        }
+                    }
+                } else {
+                    if (it.second) {
+                        bool copyData = true;
+                        if (it.first == "output") {
+                            copyData = false;
+                        } else if (opType == "SelectExpert" && (it.first == "index" || it.first == "score")) {
+                            copyData = false;
+                        }
+                        it.second->ToDevice((void *) device, copyData);
+                    }
+                }
+            }
+            device->Reshape(opType, datas, floatParams, intParams);
+            device->Run(opType, datas, floatParams, intParams);
+            run = true;
+            break;
+        }
+        if (!run) {
+            ErrorInFastLLM("Can't run " + opType + " on device " + deviceType + ".");
+        }
+        float spend = GetSpan(st, std::chrono::system_clock::now());
+        profiler[opType] += spend;
+    }
+
+    void Executor::ClearProfiler() {
+        profiler.clear();
+    }
+
+    void Executor::AddProfiler(const std::string &opType, float spend) {
+        profiler[opType] += spend;
+    }
+
+    float Executor::GetProfilerTotal() const {
+        float sum = 0.0f;
+        for (auto &it : profiler) {
+            sum += it.second;
+        }
+        return sum;
+    }
+
+    void Executor::PrintProfiler() {
+        float sum = 0.0;
+        for (auto &it : profiler) {
+            printf("%s spend %f\n", it.first.c_str(), it.second);
+            sum += it.second;
+        }
+        printf("total spend %f\n", sum);
+#ifdef __ANDROID__
+        __android_log_print(ANDROID_LOG_INFO, "FastllmProfiler", "===== Profiler Results =====");
+        for (auto &it : profiler) {
+            __android_log_print(ANDROID_LOG_INFO, "FastllmProfiler",
+                "%s spend %.4f s (%.1f%%)", it.first.c_str(), it.second, sum > 0 ? it.second * 100.0f / sum : 0);
+        }
+        __android_log_print(ANDROID_LOG_INFO, "FastllmProfiler", "total spend %.4f s", sum);
+#endif
+    }
+}

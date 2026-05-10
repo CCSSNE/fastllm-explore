@@ -1,0 +1,43 @@
+项目网址：
+https://github.com/ztxz16/fastllm
+（观众老爷们麻烦给个star!）
+硬件配置需求：
+8G以上显存，8G以上内存
+256G以上的固态硬盘，速度越快越好（Up的硬盘读速大概在7G/s）
+下载模型：
+模型网址：https://modelscope.cn/models/unsloth/MiniMax-M2.7-GGUF/files
+pip install modelscope
+modelscope download unsloth/MiniMax-M2.7-GGUF --local_dir MiniMax-M2.7-GGUF --include "UD-Q4_K_M"
+modelscope download MiniMax/MiniMax-M2.7 --local_dir MiniMax-M2.7 --exclude "*.safetensors"
+Docker启动：（可以跳过，不用Docker）
+sudo docker run --gpus all -it --rm 
+--memory=8g  --memory-swap=8g 
+--shm-size=1g 
+-p 9820:9820 
+-v /home/use:/home/use 
+--name ftllm 
+python:3.10 bash
+安装命令：
+pip install ftllm -U -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+启动命令：
+Minimax模型：
+ftllm server /home/use/MiniMax-M2.7-GGUF/UD-Q4_K_M/MiniMax-M2.7-UD-Q4_K_M-00001-of-00004.gguf 
+--ori /home/use/MiniMax-M2.7 
+--model_name ds --port 9820 
+--device cuda --moe_device disk 
+--chunked_prefill_size 128 
+--gpu_mem_ratio 0.08 
+--kv_cache_dtype fp8 
+--moe_experts 4 
+--think true
+Qwen3-30B-A3B
+ftllm server /home/use/Qwen3-30B-A3B-GGUF/Qwen3-30B-A3B-Q4_K_M.gguf 
+--ori /home/use/Qwen3-30B-A3B 
+--device cuda --moe_device disk 
+--model_name ds --port 9820 
+--gpu_mem_ratio 0.04 
+--chunked_prefill_size 128 
+--kv_cache_dtype fp8
+查看Docker状态：
+sudo docker stats ftllm
+聊天工具：Cherry studio

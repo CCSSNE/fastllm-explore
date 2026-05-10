@@ -1,0 +1,91 @@
+**********************************************************************
+** Visual Studio 2022 Developer Command Prompt v17.14.31
+** Copyright (c) 2025 Microsoft Corporation
+**********************************************************************
+CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+
+
+-- USE_NUMAS: OFF
+-- USE_CUDA: ON
+-- USE_ROCM: OFF
+-- CUDA_ARCH: 89
+-- USE_TFACC: OFF
+-- For legacy CUDA GPUs: OFF
+-- CUDA_MEM_DEBUG: OFF
+-- PYTHON_API: OFF
+-- BUILD_CLI: OFF
+-- USE_SENTENCEPIECE: OFF
+-- USE_IVCOREX: OFF
+-- MAKE_WHL_X86: 
+-- CMAKE_CXX_FLAGS: /DWIN32 /D_WINDOWS /W3 /GR /EHsc -DNOMINMAX /std:c++17 /arch:AVX2 /source-charset:utf-8
+-- Configuring done (0.0s)
+-- Generating done (0.1s)
+-- Build files have been written to: C:/Users/user/output/deepseek-v4閮ㄧ讲/fastllm-master/build-cuda-ninja
+[1/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\fastllm-cuda.cu.obj
+FAILED: [code=2] CMakeFiles/fastllm_tools.dir/src/devices/cuda/fastllm-cuda.cu.obj 
+C:\Users\user\output\deepseek-v4閮ㄧ讲\cuda-12.4-toolkit\bin\nvcc.exe -forward-unknown-to-host-compiler -DUSE_CUDA -Dfastllm_tools_EXPORTS -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\utils -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\models -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\blocks -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\cpu -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\disk -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\json11 -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\gguf -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\flashinfer -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\cuda --allow-unsupported-compiler -D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH -Xcompiler="-MD -O2 -Ob2" -DNDEBUG -std=c++20 "--generate-code=arch=compute_89,code=[compute_89,sm_89]" -MD -MT CMakeFiles\fastllm_tools.dir\src\devices\cuda\fastllm-cuda.cu.obj -MF CMakeFiles\fastllm_tools.dir\src\devices\cuda\fastllm-cuda.cu.obj.d -x cu -c C:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\src\devices\cuda\fastllm-cuda.cu -o CMakeFiles\fastllm_tools.dir\src\devices\cuda\fastllm-cuda.cu.obj -Xcompiler=-FdCMakeFiles\fastllm_tools.dir\,-FS
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\fastllm-cuda.cu(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(761): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(7): fatal error C1083: 无法打开包括文件: “cuda_profiler_api.h”: No such file or directory
+fastllm-cuda.cu
+[2/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-fp32.cu.obj
+FAILED: [code=2] CMakeFiles/fastllm_tools.dir/src/devices/cuda/linear/fastllm-linear-fp32.cu.obj 
+C:\Users\user\output\deepseek-v4閮ㄧ讲\cuda-12.4-toolkit\bin\nvcc.exe -forward-unknown-to-host-compiler -DUSE_CUDA -Dfastllm_tools_EXPORTS -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\utils -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\models -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\blocks -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\cpu -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\disk -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\json11 -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\gguf -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\flashinfer -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\cuda --allow-unsupported-compiler -D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH -Xcompiler="-MD -O2 -Ob2" -DNDEBUG -std=c++20 "--generate-code=arch=compute_89,code=[compute_89,sm_89]" -MD -MT CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-fp32.cu.obj -MF CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-fp32.cu.obj.d -x cu -c C:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp32.cu -o CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-fp32.cu.obj -Xcompiler=-FdCMakeFiles\fastllm_tools.dir\,-FS
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(761): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(7): fatal error C1083: 无法打开包括文件: “cuda_profiler_api.h”: No such file or directory
+fastllm-linear-fp32.cu
+[3/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-fp16.cu.obj
+FAILED: [code=2] CMakeFiles/fastllm_tools.dir/src/devices/cuda/linear/fastllm-linear-fp16.cu.obj 
+C:\Users\user\output\deepseek-v4閮ㄧ讲\cuda-12.4-toolkit\bin\nvcc.exe -forward-unknown-to-host-compiler -DUSE_CUDA -Dfastllm_tools_EXPORTS -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\utils -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\models -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\blocks -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\cpu -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\disk -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\json11 -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\gguf -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\flashinfer -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\cuda --allow-unsupported-compiler -D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH -Xcompiler="-MD -O2 -Ob2" -DNDEBUG -std=c++20 "--generate-code=arch=compute_89,code=[compute_89,sm_89]" -MD -MT CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-fp16.cu.obj -MF CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-fp16.cu.obj.d -x cu -c C:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\src\devices\cuda\linear\fastllm-linear-fp16.cu -o CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-fp16.cu.obj -Xcompiler=-FdCMakeFiles\fastllm_tools.dir\,-FS
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(761): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(7): fatal error C1083: 无法打开包括文件: “cuda_profiler_api.h”: No such file or directory
+fastllm-linear-fp16.cu
+[4/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\attention\fastllm-attention.cu.obj
+FAILED: [code=2] CMakeFiles/fastllm_tools.dir/src/devices/cuda/attention/fastllm-attention.cu.obj 
+C:\Users\user\output\deepseek-v4閮ㄧ讲\cuda-12.4-toolkit\bin\nvcc.exe -forward-unknown-to-host-compiler -DUSE_CUDA -Dfastllm_tools_EXPORTS -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\utils -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\models -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\blocks -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\cpu -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\disk -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\json11 -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\gguf -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\flashinfer -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\cuda --allow-unsupported-compiler -D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH -Xcompiler="-MD -O2 -Ob2" -DNDEBUG -std=c++20 "--generate-code=arch=compute_89,code=[compute_89,sm_89]" -MD -MT CMakeFiles\fastllm_tools.dir\src\devices\cuda\attention\fastllm-attention.cu.obj -MF CMakeFiles\fastllm_tools.dir\src\devices\cuda\attention\fastllm-attention.cu.obj.d -x cu -c C:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\src\devices\cuda\attention\fastllm-attention.cu -o CMakeFiles\fastllm_tools.dir\src\devices\cuda\attention\fastllm-attention.cu.obj -Xcompiler=-FdCMakeFiles\fastllm_tools.dir\,-FS
+C:\Users\user\output\deepseek-v4部署\cuda-12.4-toolkit\bin/../include\cuda.h(22423): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\cuda-12.4-toolkit\bin/../include\cuda/pipeline(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\cuda-12.4-toolkit\include\cuda\barrier(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(761): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(7): fatal error C1083: 无法打开包括文件: “cuda_profiler_api.h”: No such file or directory
+fastllm-attention.cu
+[5/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\fastllm-ggml-cuda.cu.obj
+FAILED: [code=2] CMakeFiles/fastllm_tools.dir/src/devices/cuda/fastllm-ggml-cuda.cu.obj 
+C:\Users\user\output\deepseek-v4閮ㄧ讲\cuda-12.4-toolkit\bin\nvcc.exe -forward-unknown-to-host-compiler -DUSE_CUDA -Dfastllm_tools_EXPORTS -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\utils -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\models -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\blocks -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\cpu -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\disk -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\json11 -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\gguf -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\flashinfer -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\cuda --allow-unsupported-compiler -D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH -Xcompiler="-MD -O2 -Ob2" -DNDEBUG -std=c++20 "--generate-code=arch=compute_89,code=[compute_89,sm_89]" -MD -MT CMakeFiles\fastllm_tools.dir\src\devices\cuda\fastllm-ggml-cuda.cu.obj -MF CMakeFiles\fastllm_tools.dir\src\devices\cuda\fastllm-ggml-cuda.cu.obj.d -x cu -c C:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\src\devices\cuda\fastllm-ggml-cuda.cu -o CMakeFiles\fastllm_tools.dir\src\devices\cuda\fastllm-ggml-cuda.cu.obj -Xcompiler=-FdCMakeFiles\fastllm_tools.dir\,-FS
+C:\Users\user\output\deepseek-v4部署\cuda-12.4-toolkit\bin/../include\cuda.h(22423): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\cuda-12.4-toolkit\bin/../include\cub/warp/specializations/warp_exchange_shfl.cuh(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(761): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(7): fatal error C1083: 无法打开包括文件: “cuda_profiler_api.h”: No such file or directory
+fastllm-ggml-cuda.cu
+[6/14] Building CUDA object CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-bf16.cu.obj
+FAILED: [code=2] CMakeFiles/fastllm_tools.dir/src/devices/cuda/linear/fastllm-linear-bf16.cu.obj 
+C:\Users\user\output\deepseek-v4閮ㄧ讲\cuda-12.4-toolkit\bin\nvcc.exe -forward-unknown-to-host-compiler -DUSE_CUDA -Dfastllm_tools_EXPORTS -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\utils -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\models -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\blocks -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\cpu -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\disk -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\json11 -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\gguf -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\third_party\flashinfer -IC:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\include\devices\cuda --allow-unsupported-compiler -D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH -Xcompiler="-MD -O2 -Ob2" -DNDEBUG -std=c++20 "--generate-code=arch=compute_89,code=[compute_89,sm_89]" -MD -MT CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-bf16.cu.obj -MF CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-bf16.cu.obj.d -x cu -c C:\Users\user\output\deepseek-v4閮ㄧ讲\fastllm-master\src\devices\cuda\linear\fastllm-linear-bf16.cu -o CMakeFiles\fastllm_tools.dir\src\devices\cuda\linear\fastllm-linear-bf16.cu.obj -Xcompiler=-FdCMakeFiles\fastllm_tools.dir\,-FS
+C:\Users\user\output\deepseek-v4部署\fastllm-master\src\devices\cuda\linear\fastllm-linear-bf16.cu(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\user\output\deepseek-v4部署\fastllm-master\include\devices/cpu/alivethreadpool.h(1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include\fastllm.h(761): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:/Users/user/output/deepseek-v4部署/fastllm-master/include/devices/cuda\fastllm-cuda.cuh(7): fatal error C1083: 无法打开包括文件: “cuda_profiler_api.h”: No such file or directory
+fastllm-linear-bf16.cu
+ninja: build stopped: subcommand failed.
