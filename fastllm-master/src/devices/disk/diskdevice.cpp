@@ -319,6 +319,179 @@ namespace fastllm {
         return limit;
     }
 
+    static bool DiskMoeStatsEnabled() {
+        static bool enabled = std::getenv("FASTLLM_DISK_MOE_STATS") != nullptr;
+        return enabled;
+    }
+
+    static uint64_t DiskMoeStatsEvery() {
+        static uint64_t every = []() {
+            const char *env = std::getenv("FASTLLM_DISK_MOE_STATS_EVERY");
+            if (env == nullptr) {
+                return (uint64_t)128;
+            }
+            long long value = atoll(env);
+            return value <= 0 ? (uint64_t)128 : (uint64_t)value;
+        }();
+        return every;
+    }
+
+    static bool DiskMoeEndsWith(const std::string &value, const std::string &suffix) {
+        return value.size() >= suffix.size() &&
+               value.compare(value.size() - suffix.size(), suffix.size(), suffix) == 0;
+    }
+
+    static std::string DiskMoeExpertStatsName(const std::string &weightName) {
+        std::string name = weightName;
+        const std::vector<std::string> suffixes = {
+            ".gateup.weight", ".w1.weight", ".w2.weight", ".w3.weight",
+            ".gate_proj.weight", ".up_proj.weight", ".down_proj.weight"
+        };
+        for (auto &suffix : suffixes) {
+            if (DiskMoeEndsWith(name, suffix)) {
+                name.resize(name.size() - suffix.size());
+                break;
+            }
+        }
+        return name;
+    }
+
+    class DiskMoeStats {
+    public:
+        void RecordCall(int topk, int tokens, int routedUniqueExperts, bool hasSharedExpert,
+                        int loadRequests, const std::vector<std::string> &experts) {
+            if (!DiskMoeStatsEnabled()) {
+                return;
+            }
+            std::lock_guard<std::mutex> guard(locker);
+            calls++;
+            totalTokens += std::max(0, tokens);
+            totalTopk += std::max(0, topk);
+            totalRoutedUniqueExperts += std::max(0, routedUniqueExperts);
+            sharedExpertCalls += hasSharedExpert ? 1 : 0;
+            totalLoadRequests += std::max(0, loadRequests);
+            for (auto &expert : experts) {
+                expertHits[expert]++;
+            }
+            MaybeReportLocked();
+        }
+
+        void RecordCacheHit(uint64_t bytes) {
+            if (!DiskMoeStatsEnabled()) {
+                return;
+            }
+            std::lock_guard<std::mutex> guard(locker);
+            cacheHits++;
+            cacheHitBytes += bytes;
+        }
+
+        void RecordCacheMiss(uint64_t bytes, bool inserted) {
+            if (!DiskMoeStatsEnabled()) {
+                return;
+            }
+            std::lock_guard<std::mutex> guard(locker);
+            cacheMisses++;
+            cacheMissBytes += bytes;
+            if (inserted) {
+                cacheInsertions++;
+                currentCacheBytes += bytes;
+                peakCacheBytes = std::max(peakCacheBytes, currentCacheBytes);
+            }
+        }
+
+        void RecordCacheBypass(uint64_t bytes) {
+            if (!DiskMoeStatsEnabled()) {
+                return;
+            }
+            std::lock_guard<std::mutex> guard(locker);
+            cacheBypasses++;
+            cacheBypassBytes += bytes;
+        }
+
+        void RecordCacheEvict(uint64_t bytes) {
+            if (!DiskMoeStatsEnabled()) {
+                return;
+            }
+            std::lock_guard<std::mutex> guard(locker);
+            cacheEvictions++;
+            currentCacheBytes = currentCacheBytes > bytes ? currentCacheBytes - bytes : 0;
+        }
+
+    private:
+        void MaybeReportLocked() {
+            uint64_t every = DiskMoeStatsEvery();
+            if (every == 0 || calls == 0 || calls % every != 0) {
+                return;
+            }
+            ReportLocked();
+        }
+
+        void ReportLocked() {
+            uint64_t cacheLookups = cacheHits + cacheMisses;
+            double hitRate = cacheLookups == 0 ? 0.0 : (double)cacheHits * 100.0 / (double)cacheLookups;
+            double avgTopk = calls == 0 ? 0.0 : (double)totalTopk / (double)calls;
+            double avgRoutedUnique = calls == 0 ? 0.0 : (double)totalRoutedUniqueExperts / (double)calls;
+            double avgLoadRequests = calls == 0 ? 0.0 : (double)totalLoadRequests / (double)calls;
+
+            std::vector<std::pair<std::string, uint64_t>> topExperts(expertHits.begin(), expertHits.end());
+            std::sort(topExperts.begin(), topExperts.end(),
+                      [](const auto &a, const auto &b) {
+                          if (a.second != b.second) {
+                              return a.second > b.second;
+                          }
+                          return a.first < b.first;
+                      });
+
+            printf("[fastllm-disk-moe-stats] calls=%llu tokens=%llu avgTopk=%.2f avgRoutedUnique=%.2f sharedCalls=%llu avgLoadWeights=%.2f cacheHit=%llu cacheMiss=%llu hitRate=%.2f%% inserted=%llu evicted=%llu cacheMB=%.1f peakCacheMB=%.1f missReadMB=%.1f topExperts=",
+                   (unsigned long long)calls,
+                   (unsigned long long)totalTokens,
+                   avgTopk,
+                   avgRoutedUnique,
+                   (unsigned long long)sharedExpertCalls,
+                   avgLoadRequests,
+                   (unsigned long long)cacheHits,
+                   (unsigned long long)cacheMisses,
+                   hitRate,
+                   (unsigned long long)cacheInsertions,
+                   (unsigned long long)cacheEvictions,
+                   (double)currentCacheBytes / 1024.0 / 1024.0,
+                   (double)peakCacheBytes / 1024.0 / 1024.0,
+                   (double)cacheMissBytes / 1024.0 / 1024.0);
+            int limit = std::min((int)topExperts.size(), 8);
+            for (int i = 0; i < limit; i++) {
+                printf("%s%s:%llu", i == 0 ? "" : ";",
+                       topExperts[i].first.c_str(),
+                       (unsigned long long)topExperts[i].second);
+            }
+            printf("\n");
+            fflush(stdout);
+        }
+
+        std::mutex locker;
+        uint64_t calls = 0;
+        uint64_t totalTokens = 0;
+        uint64_t totalTopk = 0;
+        uint64_t totalRoutedUniqueExperts = 0;
+        uint64_t sharedExpertCalls = 0;
+        uint64_t totalLoadRequests = 0;
+        uint64_t cacheHits = 0;
+        uint64_t cacheMisses = 0;
+        uint64_t cacheBypasses = 0;
+        uint64_t cacheInsertions = 0;
+        uint64_t cacheEvictions = 0;
+        uint64_t cacheHitBytes = 0;
+        uint64_t cacheMissBytes = 0;
+        uint64_t cacheBypassBytes = 0;
+        uint64_t currentCacheBytes = 0;
+        uint64_t peakCacheBytes = 0;
+        std::unordered_map<std::string, uint64_t> expertHits;
+    };
+
+    static DiskMoeStats &GetDiskMoeStats() {
+        static DiskMoeStats stats;
+        return stats;
+    }
+
     static std::string DiskWeightCacheKey(const Data *weight) {
         std::string key = weight->name + "|" + std::to_string((int)weight->dataType) +
                           "|" + std::to_string(weight->ggmlType);
@@ -339,7 +512,13 @@ namespace fastllm {
         LoadedDiskWeight Get(const Data *weight) {
             uint64_t limit = DiskMoeCacheBytesLimit();
             if (limit == 0 || weight == nullptr || !weight->isDiskWeight) {
-                return {LoadDiskWeight(weight), nullptr, weight != nullptr && weight->isDiskWeight};
+                LoadedDiskWeight loaded = {LoadDiskWeight(weight), nullptr, weight != nullptr && weight->isDiskWeight};
+                if (weight != nullptr && weight->isDiskWeight) {
+                    uint64_t bytes = loaded.data == nullptr ? 0 :
+                        (loaded.data->expansionBytes != 0 ? loaded.data->expansionBytes : loaded.data->GetBytes());
+                    GetDiskMoeStats().RecordCacheBypass(bytes);
+                }
+                return loaded;
             }
             std::string key = DiskWeightCacheKey(weight);
 
@@ -347,26 +526,35 @@ namespace fastllm {
                 std::lock_guard<std::mutex> guard(locker);
                 auto it = entries.find(key);
                 if (it != entries.end()) {
+                    uint64_t bytes = it->second.bytes;
+                    std::shared_ptr<Data> data = it->second.data;
                     Touch(it);
-                    return {it->second.data.get(), it->second.data, false};
+                    GetDiskMoeStats().RecordCacheHit(bytes);
+                    return {data.get(), data, false};
                 }
             }
 
             std::unique_ptr<Data> loaded(LoadDiskWeight(weight));
             uint64_t bytes = loaded->expansionBytes != 0 ? loaded->expansionBytes : loaded->GetBytes();
             if (bytes == 0 || bytes > limit) {
+                GetDiskMoeStats().RecordCacheMiss(bytes, false);
                 return {loaded.release(), nullptr, true};
             }
 
             std::lock_guard<std::mutex> guard(locker);
             auto existing = entries.find(key);
             if (existing != entries.end()) {
+                GetDiskMoeStats().RecordCacheMiss(bytes, false);
+                uint64_t cachedBytes = existing->second.bytes;
+                std::shared_ptr<Data> data = existing->second.data;
                 Touch(existing);
-                return {existing->second.data.get(), existing->second.data, false};
+                GetDiskMoeStats().RecordCacheHit(cachedBytes);
+                return {data.get(), data, false};
             }
 
             EvictToFit(bytes, limit);
             if (currentBytes + bytes > limit) {
+                GetDiskMoeStats().RecordCacheMiss(bytes, false);
                 return {loaded.release(), nullptr, true};
             }
 
@@ -374,6 +562,7 @@ namespace fastllm {
             lru.push_front(key);
             entries[key] = {shared, bytes, lru.begin()};
             currentBytes += bytes;
+            GetDiskMoeStats().RecordCacheMiss(bytes, true);
             return {shared.get(), shared, false};
         }
 
@@ -397,6 +586,7 @@ namespace fastllm {
                 auto it = entries.find(key);
                 if (it != entries.end()) {
                     currentBytes -= it->second.bytes;
+                    GetDiskMoeStats().RecordCacheEvict(it->second.bytes);
                     entries.erase(it);
                 }
             }
@@ -566,6 +756,22 @@ namespace fastllm {
             if (weights[down]->isDiskWeight) {
                 loadIndices.push_back(down);
             }
+        }
+        if (DiskMoeStatsEnabled()) {
+            std::vector<std::string> expertNames;
+            bool hasSharedExpert = selectedExperts.find(0) != selectedExperts.end();
+            for (int expert : selectedExperts) {
+                if (expert <= 0) {
+                    continue;
+                }
+                int gate = expert * 2;
+                if (gate < weightsBatch && weights[gate] != nullptr) {
+                    expertNames.push_back(DiskMoeExpertStatsName(weights[gate]->name));
+                }
+            }
+            int routedUnique = (int)selectedExperts.size() - (hasSharedExpert ? 1 : 0);
+            GetDiskMoeStats().RecordCall(topk, index.dims[0], routedUnique, hasSharedExpert,
+                                         (int)loadIndices.size(), expertNames);
         }
         if (loadIndices.size() > 0) {
             std::vector<uint8_t> ownedFlags(weightsBatch, 0);
