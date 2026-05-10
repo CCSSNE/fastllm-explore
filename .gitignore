@@ -9,6 +9,9 @@ cyberneurova-DeepSeek-V4-Flash-abliterated-Q8_0.gguf
 资料/验证结果/q8_chunk8_after_runtime_change.log
 资料/验证结果/q8_chunk8_before_code_change.log
 资料/验证结果/q8_d_nvme_chunk8_smoke.log
+资料/验证结果/q8_decode_threads_*.log
+资料/验证结果/q8_long_decode_*.log
+资料/验证结果/q8_long_decode_disk_*.csv
 资料/验证结果/q8_local_default_smoke.log
 资料/验证结果/q8_profile_before_disk_read.log
 
