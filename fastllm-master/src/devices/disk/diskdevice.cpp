@@ -129,10 +129,20 @@ namespace fastllm {
 
     static DiskReadResult ReadDiskFileAt(int fd, uint8_t *dst, size_t bytes, uint64_t offset) {
 #ifdef _WIN32
-        if (_lseeki64(fd, offset, SEEK_SET) < 0) {
+        HANDLE handle = (HANDLE)_get_osfhandle(fd);
+        if (handle == INVALID_HANDLE_VALUE) {
             return -1;
         }
-        return _read(fd, dst, (unsigned int)std::min<size_t>(bytes, INT_MAX));
+        // Synchronous ReadFile accepts an OVERLAPPED offset, avoiding a separate seek.
+        OVERLAPPED overlapped;
+        memset(&overlapped, 0, sizeof(overlapped));
+        overlapped.Offset = (DWORD)(offset & 0xFFFFFFFFULL);
+        overlapped.OffsetHigh = (DWORD)(offset >> 32);
+        DWORD readBytes = 0;
+        if (!ReadFile(handle, dst, (DWORD)std::min<size_t>(bytes, INT_MAX), &readBytes, &overlapped)) {
+            return -1;
+        }
+        return (DiskReadResult)readBytes;
 #else
         return pread(fd, dst, bytes, offset);
 #endif
