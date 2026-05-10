@@ -2,7 +2,7 @@ param(
     [int]$MaxNewTokens = 6,
     [int]$Threads = 16,
     [int]$DiskMoeLoadThreads = 16,
-    [string]$Prompt = "请用中文连续写一段不少于五十字的话，主题是本地模型推理速度测试。"
+    [string]$Prompt = ""
 )
 
 $ErrorActionPreference = "Stop"
@@ -10,7 +10,9 @@ $ErrorActionPreference = "Stop"
 $OutputEncoding = [System.Text.Encoding]::UTF8
 
 $root = Split-Path -Parent $MyInvocation.MyCommand.Path
-$resultDir = Join-Path $root "资料\验证结果"
+$dataDirName = -join ([char]0x8D44, [char]0x6599)
+$resultDirName = -join ([char]0x9A8C, [char]0x8BC1, [char]0x7ED3, [char]0x679C)
+$resultDir = Join-Path (Join-Path $root $dataDirName) $resultDirName
 New-Item -ItemType Directory -Force -Path $resultDir | Out-Null
 
 $stamp = Get-Date -Format "yyyyMMdd_HHmmss"
@@ -46,7 +48,11 @@ $counterJob = Start-Job -ArgumentList $csvPath -ScriptBlock {
 
 try {
     Push-Location $root
-    python .\verify_q8_decode_tokens.py $Prompt 2>&1 | Tee-Object -FilePath $logPath
+    if ([string]::IsNullOrWhiteSpace($Prompt)) {
+        python .\verify_q8_decode_tokens.py 2>&1 | Tee-Object -FilePath $logPath
+    } else {
+        python .\verify_q8_decode_tokens.py $Prompt 2>&1 | Tee-Object -FilePath $logPath
+    }
 }
 finally {
     Pop-Location

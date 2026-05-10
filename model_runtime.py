@@ -14,7 +14,9 @@ for stream in (sys.stdout, sys.stderr):
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 CUDA_BIN = os.path.join(ROOT, "cuda-12.4-toolkit", "bin")
-TOOLS_DIR = os.path.join(ROOT, "fastllm-master", "build-cuda-ninja", "tools")
+TOOLS_DIR_CLEAN = os.path.join(ROOT, "fastllm-master", "build-cuda-ninja-clean", "tools")
+TOOLS_DIR_LEGACY = os.path.join(ROOT, "fastllm-master", "build-cuda-ninja", "tools")
+TOOLS_DIR = TOOLS_DIR_CLEAN if os.path.exists(os.path.join(TOOLS_DIR_CLEAN, "ftllm", "fastllm_tools.dll")) else TOOLS_DIR_LEGACY
 
 os.environ["PATH"] = CUDA_BIN + os.pathsep + os.environ.get("PATH", "")
 os.environ.setdefault("FASTLLM_DSV4_DISABLE_PREFIX_CACHE", "1")
@@ -95,6 +97,7 @@ class ModelRuntime:
             "kv_cache_limit": self.kv_cache_limit,
             "default_max_tokens": self.default_max_tokens,
             "chunked_prefill_size": self.chunked_prefill_size,
+            "tools_dir": TOOLS_DIR,
             "loaded_at": self.loaded_at,
             "devices": {
                 "cpu": llm.has_device("cpu"),
