@@ -2,7 +2,8 @@ param(
     [int]$MaxNewTokens = 6,
     [int]$Threads = 16,
     [int]$DiskMoeLoadThreads = 16,
-    [string]$Prompt = ""
+    [string]$Prompt = "",
+    [switch]$Profile
 )
 
 $ErrorActionPreference = "Stop"
@@ -24,7 +25,11 @@ $env:PYTHONIOENCODING = "utf-8"
 $env:DSV4_THREADS = [string]$Threads
 $env:DSV4_MAX_NEW_TOKENS = [string]$MaxNewTokens
 $env:FASTLLM_DISK_MOE_LOAD_THREADS = [string]$DiskMoeLoadThreads
-$env:FASTLLM_DSV4_PROFILE = "1"
+if ($Profile) {
+    $env:FASTLLM_DSV4_PROFILE = "1"
+} else {
+    Remove-Item Env:FASTLLM_DSV4_PROFILE -ErrorAction SilentlyContinue
+}
 
 Set-Content -Encoding UTF8 -Path $csvPath -Value "timestamp,d_read_MBps,d_reads_per_sec,d_avg_read_ms,d_queue,total_read_MBps"
 
