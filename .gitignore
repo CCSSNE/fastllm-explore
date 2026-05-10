@@ -4,6 +4,7 @@ __pycache__/
 # Local Codex session exports can contain private prompts, paths, screenshots,
 # account context, and command output.
 资料/Codex会话导出/
+资料/验证结果/q8_move_smoke.log
 
 # Nested repository metadata should not be published as project files.
 **/.git/
