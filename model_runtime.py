@@ -35,6 +35,10 @@ from ftllm import llm
 
 
 def default_model_path():
+    local_path = os.path.join(ROOT, "cyberneurova-DeepSeek-V4-Flash-abliterated-Q8_0.gguf")
+    if os.path.exists(local_path):
+        return local_path
+
     sep = chr(92)
     return (
         "F:"

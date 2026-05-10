@@ -1,5 +1,6 @@
 __pycache__/
 *.pyc
+cyberneurova-DeepSeek-V4-Flash-abliterated-Q8_0.gguf
 
 # Local Codex session exports can contain private prompts, paths, screenshots,
 # account context, and command output.
@@ -7,6 +8,8 @@ __pycache__/
 资料/验证结果/q8_move_smoke.log
 资料/验证结果/q8_chunk8_after_runtime_change.log
 资料/验证结果/q8_chunk8_before_code_change.log
+资料/验证结果/q8_d_nvme_chunk8_smoke.log
+资料/验证结果/q8_local_default_smoke.log
 资料/验证结果/q8_profile_before_disk_read.log
 
 # Nested repository metadata should not be published as project files.
