@@ -58,6 +58,7 @@ class ModelRuntime:
         threads=None,
         kv_cache_limit=None,
         default_max_tokens=None,
+        chunked_prefill_size=None,
     ):
         self.model_path = model_path or os.environ.get("DSV4_MODEL_PATH") or default_model_path()
         self.model_name = model_name or os.environ.get("OPENAI_MODEL_NAME", "deepseek-v4-flash-q8")
@@ -67,6 +68,11 @@ class ModelRuntime:
             default_max_tokens
             or os.environ.get("DSV4_MAX_NEW_TOKENS")
             or os.environ.get("Q2_MAX_NEW_TOKENS", "128")
+        )
+        self.chunked_prefill_size = int(
+            chunked_prefill_size
+            or os.environ.get("DSV4_CHUNKED_PREFILL_SIZE")
+            or os.environ.get("Q2_CHUNKED_PREFILL_SIZE", "8")
         )
         self.model = None
         self.model_type = None
@@ -83,6 +89,7 @@ class ModelRuntime:
             "threads": self.threads,
             "kv_cache_limit": self.kv_cache_limit,
             "default_max_tokens": self.default_max_tokens,
+            "chunked_prefill_size": self.chunked_prefill_size,
             "loaded_at": self.loaded_at,
             "devices": {
                 "cpu": llm.has_device("cpu"),
@@ -115,7 +122,7 @@ class ModelRuntime:
             model.set_atype("float32")
             model.set_moe_atype("float32")
             model.set_kv_cache_limit(self.kv_cache_limit)
-            model.set_chunked_prefill_size(1)
+            model.set_chunked_prefill_size(self.chunked_prefill_size)
 
             self.model = model
             status = self.status()
