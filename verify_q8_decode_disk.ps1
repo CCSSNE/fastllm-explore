@@ -1,7 +1,7 @@
 param(
     [int]$MaxNewTokens = 16,
     [int]$Threads = 12,
-    [int]$DiskMoeLoadThreads = 16,
+    [int]$DiskMoeLoadThreads = 12,
     [string]$Prompt = "",
     [switch]$Profile
 )

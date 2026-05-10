@@ -22,7 +22,7 @@ os.environ["PATH"] = CUDA_BIN + os.pathsep + os.environ.get("PATH", "")
 os.environ.setdefault("FASTLLM_DSV4_DISABLE_PREFIX_CACHE", "1")
 os.environ.setdefault("FASTLLM_DSV4_DISABLE_CUDA_HCPRE", "1")
 os.environ.setdefault("FASTLLM_DSV4_DISABLE_CUDA_WOA_HCPOST", "1")
-os.environ.setdefault("FASTLLM_DISK_MOE_LOAD_THREADS", "16")
+os.environ.setdefault("FASTLLM_DISK_MOE_LOAD_THREADS", "12")
 os.environ.setdefault("FASTLLM_DISK_MOE_CACHE_MB", "8192")
 os.environ.setdefault("USE_OLD_ENGINE", "1")
 
