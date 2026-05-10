@@ -81,6 +81,18 @@ namespace fastllm {
         }
 
         int Get(const std::string &fileName) {
+#ifdef _WIN32
+            auto it = fds.find(fileName);
+            if (it != fds.end()) {
+                return it->second;
+            }
+            int fd = FastllmOpenReadOnlyBinary(fileName);
+            if (fd < 0) {
+                ErrorInFastLLM("Disk MoE can't open weight file: " + fileName + "\n");
+            }
+            fds[fileName] = fd;
+            return fd;
+#else
             std::lock_guard<std::mutex> guard(locker);
             auto it = fds.find(fileName);
             if (it != fds.end()) {
@@ -92,22 +104,29 @@ namespace fastllm {
             }
             fds[fileName] = fd;
             return fd;
+#endif
         }
 
     private:
+#ifndef _WIN32
         std::mutex locker;
+#endif
         std::unordered_map<std::string, int> fds;
     };
 
     static DiskFileCache &GetDiskFileCache() {
+#ifdef _WIN32
+        // _read uses the descriptor's file pointer. Keep one descriptor cache per
+        // worker thread so parallel Disk MoE loads do not serialize on seek/read.
+        thread_local DiskFileCache cache;
+#else
         static DiskFileCache cache;
+#endif
         return cache;
     }
 
     static DiskReadResult ReadDiskFileAt(int fd, uint8_t *dst, size_t bytes, uint64_t offset) {
 #ifdef _WIN32
-        static std::mutex readLocker;
-        std::lock_guard<std::mutex> guard(readLocker);
         if (_lseeki64(fd, offset, SEEK_SET) < 0) {
             return -1;
         }
