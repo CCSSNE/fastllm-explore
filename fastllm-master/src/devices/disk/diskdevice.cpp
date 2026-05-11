@@ -3,6 +3,7 @@
 #include "utils.h"
 
 #include <algorithm>
+#include <chrono>
 #include <cstring>
 #include <cstdlib>
 #include <fcntl.h>
@@ -346,6 +347,28 @@ namespace fastllm {
         return every;
     }
 
+    static bool DiskMoeProfileEnabled() {
+        static bool enabled = std::getenv("FASTLLM_DISK_MOE_PROFILE") != nullptr;
+        return enabled;
+    }
+
+    static uint64_t DiskMoeProfileEvery() {
+        static uint64_t every = []() {
+            const char *env = std::getenv("FASTLLM_DISK_MOE_PROFILE_EVERY");
+            if (env == nullptr) {
+                return (uint64_t)128;
+            }
+            long long value = atoll(env);
+            return value <= 0 ? (uint64_t)128 : (uint64_t)value;
+        }();
+        return every;
+    }
+
+    static double DiskMoeProfileNowMs() {
+        using Clock = std::chrono::steady_clock;
+        return std::chrono::duration<double, std::milli>(Clock::now().time_since_epoch()).count();
+    }
+
     static bool DiskMoeEndsWith(const std::string &value, const std::string &suffix) {
         return value.size() >= suffix.size() &&
                value.compare(value.size() - suffix.size(), suffix.size(), suffix) == 0;
@@ -500,6 +523,67 @@ namespace fastllm {
     static DiskMoeStats &GetDiskMoeStats() {
         static DiskMoeStats stats;
         return stats;
+    }
+
+    class DiskMoeProfile {
+    public:
+        void Record(double selectMs, double loadMs, double prepareMs,
+                    double inputMs, double mergeMs, double outputMs, double cleanupMs,
+                    int loadRequests) {
+            if (!DiskMoeProfileEnabled()) {
+                return;
+            }
+            std::lock_guard<std::mutex> guard(locker);
+            calls++;
+            totalSelectMs += selectMs;
+            totalLoadMs += loadMs;
+            totalPrepareMs += prepareMs;
+            totalInputMs += inputMs;
+            totalMergeMs += mergeMs;
+            totalOutputMs += outputMs;
+            totalCleanupMs += cleanupMs;
+            totalLoadRequests += std::max(0, loadRequests);
+            uint64_t every = DiskMoeProfileEvery();
+            if (every != 0 && calls % every == 0) {
+                ReportLocked();
+            }
+        }
+
+    private:
+        void ReportLocked() {
+            double totalMs = totalSelectMs + totalLoadMs + totalPrepareMs +
+                             totalInputMs + totalMergeMs + totalOutputMs + totalCleanupMs;
+            double callsDouble = calls == 0 ? 1.0 : (double)calls;
+            printf("[fastllm-disk-moe-profile] calls=%llu avgLoadWeights=%.2f avgMs=%.3f select=%.3f load=%.3f prepare=%.3f input=%.3f merge=%.3f output=%.3f cleanup=%.3f totalMs=%.3f\n",
+                   (unsigned long long)calls,
+                   (double)totalLoadRequests / callsDouble,
+                   totalMs / callsDouble,
+                   totalSelectMs / callsDouble,
+                   totalLoadMs / callsDouble,
+                   totalPrepareMs / callsDouble,
+                   totalInputMs / callsDouble,
+                   totalMergeMs / callsDouble,
+                   totalOutputMs / callsDouble,
+                   totalCleanupMs / callsDouble,
+                   totalMs);
+            fflush(stdout);
+        }
+
+        std::mutex locker;
+        uint64_t calls = 0;
+        uint64_t totalLoadRequests = 0;
+        double totalSelectMs = 0.0;
+        double totalLoadMs = 0.0;
+        double totalPrepareMs = 0.0;
+        double totalInputMs = 0.0;
+        double totalMergeMs = 0.0;
+        double totalOutputMs = 0.0;
+        double totalCleanupMs = 0.0;
+    };
+
+    static DiskMoeProfile &GetDiskMoeProfile() {
+        static DiskMoeProfile profile;
+        return profile;
     }
 
     static std::string DiskWeightCacheKey(const Data *weight) {
@@ -723,6 +807,24 @@ namespace fastllm {
 
     void DiskMergeMOE::Run(const std::string &opType, const DataDict &datas,
                            const FloatDict &floatParams, const IntDict &intParams) {
+        bool profileDiskMoe = DiskMoeProfileEnabled();
+        double profileLast = profileDiskMoe ? DiskMoeProfileNowMs() : 0.0;
+        double profileSelectMs = 0.0;
+        double profileLoadMs = 0.0;
+        double profilePrepareMs = 0.0;
+        double profileInputMs = 0.0;
+        double profileMergeMs = 0.0;
+        double profileOutputMs = 0.0;
+        double profileCleanupMs = 0.0;
+        auto profileLap = [&](double &bucket) {
+            if (!profileDiskMoe) {
+                return;
+            }
+            double now = DiskMoeProfileNowMs();
+            bucket += now - profileLast;
+            profileLast = now;
+        };
+
         Data &index = *(datas.find("index")->second);
         Data **weights = (Data**)datas.find("weights")->second;
         int topk = index.dims[1];
@@ -783,6 +885,7 @@ namespace fastllm {
             GetDiskMoeStats().RecordCall(topk, index.dims[0], routedUnique, hasSharedExpert,
                                          (int)loadIndices.size(), expertNames);
         }
+        profileLap(profileSelectMs);
         if (loadIndices.size() > 0) {
             std::vector<uint8_t> ownedFlags(weightsBatch, 0);
             std::vector<std::shared_ptr<Data>> cachedRefs(weightsBatch);
@@ -813,6 +916,7 @@ namespace fastllm {
                 }
             }
         }
+        profileLap(profileLoadMs);
         if (std::getenv("FASTLLM_DEBUG_DISK_MOE") != nullptr) {
             printf("[fastllm-disk-moe] loaded count=%d temp0=%p temp2=%p temp2Disk=%d temp2Type=%d temp2Dims=%d:%d,%d\n",
                    (int)loadIndices.size(), tempWeights[0], tempWeights[2],
@@ -842,6 +946,7 @@ namespace fastllm {
         if (tempWeights[2] == nullptr) {
             ErrorInFastLLM("Disk MoE failed to load representative expert weight.\n");
         }
+        profileLap(profilePrepareMs);
 
         DataDict diskDatas = datas;
         diskDatas["weights"] = (Data*)tempWeights.data();
@@ -861,7 +966,9 @@ namespace fastllm {
             diskDatas["input"] = &promotedInput;
             diskDatas["output"] = &promotedOutput;
         }
+        profileLap(profileInputMs);
         CpuMergeMOE::Run(opType, diskDatas, floatParams, intParams);
+        profileLap(profileMergeMs);
         if (std::getenv("FASTLLM_DEBUG_DISK_MOE") != nullptr) {
             printf("[fastllm-disk-moe] cpu-merge-done\n");
             fflush(stdout);
@@ -869,9 +976,14 @@ namespace fastllm {
         if (promoteInput) {
             ConvertFloat32ToOutput(promotedOutput, output, originalOutputType);
         }
+        profileLap(profileOutputMs);
 
         for (auto *weight : ownedWeights) {
             delete weight;
         }
+        profileLap(profileCleanupMs);
+        GetDiskMoeProfile().Record(profileSelectMs, profileLoadMs, profilePrepareMs,
+                                   profileInputMs, profileMergeMs, profileOutputMs,
+                                   profileCleanupMs, (int)loadIndices.size());
     }
 }
