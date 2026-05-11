@@ -18,7 +18,7 @@ if errorlevel 1 (
 )
 
 if "%~1"=="" (
-    %PY_CMD% "%~dp0call_openai_api.py" --max-tokens 16 --timeout 7200
+    %PY_CMD% "%~dp0call_openai_api.py" --timeout 7200
 ) else (
     %PY_CMD% "%~dp0call_openai_api.py" %*
 )

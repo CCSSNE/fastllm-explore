@@ -164,7 +164,7 @@ class ModelRuntime:
                 raise ModelNotLoadedError("model is not loaded")
 
             normalized = normalize_messages(messages)
-            limit = int(max_tokens or self.default_max_tokens)
+            limit = None if max_tokens is None else int(max_tokens)
             for piece in self.model.stream_response(
                 normalized,
                 max_length=limit,

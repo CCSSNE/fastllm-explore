@@ -28,7 +28,7 @@ def parse_args():
     parser.add_argument("--prompt", default=None)
     parser.add_argument("--prompt-file", default=None)
     parser.add_argument("--system", default=None)
-    parser.add_argument("--max-tokens", type=int, default=16)
+    parser.add_argument("--max-tokens", type=int, default=None)
     parser.add_argument("--temperature", type=float, default=1.0)
     parser.add_argument("--top-k", type=int, default=1)
     parser.add_argument("--repeat-penalty", type=float, default=1.0)
@@ -65,16 +65,18 @@ def build_payload(args, prompt):
         messages.append({"role": "system", "content": args.system})
     messages.append({"role": "user", "content": prompt})
 
-    return {
+    payload = {
         "model": args.model,
         "messages": messages,
-        "max_tokens": args.max_tokens,
         "temperature": args.temperature,
         "top_k": args.top_k,
         "repeat_penalty": args.repeat_penalty,
         "do_sample": args.do_sample,
         "stream": args.stream,
     }
+    if args.max_tokens is not None:
+        payload["max_tokens"] = args.max_tokens
+    return payload
 
 
 def post_json(url, payload, timeout):
