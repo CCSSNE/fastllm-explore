@@ -9,6 +9,7 @@ import urllib.request
 
 DEFAULT_BASE_URL = "http://127.0.0.1:9000/v1"
 DEFAULT_MODEL = "deepseek-v4-flash-q8"
+REMOTE_CLOSE_ERRORS = (BrokenPipeError, ConnectionAbortedError, ConnectionResetError)
 
 
 def configure_stdio():
@@ -253,6 +254,9 @@ def main():
     except (TimeoutError, socket.timeout) as exc:
         log(f"TIMEOUT {type(exc).__name__}: {exc}", True)
         return 3
+    except REMOTE_CLOSE_ERRORS as exc:
+        log(f"REMOTE_CLOSED {type(exc).__name__}: {exc}", True)
+        return 5
     except urllib.error.URLError as exc:
         log(f"URL_ERROR {exc}", True)
         return 4
