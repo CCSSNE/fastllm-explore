@@ -37,7 +37,8 @@ def parse_args():
     parser.add_argument("--timeout", type=float, default=3600.0)
     parser.add_argument("--output-file", default=None)
     parser.add_argument("--show-request", action="store_true")
-    parser.add_argument("--health-first", action=argparse.BooleanOptionalAction, default=True)
+    parser.add_argument("--health-first", action=argparse.BooleanOptionalAction, default=False)
+    parser.add_argument("--verbose", action="store_true")
     parser.add_argument("text", nargs="*")
     return parser.parse_args()
 
@@ -55,7 +56,7 @@ def load_prompt(args):
     if args.text:
         return " ".join(args.text)
 
-    return "请用中文连续写一小段话，说明本地 API 调用器已经连通。"
+    return "你好呀，你是谁呀？"
 
 
 def build_payload(args, prompt):
@@ -131,11 +132,12 @@ def write_output(path, text):
         f.write(text)
 
 
-def log(message):
-    print(message, file=sys.stderr, flush=True)
+def log(message, enabled=True):
+    if enabled:
+        print(message, file=sys.stderr, flush=True)
 
 
-def call_stream(url, payload, timeout):
+def call_stream(url, payload, timeout, verbose):
     start = time.time()
     first_event_at = None
     first_content_at = None
@@ -146,12 +148,12 @@ def call_stream(url, payload, timeout):
 
     with post_json(url, payload, timeout) as response:
         first_event_at = time.time()
-        log(f"HTTP {response.status}; first_event_sec={first_event_at - start:.3f}")
+        log(f"HTTP {response.status}; first_event_sec={first_event_at - start:.3f}", verbose)
         for event_type, event in iter_sse(response):
             now = time.time()
             if event_type == "done":
                 print("", flush=True)
-                log("STREAM_DONE")
+                log("STREAM_DONE", verbose)
                 return {
                     "ok": True,
                     "text": "".join(parts),
@@ -164,7 +166,7 @@ def call_stream(url, payload, timeout):
                 }
 
             if event_type != "json":
-                log(f"SSE_{event_type}: {event!r}")
+                log(f"SSE_{event_type}: {event!r}", verbose)
                 continue
 
             piece, reason = extract_stream_piece(event)
@@ -175,13 +177,13 @@ def call_stream(url, payload, timeout):
 
             if first_content_at is None:
                 first_content_at = now
-                log(f"FIRST_CONTENT_SEC {first_content_at - start:.3f}")
+                log(f"FIRST_CONTENT_SEC {first_content_at - start:.3f}", verbose)
 
             chunks += 1
             chars += len(piece)
             parts.append(piece)
             print(piece, end="", flush=True)
-            log(f"CHUNK index={chunks} dt={now - start:.3f} chars={len(piece)} total_chars={chars}")
+            log(f"CHUNK index={chunks} dt={now - start:.3f} chars={len(piece)} total_chars={chars}", verbose)
 
     return {
         "ok": False,
@@ -226,33 +228,34 @@ def main():
     log(
         "REQUEST "
         f"url={url} model={args.model} stream={args.stream} "
-        f"max_tokens={args.max_tokens} timeout={args.timeout} prompt_chars={len(prompt)}"
+        f"max_tokens={args.max_tokens} timeout={args.timeout} prompt_chars={len(prompt)}",
+        args.verbose,
     )
     if args.show_request:
-        log(json.dumps(payload, ensure_ascii=False, indent=2))
+        log(json.dumps(payload, ensure_ascii=False, indent=2), True)
 
     try:
         if args.health_first:
             health = get_json(base_url.rsplit("/v1", 1)[0] + "/health", min(args.timeout, 30.0))
-            log("HEALTH " + json.dumps(health, ensure_ascii=False))
+            log("HEALTH " + json.dumps(health, ensure_ascii=False), args.verbose)
 
-        result = call_stream(url, payload, args.timeout) if args.stream else call_non_stream(url, payload, args.timeout)
+        result = call_stream(url, payload, args.timeout, args.verbose) if args.stream else call_non_stream(url, payload, args.timeout)
         write_output(args.output_file, result["text"])
         summary = {k: v for k, v in result.items() if k != "text"}
-        log("SUMMARY " + json.dumps(summary, ensure_ascii=False))
+        log("SUMMARY " + json.dumps(summary, ensure_ascii=False), args.verbose)
         return 0 if result.get("ok") else 2
     except urllib.error.HTTPError as exc:
         raw = exc.read().decode("utf-8", errors="replace")
-        log(f"HTTP_ERROR status={exc.code} body={raw}")
+        log(f"HTTP_ERROR status={exc.code} body={raw}", True)
         return 1
     except (TimeoutError, socket.timeout) as exc:
-        log(f"TIMEOUT {type(exc).__name__}: {exc}")
+        log(f"TIMEOUT {type(exc).__name__}: {exc}", True)
         return 3
     except urllib.error.URLError as exc:
-        log(f"URL_ERROR {exc}")
+        log(f"URL_ERROR {exc}", True)
         return 4
     except KeyboardInterrupt:
-        log("INTERRUPTED")
+        log("INTERRUPTED", True)
         return 130
 
 

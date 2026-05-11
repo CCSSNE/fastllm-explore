@@ -18,9 +18,6 @@ if errorlevel 1 (
 )
 
 if "%~1"=="" (
-    echo Running default local API call: max_tokens=16 timeout=7200
-    echo You can pass call_openai_api.py arguments to this bat file.
-    echo.
     %PY_CMD% "%~dp0call_openai_api.py" --max-tokens 16 --timeout 7200
 ) else (
     %PY_CMD% "%~dp0call_openai_api.py" %*
@@ -28,7 +25,7 @@ if "%~1"=="" (
 
 set "EXIT_CODE=%ERRORLEVEL%"
 echo.
-echo call_openai_api.py exit code: %EXIT_CODE%
+echo Exit code: %EXIT_CODE%
 echo.
 pause
 exit /b %EXIT_CODE%
