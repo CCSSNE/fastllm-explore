@@ -897,14 +897,16 @@ namespace fastllm {
                     LoadDiskWeightInto(weights, &tempWeights, &ownedFlags, &cachedRefs, index);
                 }
             } else {
-                std::vector<LoadDiskWeightsOp*> ops;
+                std::vector<LoadDiskWeightsOp> ops;
+                ops.reserve(threadCnt);
                 for (int i = 0; i < threadCnt; i++) {
-                    ops.push_back(new LoadDiskWeightsOp(weights, &tempWeights, &ownedFlags, &cachedRefs, &loadIndices, i, threadCnt));
-                    pool->PushOp(i, ops.back());
+                    ops.emplace_back(weights, &tempWeights, &ownedFlags, &cachedRefs, &loadIndices, i, threadCnt);
+                }
+                for (int i = 0; i < threadCnt; i++) {
+                    pool->PushOp(i, &ops[i]);
                 }
                 for (int i = 0; i < threadCnt; i++) {
                     pool->Wait(i);
-                    delete ops[i];
                 }
             }
             for (int index : loadIndices) {
