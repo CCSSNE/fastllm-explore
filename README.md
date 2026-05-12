@@ -22,7 +22,7 @@
 
 - GPU: RTX 4070 Laptop 8G
 - 内存: 32G DDR5，实际占用约 8G
-- 硬盘: Lexar SSD ARES 4TB PCIe 4.0，标称读速 7000M，实测推理读速约 400M
+- 硬盘: Lexar SSD ARES 4TB PCIe 4.0，标称读速 7000M；早期推理读速约 400M，优化后约 1.2GB/s，峰值约 1.5GB/s
 - CPU: Intel i9-13900HS
 
 实测结果：
@@ -51,7 +51,7 @@
 在 PowerShell 里进入项目目录：
 
 ```powershell
-cd C:\Users\user\output\deepseek-v4部署
+cd D:\AI\LLM\deepseek-v4部署
 ```
 
 启动 OpenAI 兼容 server：
@@ -65,7 +65,7 @@ python .\openai_compatible_server.py
 1. 加载模型：
 
 ```text
-F:\下载\cyberneurova-DeepSeek-V4-Flash-abliterated-Q8_0.gguf
+D:\AI\LLM\deepseek-v4部署\cyberneurova-DeepSeek-V4-Flash-abliterated-Q8_0.gguf
 ```
 
 2. 启动本地 OpenAI 兼容 API：

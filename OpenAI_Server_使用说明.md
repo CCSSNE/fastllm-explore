@@ -5,7 +5,7 @@
 在 PowerShell 里进入项目目录：
 
 ```powershell
-cd C:\Users\user\output\deepseek-v4部署
+cd D:\AI\LLM\deepseek-v4部署
 ```
 
 启动 OpenAI 兼容 server：
@@ -19,7 +19,7 @@ python .\openai_compatible_server.py
 1. 加载模型：
 
 ```text
-F:\下载\cyberneurova-DeepSeek-V4-Flash-abliterated-Q8_0.gguf
+D:\AI\LLM\deepseek-v4部署\cyberneurova-DeepSeek-V4-Flash-abliterated-Q8_0.gguf
 ```
 
 2. 启动本地 OpenAI 兼容 API：

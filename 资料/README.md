@@ -15,7 +15,7 @@
 模型文件不在这个项目目录里，当前脚本默认读取：
 
 ```powershell
-F:\下载\cyberneurova-DeepSeek-V4-Flash-abliterated-Q8_0.gguf
+D:\AI\LLM\deepseek-v4部署\cyberneurova-DeepSeek-V4-Flash-abliterated-Q8_0.gguf
 ```
 
 ## 现在怎么跑
@@ -60,7 +60,7 @@ Model: deepseek-v4-flash-q8
 ## 关键注意点
 
 - 不要在当前脚本里加回 `model.set_moe_experts(1)`。这个会把 DeepSeek V4 的 MoE 路由搞坏，之前会导致输出乱码或不正常。
-- 当前默认模型已切换为 Q8_0 GGUF。之前确认跑通的是 Q2_K；Q8 需要重新启动 server 后实际验证。
+- 当前默认模型已切换为 Q8_0 GGUF，并已完成长流式稳定性验证；Q2_K 结果仅作为早期未优化参考。
 - `cuda-12.4-extract/` 只是 CUDA 解包过程留下的构建材料，不参与日常运行，已经放到 `资料/构建材料/`。
 
 ## 资料目录里分别是什么

@@ -6,7 +6,8 @@ Q2量化 权重大小:92G
 配置
 4070lab-8G
 32G ddr5 (实际占用8g)
-Lexar SSD ARES 4TB pcie4.0 读速7000M (实际读速400M)
+Lexar SSD ARES 4TB pcie4.0 读速7000M
+早期推理读盘约400M，优化后约1.2GB/S，峰值约1.5GB/S
 I9-13900HS
 
 结果
@@ -18,7 +19,7 @@ Q8当前优化后长输出后段约0.35token/S，约6倍提升
 意义
 更改框架以适配deepseek为代表的mhc超大模型，验证了用硬盘跑模型的实际流程
 当前已经完成 Windows + NVMe + Disk MoE 的一轮优化，不再只是跑通
-优化后推理读盘约1.2GB/S，峰值约1.5GB/S，CPU占用也下降，不再必须长期顶到100%
+CPU占用也下降，不再必须长期顶到100%
 重点修复了 DeepSeek V4 在 128 KV/past cache 边界附近长流式断流的问题，现在可以继续压到 KV cache 的真实极限，适合长篇小说这种长输出任务
 笔记本已经具备了跑 满血 deepseek v4 Pro 的能力了，但是还在等待 gguf 的量化版本
 
