@@ -32,9 +32,9 @@
 - Q8 早期基线: 约 0.06 token/s（未优化）
 - Q8 当前优化后: 长输出后段约 0.35 token/s，约 6 倍速度提升
 
-这已经不只是“跑通流程”了。当前版本针对 Windows + NVMe + Disk MoE 做了一轮实打实的优化：并发读、offset ReadFile、热权重缓存、线程参数和本地 OpenAI API 长流式路径都已经打通。Q8 从最早约 0.06 token/s 提升到约 0.35 token/s，在 4070 Laptop 8G + 32G 内存的笔记本上把 DeepSeek V4 Flash Q8 这种 281G 级别模型真正跑出了可用速度。
+这已经不只是“跑通流程”了。当前版本针对 Windows + NVMe + Disk MoE 做了一轮实打实的优化：并发读、offset ReadFile、热权重缓存、线程参数和本地 OpenAI API 长流式路径都已经打通。Q8 从最早约 0.06 token/s 提升到约 0.35 token/s，更适合一晚上慢慢跑出一篇长文章。优化后推理读盘已经能到约 1.2GB/s，峰值约 1.5GB/s；CPU 占用也下降了，不再必须长期顶到 100%。
 
-另外，当前版本重点修复了 DeepSeek V4 在 128 KV/past cache 边界附近会导致服务端断流的问题。现在长生成不再被这个 bug 提前截断，可以继续压到 KV cache 的真实极限。
+另外，当前版本重点修复了 DeepSeek V4 在 128 KV/past cache 边界附近会导致服务端断流的问题。现在长生成不再被这个 bug 提前截断，可以继续压到 KV cache 的真实极限，适合长篇小说这类长输出任务，跑到你存储和 KV cache 能撑住的极限。
 
 <p>
   <img src="效果/Q2.png" alt="Q2 推理效果" width="48%">
