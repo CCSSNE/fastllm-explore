@@ -7,9 +7,8 @@ url = "http://127.0.0.1:9000/v1/chat/completions"
 payload = {
     "model": "deepseek-v4-flash-q8",
     "messages": [
-        {"role": "user", "content": "你好呀，你是谁呀？"},
+        {"role": "user", "content": "写一篇1000字小说"},
     ],
-    "max_tokens": 512,
     "stream": True,
 }
 

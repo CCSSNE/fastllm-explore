@@ -75,7 +75,7 @@ class ModelRuntime:
         self.default_max_tokens = int(
             default_max_tokens
             or os.environ.get("DSV4_MAX_NEW_TOKENS")
-            or os.environ.get("Q2_MAX_NEW_TOKENS", "128")
+            or os.environ.get("Q2_MAX_NEW_TOKENS", "1000000")
         )
         self.chunked_prefill_size = int(
             chunked_prefill_size
@@ -85,11 +85,15 @@ class ModelRuntime:
         self.model = None
         self.model_type = None
         self.loaded_at = None
+        self.loading = False
+        self.last_error = None
         self._lock = threading.RLock()
 
     def status(self):
         return {
             "loaded": self.model is not None,
+            "loading": self.loading,
+            "last_error": self.last_error,
             "model": self.model_name,
             "model_type": self.model_type,
             "model_path": self.model_path,
@@ -113,31 +117,41 @@ class ModelRuntime:
             if self.model is not None:
                 return self.status()
 
-            llm.set_cpu_threads(self.threads)
-            llm.set_cpu_low_mem(True)
-            llm.set_cuda_embedding(False)
-            llm.set_gpu_mem_ratio(0.99)
-            llm.set_device_map("cuda")
-            llm.set_device_map("disk", True)
-
+            self.loading = True
+            self.last_error = None
             t0 = time.time()
-            model = llm.model(self.model_path, dtype="float16", kv_cache_dtype="fp8_e4m3")
-            self.loaded_at = int(time.time())
-            self.model_type = model.get_type()
+            try:
+                llm.set_cpu_threads(self.threads)
+                llm.set_cpu_low_mem(True)
+                llm.set_cuda_embedding(False)
+                llm.set_max_tokens(self.default_max_tokens)
+                llm.set_gpu_mem_ratio(0.99)
+                llm.set_device_map("cuda")
+                llm.set_device_map("disk", True)
 
-            model.direct_query = False
-            model.enable_thinking = False
-            model.set_save_history(False)
-            model.set_verbose(1)
-            model.set_atype("float32")
-            model.set_moe_atype("float32")
-            model.set_kv_cache_limit(self.kv_cache_limit)
-            model.set_chunked_prefill_size(self.chunked_prefill_size)
+                model = llm.model(self.model_path, dtype="float16", kv_cache_dtype="fp8_e4m3")
+                self.loaded_at = int(time.time())
+                self.model_type = model.get_type()
 
-            self.model = model
-            status = self.status()
-            status["loaded_sec"] = round(time.time() - t0, 1)
-            return status
+                model.direct_query = False
+                model.enable_thinking = False
+                model.set_save_history(False)
+                model.set_verbose(1)
+                model.set_atype("float32")
+                model.set_moe_atype("float32")
+                model.set_kv_cache_limit(self.kv_cache_limit)
+                model.set_chunked_prefill_size(self.chunked_prefill_size)
+
+                self.model = model
+                self.loading = False
+                status = self.status()
+                status["loaded_sec"] = round(time.time() - t0, 1)
+                return status
+            except Exception as exc:
+                self.last_error = str(exc)
+                raise
+            finally:
+                self.loading = False
 
     def unload(self):
         with self._lock:
@@ -145,10 +159,16 @@ class ModelRuntime:
             self.model = None
             self.model_type = None
             self.loaded_at = None
+            self.loading = False
             if old_model is not None:
                 del old_model
             gc.collect()
             return self.status()
+
+    def ensure_loaded(self):
+        with self._lock:
+            if self.model is None:
+                raise ModelNotLoadedError("model is not loaded")
 
     def stream_chat(
         self,
@@ -164,7 +184,7 @@ class ModelRuntime:
                 raise ModelNotLoadedError("model is not loaded")
 
             normalized = normalize_messages(messages)
-            limit = None if max_tokens is None else int(max_tokens)
+            limit = self.default_max_tokens if max_tokens is None else int(max_tokens)
             for piece in self.model.stream_response(
                 normalized,
                 max_length=limit,

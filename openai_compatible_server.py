@@ -1,5 +1,6 @@
 import argparse
 import json
+import threading
 import time
 import uuid
 from http import HTTPStatus
@@ -60,12 +61,14 @@ class OpenAICompatibleHandler(BaseHTTPRequestHandler):
         try:
             body = self.read_json()
             messages = body.get("messages")
-            max_tokens = body.get("max_tokens")
+            max_tokens = body.get("max_tokens", RUNTIME.default_max_tokens)
             stream = bool(body.get("stream", False))
             temperature = body.get("temperature", 1.0)
             top_k = body.get("top_k", 1)
             repeat_penalty = body.get("repeat_penalty", 1.0)
             do_sample = bool(body.get("do_sample", False))
+
+            RUNTIME.ensure_loaded()
 
             if stream:
                 self.stream_chat_response(
@@ -99,12 +102,14 @@ class OpenAICompatibleHandler(BaseHTTPRequestHandler):
     def stream_chat_response(self, messages, **kwargs):
         completion_id = "chatcmpl-" + uuid.uuid4().hex
         created = int(time.time())
+        generator = None
 
         self.send_response(HTTPStatus.OK)
         self.send_header("Content-Type", "text/event-stream; charset=utf-8")
         self.send_header("Cache-Control", "no-cache")
         self.send_header("Connection", "close")
         self.end_headers()
+        self.close_connection = True
 
         first = {
             "id": completion_id,
@@ -126,20 +131,7 @@ class OpenAICompatibleHandler(BaseHTTPRequestHandler):
             for piece in generator:
                 if not piece:
                     continue
-                chunk = {
-                    "id": completion_id,
-                    "object": "chat.completion.chunk",
-                    "created": created,
-                    "model": RUNTIME.model_name,
-                    "choices": [
-                        {
-                            "index": 0,
-                            "delta": {"content": piece},
-                            "finish_reason": None,
-                        }
-                    ],
-                }
-                self.write_sse(chunk)
+                self.write_sse(stream_content_chunk(completion_id, created, piece))
 
             final = {
                 "id": completion_id,
@@ -158,9 +150,25 @@ class OpenAICompatibleHandler(BaseHTTPRequestHandler):
             self.wfile.write(b"data: [DONE]\n\n")
             self.wfile.flush()
         except CLIENT_DISCONNECT_ERRORS:
-            if "generator" in locals():
+            if generator is not None:
                 generator.close()
             print("client disconnected during stream", flush=True)
+        except Exception as exc:
+            if generator is not None:
+                generator.close()
+            print(f"stream error: {exc}", flush=True)
+            self.write_sse(
+                {
+                    "error": {
+                        "message": str(exc),
+                        "type": "server_error",
+                        "param": None,
+                        "code": None,
+                    }
+                }
+            )
+            self.wfile.write(b"data: [DONE]\n\n")
+            self.wfile.flush()
 
     def read_json(self):
         length = int(self.headers.get("Content-Length", "0"))
@@ -174,8 +182,10 @@ class OpenAICompatibleHandler(BaseHTTPRequestHandler):
         self.send_response(status)
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(data)))
+        self.send_header("Connection", "close")
         self.end_headers()
         self.wfile.write(data)
+        self.close_connection = True
 
     def send_error_json(self, status, error_type, message):
         self.send_json(
@@ -228,6 +238,22 @@ def chat_completion_response(text):
     }
 
 
+def stream_content_chunk(completion_id, created, content):
+    return {
+        "id": completion_id,
+        "object": "chat.completion.chunk",
+        "created": created,
+        "model": RUNTIME.model_name,
+        "choices": [
+            {
+                "index": 0,
+                "delta": {"content": content},
+                "finish_reason": None,
+            }
+        ],
+    }
+
+
 def parse_args():
     parser = argparse.ArgumentParser(description="OpenAI compatible server for local DeepSeek V4 GGUF")
     parser.add_argument("--host", default="127.0.0.1")
@@ -236,19 +262,31 @@ def parse_args():
     return parser.parse_args()
 
 
+def load_model_in_background():
+    try:
+        print("loading model...", flush=True)
+        status = RUNTIME.load()
+        print(json.dumps(status, ensure_ascii=False), flush=True)
+    except Exception as exc:
+        print(f"model load failed: {exc}", flush=True)
+
+
 def main():
     global RUNTIME
     args = parse_args()
     RUNTIME = ModelRuntime()
 
-    if not args.no_auto_load:
-        print("loading model...", flush=True)
-        status = RUNTIME.load()
-        print(json.dumps(status, ensure_ascii=False), flush=True)
+    try:
+        server = ThreadingHTTPServer((args.host, args.port), OpenAICompatibleHandler)
+    except OSError as exc:
+        print(f"failed to listen on http://{args.host}:{args.port}: {exc}", flush=True)
+        return 1
 
-    server = ThreadingHTTPServer((args.host, args.port), OpenAICompatibleHandler)
     print(f"listening on http://{args.host}:{args.port}", flush=True)
     print(f"openai base url: http://{args.host}:{args.port}/v1", flush=True)
+
+    if not args.no_auto_load:
+        threading.Thread(target=load_model_in_background, daemon=True).start()
 
     try:
         server.serve_forever()
@@ -257,7 +295,8 @@ def main():
     finally:
         RUNTIME.unload()
         server.server_close()
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

@@ -385,7 +385,7 @@ namespace fastllm {
             if (pastKeyValues.empty()) {
                 return;
             }
-            int paddedLen = ((std::max(totalLen, 1) - 1) / 128 + 1) * 128;
+            int paddedLen = ((std::max(totalLen, 1) - 1) / 128 + 2) * 128;
             std::vector<float> zeros((uint64_t)bsz * totalLen, 0.0f);
             for (int i = 0; i < std::min(blocks, (int)pastKeyValues.size()); i++) {
                 Data key(DataType::FLOAT32, {bsz, totalLen, 1}, zeros);
