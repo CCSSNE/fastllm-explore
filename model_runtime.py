@@ -1,5 +1,6 @@
 import gc
 import os
+import re
 import sys
 import threading
 import time
@@ -38,6 +39,9 @@ sys.path.insert(0, TOOLS_DIR)
 from ftllm import llm
 
 
+GGUF_SHARD_RE = re.compile(r"^(.+)-(\d+)-of-(\d+)\.gguf$", re.IGNORECASE)
+
+
 def default_model_path():
     local_path = os.path.join(ROOT, "cyberneurova-DeepSeek-V4-Flash-abliterated-Q8_0.gguf")
     if os.path.exists(local_path):
@@ -54,6 +58,98 @@ def default_model_path():
     )
 
 
+def resolve_model_path(model_path):
+    if os.path.isdir(model_path):
+        return resolve_gguf_directory(model_path)
+    return normalize_gguf_shard_path(model_path)
+
+
+def resolve_gguf_directory(model_dir):
+    names = sorted(name for name in os.listdir(model_dir) if name.lower().endswith(".gguf"))
+    if len(names) == 1:
+        return os.path.join(model_dir, names[0])
+
+    first_shards = []
+    for name in names:
+        match = GGUF_SHARD_RE.match(name)
+        if match and int(match.group(2)) == 1:
+            first_shards.append(name)
+
+    if len(first_shards) == 1:
+        return os.path.join(model_dir, first_shards[0])
+    if len(first_shards) > 1:
+        raise ValueError("model directory has multiple GGUF shard entrypoints: " + ", ".join(first_shards))
+
+    raise ValueError("model directory must contain one .gguf file or one *-00001-of-*.gguf first shard")
+
+
+def normalize_gguf_shard_path(model_path):
+    directory, name = os.path.split(model_path)
+    match = GGUF_SHARD_RE.match(name)
+    if not match:
+        return model_path
+
+    base_name = match.group(1)
+    digits = len(match.group(2))
+    total = int(match.group(3))
+    first_name = f"{base_name}-{1:0{digits}d}-of-{total:0{digits}d}.gguf"
+    return os.path.join(directory, first_name)
+
+
+def describe_model_files(input_path, resolved_path):
+    info = {
+        "input_path": input_path,
+        "resolved_path": resolved_path,
+        "input_is_directory": os.path.isdir(input_path),
+        "resolved_exists": os.path.exists(resolved_path),
+        "is_sharded": False,
+    }
+    if not os.path.exists(resolved_path):
+        return info
+
+    directory, name = os.path.split(resolved_path)
+    match = GGUF_SHARD_RE.match(name)
+    if not match:
+        size = os.path.getsize(resolved_path)
+        info.update(
+            {
+                "file_count": 1,
+                "total_bytes": size,
+                "total_gib": bytes_to_gib(size),
+            }
+        )
+        return info
+
+    base_name = match.group(1)
+    digits = len(match.group(2))
+    total = int(match.group(3))
+    expected_names = [
+        f"{base_name}-{i:0{digits}d}-of-{total:0{digits}d}.gguf"
+        for i in range(1, total + 1)
+    ]
+    existing_names = [item for item in expected_names if os.path.exists(os.path.join(directory, item))]
+    total_bytes = sum(os.path.getsize(os.path.join(directory, item)) for item in existing_names)
+    missing_names = [item for item in expected_names if item not in set(existing_names)]
+
+    info.update(
+        {
+            "is_sharded": True,
+            "file_count": len(existing_names),
+            "expected_file_count": total,
+            "missing_files": missing_names,
+            "first_file": expected_names[0],
+            "last_file": expected_names[-1],
+            "total_bytes": total_bytes,
+            "total_gib": bytes_to_gib(total_bytes),
+        }
+    )
+    return info
+
+
+def bytes_to_gib(size):
+    return round(size / (1024 ** 3), 2)
+
+
 class ModelNotLoadedError(RuntimeError):
     pass
 
@@ -68,7 +164,8 @@ class ModelRuntime:
         default_max_tokens=None,
         chunked_prefill_size=None,
     ):
-        self.model_path = model_path or os.environ.get("DSV4_MODEL_PATH") or default_model_path()
+        self.model_path_input = model_path or os.environ.get("DSV4_MODEL_PATH") or default_model_path()
+        self.model_path = resolve_model_path(self.model_path_input)
         self.model_name = model_name or os.environ.get("OPENAI_MODEL_NAME", "deepseek-v4-flash-q8")
         self.threads = int(threads or os.environ.get("DSV4_THREADS") or os.environ.get("Q2_THREADS", "12"))
         self.kv_cache_limit = kv_cache_limit or os.environ.get("DSV4_KV_CACHE_LIMIT") or os.environ.get("Q2_KV_CACHE_LIMIT", "8g")
@@ -82,6 +179,9 @@ class ModelRuntime:
             or os.environ.get("DSV4_CHUNKED_PREFILL_SIZE")
             or os.environ.get("Q2_CHUNKED_PREFILL_SIZE", "8")
         )
+        self.gpu_mem_ratio = float(os.environ.get("DSV4_GPU_MEM_RATIO", "0.99"))
+        self.device_map = os.environ.get("DSV4_DEVICE_MAP", "cuda")
+        self.moe_device_map = os.environ.get("DSV4_MOE_DEVICE_MAP", "disk")
         self.model = None
         self.model_type = None
         self.loaded_at = None
@@ -95,13 +195,18 @@ class ModelRuntime:
             "loading": self.loading,
             "last_error": self.last_error,
             "model": self.model_name,
+            "model_path_input": self.model_path_input,
             "model_type": self.model_type,
             "model_path": self.model_path,
             "path_exists": os.path.exists(self.model_path),
+            "model_files": describe_model_files(self.model_path_input, self.model_path),
             "threads": self.threads,
             "kv_cache_limit": self.kv_cache_limit,
             "default_max_tokens": self.default_max_tokens,
             "chunked_prefill_size": self.chunked_prefill_size,
+            "gpu_mem_ratio": self.gpu_mem_ratio,
+            "device_map": self.device_map,
+            "moe_device_map": self.moe_device_map,
             "disk_moe_cache_mb": os.environ.get("FASTLLM_DISK_MOE_CACHE_MB"),
             "tools_dir": TOOLS_DIR,
             "loaded_at": self.loaded_at,
@@ -125,9 +230,9 @@ class ModelRuntime:
                 llm.set_cpu_low_mem(True)
                 llm.set_cuda_embedding(False)
                 llm.set_max_tokens(self.default_max_tokens)
-                llm.set_gpu_mem_ratio(0.99)
-                llm.set_device_map("cuda")
-                llm.set_device_map("disk", True)
+                llm.set_gpu_mem_ratio(self.gpu_mem_ratio)
+                llm.set_device_map(self.device_map)
+                llm.set_device_map(self.moe_device_map, True)
 
                 model = llm.model(self.model_path, dtype="float16", kv_cache_dtype="fp8_e4m3")
                 self.loaded_at = int(time.time())
